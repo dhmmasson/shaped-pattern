@@ -45,7 +45,7 @@ Intersection =
 		}
 		return intersectionData;
 	}
-	function calculCoordsEllipseLine (ellipse , line) {
+	intersectionLibrary.calculCoordsEllipseLine = function( ellipse, line ) {
 		var x0 = ellipse.cx();
 		var y0 = ellipse.cy();
 		var a = ellipse.rx();
@@ -56,60 +56,81 @@ Intersection =
 		var y1 = coordsLine.value[0][1];
 		var y2 = coordsLine.value[1][1];
 
-		if( x1==x2 ){
+		if( x1==x2 ) {
 			var solX = x1;
-			var i = algebra.parse("1/" + b + "**2");
-			var j = algebra.parse("-2*" + y0 + "/" + b + "**2");
-			var k = algebra.parse("(" + y0 + "**2/" + b + "**2)-1+((" + solX + "**2-2*" + x0 + "*" + solX + "+" + x0 + "**2)/" + a + "**2)");
-			if( j**2-4*i*k >= 0){
-				var eq = algebra.parse(i + "y*y + y*" + j + " + "+ k + "=0");
+			var i = algebra.parse( "1/" + b + "**2" );
+			var j = algebra.parse( "-2*" + y0 + "/" + b + "**2" );
+			var k = algebra.parse( "(" + y0 + "**2/" + b + "**2)-1+((" + solX + "**2-2*" + x0 + "*" + solX + "+" + x0 + "**2)/" + a + "**2)" );
+			if( j**2-4*i*k >= 0 ) {
+				var eq = algebra.parse( i + "y*y + y*" + j + " + "+ k + "=0" );
 
 				var solY = eq.solveFor( "y" );
-				var o = 0;
 				var sol = [];
-				while( o < solY.length){
-					sol.push([solX,solY[o]]);
-					o ++;
+				for( var o in solY ) {
+					if( y1 < solY[o] && y2 < solY[o]
+						|| y1 > solY[o] && y2 > solY[o] ) {
+						sol = sol;
+					} else {
+						sol.push( [ solX,solY[o] ] );
+					}
 				}
-				var intersectionData = new IntersectionData("empty", sol);
-				return intersectionData;
+				if( sol == [] ) {
+					var intersectionData = new IntersectionData( "empty", sol );
+				} else {
+					var intersectionData = new IntersectionData( "point", sol );
+				}
 			} else {
-				var intersectionData = new IntersectionData("empty", []);
-				return intersectionData;
+				var intersectionData = new IntersectionData( "empty", [] );
 			}
 
 		} else {
-			var coefDirLine = (y2-y1)/(x2-x1);
+			var coefDirLine = ( y2-y1 ) / ( x2-x1 );
 			var ordOriLine = y1-x1*coefDirLine;
+			var solutions = [];
 
-			var i = algebra.parse("(1/"+ a + "**2)+(" + coefDirLine + "**2/" + b + "**2)");
-			var j = algebra.parse("4*((" + x0 + "/" + a + "**2)+((" + coefDirLine + "*" + ordOriLine + "+" + coefDirLine+ "*" + y0 + ")/" + b + "**2)");
-			var k = algebra.parse("(" + x0 + "**2/" + a + "**2)-1+((" + ordOriLine + "**2+(" + ordOriLine + "*" + y0 + ")+" + y0 + "**2)/" + b + "**2)");
-			if( i**2 - 4*j*k >= 0){
-				var eq = algebra.parse(i + "x*x + x*" + j + " + "+ k + "=0");
+			var i = algebra.parse( "(1/"+ a + "**2)+(" + coefDirLine + "**2/" + b + "**2)" );
+			var j = algebra.parse( "4*((" + x0 + "/" + a + "**2)+((" + coefDirLine + "*" + ordOriLine + "+" + coefDirLine+ "*" + y0 + ")/" + b + "**2)" );
+			var k = algebra.parse( "(" + x0 + "**2/" + a + "**2)-1+((" + ordOriLine + "**2+(" + ordOriLine + "*" + y0 + ")+" + y0 + "**2)/" + b + "**2)" );
+			if( i**2 - 4*j*k >= 0 ) {
+				var eq = algebra.parse( i + "x*x + x*" + j + " + "+ k + "=0" );
 
 				var solX = eq.solveFor( "x" );
 
-				var p = 0;
-				while( p < solX.length){
-					var l = algebra.parse("1/" + b + "**2");
-					var m = algebra.parse("-2*" + y0 + "/" + b + "**2");
-					var n = algebra.parse("(" + y0 + "**2/" + b + "**2)-1+((" + solX[p] + "**2-2*" + x0 + "*" + solX[p] + "+" + x0 + "**2)/" + a + "**2)");
-					
-					var eq = algebra.parse(l + "y*y + y*" + m + " + "+ n + "=0");
+				for( var o in solX ) {
+					if(  x1 < solX[o] && x2 < solX[o]
+						|| x1 > solX[o] && x2 > solX[o] ){
+						solutions = solutions;
+					} else {
+						var l = algebra.parse( "1/" + b + "**2" );
+						var m = algebra.parse( "-2*" + y0 + "/" + b + "**2" );
+						var n = algebra.parse( "(" + y0 + "**2/" + b + "**2)-1+((" + solX[o] + "**2-2*" + x0 + "*" + solX[o] + "+" + x0 + "**2)/" + a + "**2)" );
+						
+						var eq = algebra.parse( l + "y*y + y*" + m + " + "+ n + "=0" );
 
-					var sol = eq.solveFor( "y" );
+						var sol = eq.solveFor( "y" );
+						for( var p in sol ) {
+							if(  y1 < solY[p] && y2 < solY[p]
+								|| y1 > solY[p] && y2 > solY[p] ){
+								solutions = solutions
+							} else {
+								solutions.push( [ solX[o], solY[p] ] );
+							}
+						}
+					}
+				}
+				if( solutions == [] ) {
+					var intersectionData = new IntersectionData( "empty", solutions );
+				} else {
+					var intersectionData = new IntersectionData( "point", solutions );
 				}
 			} else {
-				var intersectionData = new IntersectionData("empty", []);
-				return intersectionData;
+				var intersectionData = new IntersectionData( "empty", [] );
 			}
-
 		}
 
-
+		return intersectionData;
 
 	}
 
-	return maLibrarie;
+	return intersectionLibrary ;
 }) () 
