@@ -45,6 +45,71 @@ Intersection =
 		}
 		return intersectionData;
 	}
+	function calculCoordsEllipseLine (ellipse , line) {
+		var x0 = ellipse.cx();
+		var y0 = ellipse.cy();
+		var a = ellipse.rx();
+		var b = ellipse.ry();
+		var coordsLine = line.array();
+		var x1 = coordsLine.value[0][0];
+		var x2 = coordsLine.value[1][0];
+		var y1 = coordsLine.value[0][1];
+		var y2 = coordsLine.value[1][1];
+
+		if( x1==x2 ){
+			var solX = x1;
+			var i = algebra.parse("1/" + b + "**2");
+			var j = algebra.parse("-2*" + y0 + "/" + b + "**2");
+			var k = algebra.parse("(" + y0 + "**2/" + b + "**2)-1+((" + solX + "**2-2*" + x0 + "*" + solX + "+" + x0 + "**2)/" + a + "**2)");
+			if( j**2-4*i*k >= 0){
+				var eq = algebra.parse(i + "y*y + y*" + j + " + "+ k + "=0");
+
+				var solY = eq.solveFor( "y" );
+				var o = 0;
+				var sol = [];
+				while( o < solY.length){
+					sol.push([solX,solY[o]]);
+					o ++;
+				}
+				var intersectionData = new IntersectionData("empty", sol);
+				return intersectionData;
+			} else {
+				var intersectionData = new IntersectionData("empty", []);
+				return intersectionData;
+			}
+
+		} else {
+			var coefDirLine = (y2-y1)/(x2-x1);
+			var ordOriLine = y1-x1*coefDirLine;
+
+			var i = algebra.parse("(1/"+ a + "**2)+(" + coefDirLine + "**2/" + b + "**2)");
+			var j = algebra.parse("4*((" + x0 + "/" + a + "**2)+((" + coefDirLine + "*" + ordOriLine + "+" + coefDirLine+ "*" + y0 + ")/" + b + "**2)");
+			var k = algebra.parse("(" + x0 + "**2/" + a + "**2)-1+((" + ordOriLine + "**2+(" + ordOriLine + "*" + y0 + ")+" + y0 + "**2)/" + b + "**2)");
+			if( i**2 - 4*j*k >= 0){
+				var eq = algebra.parse(i + "x*x + x*" + j + " + "+ k + "=0");
+
+				var solX = eq.solveFor( "x" );
+
+				var p = 0;
+				while( p < solX.length){
+					var l = algebra.parse("1/" + b + "**2");
+					var m = algebra.parse("-2*" + y0 + "/" + b + "**2");
+					var n = algebra.parse("(" + y0 + "**2/" + b + "**2)-1+((" + solX[p] + "**2-2*" + x0 + "*" + solX[p] + "+" + x0 + "**2)/" + a + "**2)");
+					
+					var eq = algebra.parse(l + "y*y + y*" + m + " + "+ n + "=0");
+
+					var sol = eq.solveFor( "y" );
+				}
+			} else {
+				var intersectionData = new IntersectionData("empty", []);
+				return intersectionData;
+			}
+
+		}
+
+
+
+	}
 
 	return maLibrarie;
 }) () 
