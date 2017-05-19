@@ -74,6 +74,10 @@ var tester =
 				}
 
 				$testBloc.append( correct  ? "success" : "error" ) 
+				if( !correct ) {
+					$testBloc.append( JSON.stringify( test.output  ) )
+					$testBloc.append( JSON.stringify( result ) ) 
+				}
 				$testBloc.addClass( correct  ? "success" : "error" ) 
 			}
 
