@@ -437,7 +437,7 @@ test[36] =
 	, input : function( svg ) { 
 			var line1 = svg.line( 50, 0, 50, 100 )
 				 .stroke( { width : 1 } );
-			var line2 = svg.line( 0, 0, 50, 40 )
+			var line2 = svg.line( 0, 0, 40, 40 )
 				 .stroke( { width : 1 } );
 			return [ line1, line2 ];
 		}
@@ -461,7 +461,7 @@ test[38] =
 	, input : function( svg ) { 
 			var line1 = svg.line( 50, 0, 50, 100 )
 				 .stroke( { width : 1 } );
-			var line2 = svg.line( 50, 60, 100, 100 )
+			var line2 = svg.line( 60, 60, 100, 100 )
 				 .stroke( { width : 1 } );
 			return [ line1, line2 ];
 		}
@@ -485,7 +485,7 @@ test[40] =
 	, input : function( svg ) { 
 			var line1 = svg.line( 50, 60, 50, 100 )
 				 .stroke( { width : 1 } );
-			var line2 = svg.line( 50, 60, 100, 100 )
+			var line2 = svg.line( 60, 60, 100, 100 )
 				 .stroke( { width : 1 } );
 			return [ line1, line2 ];
 		}
@@ -555,7 +555,7 @@ test[46] =
 	{ name : "Test Intersection diagonal horizontal 6 : no intersection left"
 	, target : "intersectionLineLine"
 	, input : function( svg ) { 
-			var line1 = svg.line( 0, 0, 50, 40 )
+			var line1 = svg.line( 0, 0, 40, 40 )
 				 .stroke( { width : 1 } );
 			var line2 = svg.line( 50, 0, 50, 100 )
 				 .stroke( { width : 1 } );
@@ -579,7 +579,7 @@ test[48] =
 	{ name : "Test Intersection diagonal horizontal 8 : no intersection right"
 	, target : "intersectionLineLine"
 	, input : function( svg ) { 
-			var line1 = svg.line( 50, 60, 100, 100 )
+			var line1 = svg.line( 60, 60, 100, 100 )
 				 .stroke( { width : 1 } );
 			var line2 = svg.line( 50, 0, 50, 100 )
 				 .stroke( { width : 1 } );
@@ -603,7 +603,7 @@ test[50] =
 	{ name : "Test Intersection diagonal horizontal 10 : no intersection rdm"
 	, target : "intersectionLineLine"
 	, input : function( svg ) { 
-			var line1 = svg.line( 50, 60, 100, 100 )
+			var line1 = svg.line( 60, 60, 100, 100 )
 				 .stroke( { width : 1 } );
 			var line2 = svg.line( 50, 60, 50, 100 )
 				 .stroke( { width : 1 } );

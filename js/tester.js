@@ -63,15 +63,18 @@ var tester =
 				//Print a result message message 
 
 				var correct = true 
-				if( result.type == "point" ) {
 					for( var i in result.data ) {
 						correct = correct
 							&& test.output[i] instanceof Array 
 							&& ( result.data[i][0] == test.output[i][0])
 							&& ( result.data[i][1] == test.output[i][1])
 					}
-
-				}
+					for( var i in test.output ) {
+						correct = correct
+							&& result.data[i] instanceof Array 
+							&& ( result.data[i][0] == test.output[i][0])
+							&& ( result.data[i][1] == test.output[i][1])
+					}
 
 				$testBloc.append( correct  ? "success" : "error" ) 
 				if( !correct ) {
