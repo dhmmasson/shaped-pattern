@@ -41,10 +41,10 @@ Intersection =
 			|| ( y3 < solY && y4 < solY ) ) {//intersection right of line2 on Y axis
 			var intersectionData = new IntersectionData( "empty", [] );
 		} else {
-			var intersectionData = new IntersectionData( "point", [ solX, solY ] );
+			var intersectionData = new IntersectionData( "point", [ [ solX, solY ] ] );
 		}
 		return intersectionData;
 	}
 
-	return maLibrarie;
+	return intersectionLibrary;
 }) () 
