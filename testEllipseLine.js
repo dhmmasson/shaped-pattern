@@ -11,7 +11,7 @@ test[0] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[1] = 
 	{ name : "Test Intersection ellipse horizontal 2 : no intersection top"
@@ -24,7 +24,7 @@ test[1] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[2] = 
 	{ name : "Test Intersection ellipse horizontal 3 : no intersection top right"
@@ -193,7 +193,7 @@ test[14] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[15] = 
 	{ name : "Test Intersection ellipse vertical 2 : no intersection top"
@@ -206,7 +206,7 @@ test[15] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[16] = 
 	{ name : "Test Intersection ellipse vertical 3 : no intersection top right"
@@ -362,7 +362,7 @@ test[27] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [ 20, 60 ], [ 200, 60 ] ]
+	, output : [ [ 110, 20 ], [ 110, 100 ] ]
 	}
 test[28] = 
 	{ name : "Test Intersection ellipse diagonal 1 : no intersection top left"
@@ -375,7 +375,7 @@ test[28] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[29] = 
 	{ name : "Test Intersection ellipse diagonal 2 : no intersection top"
@@ -388,7 +388,7 @@ test[29] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[30] = 
 	{ name : "Test Intersection ellipse diagonal 3 : no intersection top right"
@@ -557,7 +557,7 @@ test[42] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[43] = 
 	{ name : "Test Intersection ellipse diagonal 16 : no intersection top"
@@ -570,7 +570,7 @@ test[43] =
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
-	, output : [ [] ]
+	, output : []
 	}
 test[44] = 
 	{ name : "Test Intersection ellipse diagonal 17 : no intersection top right"

@@ -58,78 +58,106 @@ Intersection =
 		var y2 = coordsLine.value[1][1];//coord second point segment on Y
 		//test if segment type x = a or y = ax + b
 		if( x1==x2 ) {
+			//if type x = a
 			var solutionsOnX = x1;
-			var i = algebra.parse( "1/" + demiAxeY + "**2" );//coef in Y**2 of quadratic equation
-			var j = algebra.parse( "-2*" + origineEllipseY + "/" + demiAxeY + "**2" );//coef in Y**1 of quadratic equation
-			var k = algebra.parse( "(" + origineEllipseY + "**2/" + demiAxeY + "**2)-1+((" + solutionsOnX + "**2-2*" + origineEllipseX + "*" + solutionsOnX + "+" + origineEllipseX + "**2)/" + demiAxeX + "**2)" );//coef in Y**0 of quadratic equation
-			//test signe of discriminant
-			if( j**2-4*i*k >= 0 ) {
-				var equation = algebra.parse( i + "y*y + y*" + j + " + "+ k + "=0" );
-
-				var solutionOnY = equation.solveFor( "y" );//solution of the equation
-				var solutions = [];
-				for( var o in solutionOnY ) {
-					//test if supposed intersection point is on segment
-					if( y1 < solutionOnY[o] && y2 < solutionOnY[o]
-						|| y1 > solutionOnY[o] && y2 > solutionOnY[o] ) {
-						solutions = solutions;
+			//test if x is in the ellipse
+			if( origineEllipseX - demiAxeX <= solutionsOnX && origineEllipseX + demiAxeX >= solutionsOnX){
+				//two y solutions possible
+				var solution1 = origineEllipseY + ( Math.sqrt( 1 - ( solutionsOnX - origineEllipseX )*( solutionsOnX - origineEllipseX )/( demiAxeX*demiAxeX ) )*demiAxeY );
+				var solution2 =  origineEllipseY + ( -Math.sqrt( 1 - ( solutionsOnX - origineEllipseX )*( solutionsOnX - origineEllipseX )/( demiAxeX*demiAxeX ) )*demiAxeY )
+				if( solution1 == solution2 ){
+					//test if the solution on y is on the segment
+					if( solution1 == NaN
+						|| solution1 == Infinity 
+						|| y1 < solution1 && y2 < solution1
+						|| y1 > solution1 && y2 > solution1 ) {
+						var intersectionData = new IntersectionData( "empty", [] );
 					} else {
-						sol.push( [ solutionsOnX,solutionOnY[o] ] );
+						var intersectionData = new IntersectionData( "point", [ [ solutionsOnX, solution1 ] ] );
+					}
+				} else {
+					var solutionOnY = [ solution1, solution2 ];//solution of the equation
+					var solutions = [];
+					for( var o in solutionOnY ) {
+						//test if supposed intersection point is on segment
+						if( solutionOnY[o] == NaN
+							|| solutionOnY[o] == Infinity 
+							|| y1 < solutionOnY[o] && y2 < solutionOnY[o]
+							|| y1 > solutionOnY[o] && y2 > solutionOnY[o] ) {
+							solutions = solutions;
+						} else {
+							solutions.push( [ solutionsOnX, solutionOnY[o] ] );
+						}
+					}
+					//test what to return depending on if point are on segment
+					if( solutions == [] ) {
+						var intersectionData = new IntersectionData( "empty", [] );
+					} else {
+						var intersectionData = new IntersectionData( "point", solutions );
 					}
 				}
-				//test what to return depending on if point are on segment
-				if( solutions == [] ) {
-					var intersectionData = new IntersectionData( "empty", sol );
-				} else {
-					var intersectionData = new IntersectionData( "point", sol );
-				}
 			} else {
+				//if x not in the ellipse return "empty"
 				var intersectionData = new IntersectionData( "empty", [] );
 			}
 
 		} else {
+			// if type y = ax + b
+			//determination of the two coefficients
 			var segmentSlope = ( y2-y1 ) / ( x2-x1 );
 			var segmentOriginOrdonate = y1-x1*segmentSlope;
 			var solutions = [];
 
-			var i = algebra.parse( "(1/"+ demiAxeX + "**2)+(" + segmentSlope + "**2/" + demiAxeY + "**2)" );//coef in X**2 of quadratic equation
-			var j = algebra.parse( "4*((" + origineEllipseX + "/" + demiAxeX + "**2)+((" + segmentSlope + "*" + segmentOriginOrdonate + "+" + segmentSlope+ "*" + origineEllipseY + ")/" + demiAxeY + "**2)" );//coef in X**1 of quadratic equation
-			var k = algebra.parse( "(" + origineEllipseX + "**2/" + demiAxeX + "**2)-1+((" + segmentOriginOrdonate + "**2+(" + segmentOriginOrdonate + "*" + origineEllipseY + ")+" + origineEllipseY + "**2)/" + demiAxeY + "**2)" );//coef in X**0 of quadratic equation
+			var i = (1/ (demiAxeX *demiAxeX) )+( ( segmentSlope *segmentSlope )/( demiAxeY *demiAxeY) );//coef in X**2 of quadratic equation
+			var j = -2*( ( origineEllipseX / (demiAxeX *demiAxeX ) )+( ( ( segmentSlope * segmentOriginOrdonate ) + ( segmentSlope * origineEllipseY ) )/ ( demiAxeY *demiAxeY ) ) );//coef in X**1 of quadratic equation
+			var k = ( ( origineEllipseX *origineEllipseX )/( demiAxeX *demiAxeX ) ) - 1 + ( ( (segmentOriginOrdonate*segmentOriginOrdonate ) + ( segmentOriginOrdonate*origineEllipseY )+( origineEllipseY *origineEllipseY ) )/ ( demiAxeY *demiAxeY ) );//coef in X**0 of quadratic equation
 			//test signe of discriminant
-			if( i**2 - 4*j*k >= 0 ) {
-				var equation = algebra.parse( i + "x*x + x*" + j + " + "+ k + "=0" );
-
-				var solutionsOnX = equation.solveFor( "x" );//solution of the quadratic equation for X coord
+			if( j*j - 4*i*k > 0 ) {
+				var solutionsOnX = [ (-j-Math.sqrt( ( j*j )-4*i*k ))/2*i, (-j+Math.sqrt( ( j*j) -4*i*k ))/2*i ];//solution of the equation
 
 				for( var o in solutionsOnX ) {
 					//test if supposed X coord is on segment
-					if(  x1 < solutionsOnX[o] && x2 < solutionsOnX[o]
+					if( solutionsOnX[o] == NaN
+						|| solutionsOnX[o] == Infinity 
+						|| x1 < solutionsOnX[o] && x2 < solutionsOnX[o]
 						|| x1 > solutionsOnX[o] && x2 > solutionsOnX[o] ){
-						solutions = solutions;
+						//solutions = solutions;
 					} else {
-						var l = algebra.parse( "1/" + demiAxeY + "**2" );//coef in Y**2 of quadratic equation
-						var m = algebra.parse( "-2*" + origineEllipseY + "/" + demiAxeY + "**2" );//coef in Y**1 of quadratic equation
-						var n = algebra.parse( "(" + origineEllipseY + "**2/" + demiAxeY + "**2)-1+((" + solutionsOnX[o] + "**2-2*" + origineEllipseX + "*" + solutionsOnX[o] + "+" + origineEllipseX + "**2)/" + demiAxeX + "**2)" );//coef in Y**0 of quadratic equation
-						
-						var equation = algebra.parse( l + "y*y + y*" + m + " + "+ n + "=0" );
-
-						var solutionOnY = equation.solveFor( "y" );//solution of the quadratic equation for X coord
-						for( var p in solutionOnY ) {
-							//test if supposed Y coord is on segment
-							if(  y1 < solutionOnY[p] && y2 < solutionOnY[p]
-								|| y1 > solutionOnY[p] && y2 > solutionOnY[p] ){
-								solutions = solutions
-							} else {
-								solutions.push( [ solutionsOnX[o], solutionOnY[p] ] );
-							}
+						var solutionOnY = segmentSlope * solutionsOnX[o] + segmentOriginOrdonate;//solution of the quadratic equation for X coord
+						if( solutionOnY == NaN
+							|| solutionOnY == Infinity 
+							|| y1 < solutionOnY && y2 < solutionOnY
+							|| y1 > solutionOnY && y2 > solutionOnY ){
+							//solutions = solutions;
+						} else {
+							solutions.push( [ solutionsOnX[o], solutionOnY ] );
 						}
 					}
 				}
-				//test what to return depending on if point are on segment
 				if( solutions == [] ) {
-					var intersectionData = new IntersectionData( "empty", solutions );
+					var intersectionData = new IntersectionData( "empty", [] );
 				} else {
 					var intersectionData = new IntersectionData( "point", solutions );
+				}
+			} else if( j*j - 4*i*k == 0 ) {
+				var solutionsOnX = -j/2*i;//solution of the equation
+				//test if supposed intersection point is on segment
+				if( solutionsOnX == NaN
+					|| solutionsOnX == Infinity 
+					|| x1 < solutionsOnX && x2 < solutionsOnX
+					|| x1 > solutionsOnX && x2 > solutionsOnX ) {
+					var intersectionData = new IntersectionData( "empty", [] );
+				} else {
+					var solutionOnY = segmentSlope * solutionsOnX + segmentOriginOrdonate;
+					//test if supposed Y coord is on segment
+					if( solutionOnY[p] == NaN
+						|| solutionOnY[p] == Infinity 
+						|| y1 < solutionOnY[p] && y2 < solutionOnY[p]
+						|| y1 > solutionOnY[p] && y2 > solutionOnY[p] ){
+						var intersectionData = new IntersectionData( "empty", [] );
+					} else {
+						var intersectionData = new IntersectionData( "point", [ [ solutionsOnX, solutionOnY ] ] );
+					}
 				}
 			} else {
 				var intersectionData = new IntersectionData( "empty", [] );

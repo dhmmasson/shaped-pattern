@@ -2,6 +2,7 @@ var tester =
 (function() {
 	//require jquery, SVG.js
 	//TODO: test if jquery is included
+	//TODO: include case when points are not in the good order
 
 	var Tester = 
 	{	testSets : {}
