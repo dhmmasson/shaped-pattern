@@ -581,7 +581,7 @@ test[41] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 20, 60, 110, 100 )
+			var line = svg.line( -25, 40, 155, 120 )
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}

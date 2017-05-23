@@ -76,7 +76,7 @@ Intersection =
 						var intersectionData = new IntersectionData( "point", [ [ solutionsOnX, solution1 ] ] );
 					}
 				} else {
-					var solutionOnY = [ solution1, solution2 ];//solution of the equation
+					var solutionOnY = [ solution2, solution1 ];//solution of the equation
 					var solutions = [];
 					for( var o in solutionOnY ) {
 						//test if supposed intersection point is on segment
@@ -127,7 +127,7 @@ Intersection =
 						|| origineEllipseX - demiAxeX > solutionsOnX && origineEllipseX + demiAxeX < solutionsOnX ) {
 						solutions = solutions;
 					} else {
-						var solutionOnY = segmentSlope * solutionsOnX[o] + segmentOriginOrdonate;//solution of the quadratic equation for X coord
+						var solutionOnY = segmentSlope * solutionsOnX[o] + segmentOriginOrdonate;//solution for Y coord if X coord on segment and ellipse
 						console.log( solutionsOnX[o], solutionOnY )
 						if( solutionOnY == NaN
 							|| solutionOnY == Infinity 
@@ -145,21 +145,22 @@ Intersection =
 					var intersectionData = new IntersectionData( "point", solutions );
 				}
 			} else if( delta == 0 ) {
-				var solutionsOnX = -j/2*i;//solution of the equation
+				var solutionsOnX = (-j)/(2*i);//solution of the equation
 				//test if supposed intersection point is on segment
 				if( solutionsOnX == NaN
 					|| solutionsOnX == Infinity 
 					|| x1 < solutionsOnX && x2 < solutionsOnX
-					|| x1 > solutionsOnX && x2 > solutionsOnX ) {
+					|| x1 > solutionsOnX && x2 > solutionsOnX
+					|| origineEllipseX - demiAxeX > solutionsOnX && origineEllipseX + demiAxeX < solutionsOnX ) {
 					var intersectionData = new IntersectionData( "empty", [] );
 				} else {
 					var solutionOnY = segmentSlope * solutionsOnX + segmentOriginOrdonate;
 					console.log( solutionsOnX, solutionOnY )
 					//test if supposed Y coord is on segment
-					if( solutionOnY[p] == NaN
-						|| solutionOnY[p] == Infinity 
-						|| y1 < solutionOnY[p] && y2 < solutionOnY[p]
-						|| y1 > solutionOnY[p] && y2 > solutionOnY[p] ){
+					if( solutionOnY == NaN
+						|| solutionOnY == Infinity 
+						|| y1 < solutionOnY && y2 < solutionOnY
+						|| y1 > solutionOnY && y2 > solutionOnY ){
 						var intersectionData = new IntersectionData( "empty", [] );
 					} else {
 						var intersectionData = new IntersectionData( "point", [ [ solutionsOnX, solutionOnY ] ] );
