@@ -19,6 +19,7 @@ test[1] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 10, 190, 10 )
 				 .stroke( { width : 1 } );
@@ -32,6 +33,7 @@ test[2] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 10, 220, 10 )
 				 .stroke( { width : 1 } );
@@ -45,6 +47,7 @@ test[3] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 60, 10, 60 )
 				 .stroke( { width : 1 } );
@@ -58,6 +61,7 @@ test[4] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 60, 190, 60 )
 				 .stroke( { width : 1 } );
@@ -71,6 +75,7 @@ test[5] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 60, 220, 60 )
 				 .stroke( { width : 1 } );
@@ -84,6 +89,7 @@ test[6] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 110, 10, 110 )
 				 .stroke( { width : 1 } );
@@ -97,6 +103,7 @@ test[7] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 110, 190, 110 )
 				 .stroke( { width : 1 } );
@@ -110,6 +117,7 @@ test[8] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 110, 220, 110 )
 				 .stroke( { width : 1 } );
@@ -123,6 +131,7 @@ test[9] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 10, 60, 30, 60 )
 				 .stroke( { width : 1 } );
@@ -136,6 +145,7 @@ test[10] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 20, 210, 20 )
 				 .stroke( { width : 1 } );
@@ -149,6 +159,7 @@ test[11] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 190, 60, 210, 60 )
 				 .stroke( { width : 1 } );
@@ -162,6 +173,7 @@ test[12] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 100, 190, 100 )
 				 .stroke( { width : 1 } );
@@ -175,6 +187,7 @@ test[13] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 10, 60, 210, 60 )
 				 .stroke( { width : 1 } );
@@ -188,6 +201,7 @@ test[14] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 10, 0, 10, 10 )
 				 .stroke( { width : 1 } );
@@ -201,6 +215,7 @@ test[15] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 110, 0, 110, 10 )
 				 .stroke( { width : 1 } );
@@ -214,6 +229,7 @@ test[16] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 0, 210, 10 )
 				 .stroke( { width : 1 } );
@@ -227,6 +243,7 @@ test[17] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 10, 30, 10, 90 )
 				 .stroke( { width : 1 } );
@@ -240,6 +257,7 @@ test[18] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 110, 30, 110, 90 )
 				 .stroke( { width : 1 } );
@@ -253,6 +271,7 @@ test[19] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 30, 210, 90 )
 				 .stroke( { width : 1 } );
@@ -266,6 +285,7 @@ test[20] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 10, 110, 10, 120 )
 				 .stroke( { width : 1 } );
@@ -279,6 +299,7 @@ test[21] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 110, 110, 110, 120 )
 				 .stroke( { width : 1 } );
@@ -292,6 +313,7 @@ test[22] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 110, 210, 120 )
 				 .stroke( { width : 1 } );
@@ -305,6 +327,7 @@ test[23] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 20, 30, 20, 90 )
 				 .stroke( { width : 1 } );
@@ -318,6 +341,7 @@ test[24] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 110, 10, 110, 30 )
 				 .stroke( { width : 1 } );
@@ -331,6 +355,7 @@ test[25] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 200, 30, 200, 90 )
 				 .stroke( { width : 1 } );
@@ -344,6 +369,7 @@ test[26] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 110, 90, 110, 110 )
 				 .stroke( { width : 1 } );
@@ -357,6 +383,7 @@ test[27] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 110, 10, 110, 210 )
 				 .stroke( { width : 1 } );
@@ -370,6 +397,7 @@ test[28] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 0, 10, 10 )
 				 .stroke( { width : 1 } );
@@ -383,6 +411,7 @@ test[29] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 0, 190, 10 )
 				 .stroke( { width : 1 } );
@@ -396,6 +425,7 @@ test[30] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 0, 220, 10 )
 				 .stroke( { width : 1 } );
@@ -409,6 +439,7 @@ test[31] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 30, 10, 90 )
 				 .stroke( { width : 1 } );
@@ -422,6 +453,7 @@ test[32] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 100, 50, 120, 70 )
 				 .stroke( { width : 1 } );
@@ -435,6 +467,7 @@ test[33] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 50, 220, 70 )
 				 .stroke( { width : 1 } );
@@ -448,6 +481,7 @@ test[34] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 110, 10, 120 )
 				 .stroke( { width : 1 } );
@@ -461,6 +495,7 @@ test[35] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 110, 190, 120 )
 				 .stroke( { width : 1 } );
@@ -474,6 +509,7 @@ test[36] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 110, 220, 120 )
 				 .stroke( { width : 1 } );
@@ -487,6 +523,7 @@ test[37] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 10, 50, 30, 70 )
 				 .stroke( { width : 1 } );
@@ -500,6 +537,7 @@ test[38] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 100, 10, 120, 30 )
 				 .stroke( { width : 1 } );
@@ -513,6 +551,7 @@ test[39] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 190, 50, 210, 70 )
 				 .stroke( { width : 1 } );
@@ -526,6 +565,7 @@ test[40] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 100, 90, 120, 110 )
 				 .stroke( { width : 1 } );
@@ -539,8 +579,9 @@ test[41] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 70, 120, 110 )
+			var line = svg.line( 20, 60, 110, 100 )
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}
@@ -552,6 +593,7 @@ test[42] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 10, 10, 0 )
 				 .stroke( { width : 1 } );
@@ -565,6 +607,7 @@ test[43] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 10, 190, 0 )
 				 .stroke( { width : 1 } );
@@ -578,6 +621,7 @@ test[44] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 10, 220, 0 )
 				 .stroke( { width : 1 } );
@@ -591,6 +635,7 @@ test[45] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 90, 10, 30 )
 				 .stroke( { width : 1 } );
@@ -604,6 +649,7 @@ test[46] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 100, 70, 120, 50 )
 				 .stroke( { width : 1 } );
@@ -617,6 +663,7 @@ test[47] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 70, 220, 50 )
 				 .stroke( { width : 1 } );
@@ -630,6 +677,7 @@ test[48] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 0, 120, 10, 110 )
 				 .stroke( { width : 1 } );
@@ -643,6 +691,7 @@ test[49] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 30, 120, 190, 110 )
 				 .stroke( { width : 1 } );
@@ -656,6 +705,7 @@ test[50] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 210, 120, 220, 110 )
 				 .stroke( { width : 1 } );
@@ -669,6 +719,7 @@ test[51] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 10, 70, 30, 50 )
 				 .stroke( { width : 1 } );
@@ -682,6 +733,7 @@ test[52] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 100, 30, 120, 10 )
 				 .stroke( { width : 1 } );
@@ -695,6 +747,7 @@ test[53] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 190, 70, 210, 50 )
 				 .stroke( { width : 1 } );
@@ -708,6 +761,7 @@ test[54] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
 			var line = svg.line( 100, 110, 120, 90 )
 				 .stroke( { width : 1 } );
@@ -721,8 +775,9 @@ test[55] =
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
+				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 100, 110, 210, 70 )
+			var line = svg.line( 110, 100, 200, 60 )
 				 .stroke( { width : 1 } );
 			return [ ellipse, line ];
 		}

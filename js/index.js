@@ -108,38 +108,43 @@ Intersection =
 			var segmentOriginOrdonate = y1-x1*segmentSlope;
 			var solutions = [];
 
-			var i = (1/ (demiAxeX *demiAxeX) )+( ( segmentSlope *segmentSlope )/( demiAxeY *demiAxeY) );//coef in X**2 of quadratic equation
-			var j = -2*( ( origineEllipseX / (demiAxeX *demiAxeX ) )+( ( ( segmentSlope * segmentOriginOrdonate ) + ( segmentSlope * origineEllipseY ) )/ ( demiAxeY *demiAxeY ) ) );//coef in X**1 of quadratic equation
-			var k = ( ( origineEllipseX *origineEllipseX )/( demiAxeX *demiAxeX ) ) - 1 + ( ( (segmentOriginOrdonate*segmentOriginOrdonate ) + ( segmentOriginOrdonate*origineEllipseY )+( origineEllipseY *origineEllipseY ) )/ ( demiAxeY *demiAxeY ) );//coef in X**0 of quadratic equation
+			var i = ( 1/( demiAxeX*demiAxeX ) )+( ( segmentSlope*segmentSlope )/( demiAxeY*demiAxeY ) );//coef in X**2 of quadratic equation
+			var j = ( ( -2*origineEllipseX )/( demiAxeX*demiAxeX ) )+( ( 2*segmentSlope*segmentOriginOrdonate - 2*segmentSlope*origineEllipseY )/( demiAxeY*demiAxeY ) );//coef in X**1 of quadratic equation
+			var k = ( ( origineEllipseX*origineEllipseX )/( demiAxeX*demiAxeX ) )+( ( segmentOriginOrdonate*segmentOriginOrdonate - 2*segmentOriginOrdonate*origineEllipseY + origineEllipseY*origineEllipseY )/( demiAxeY*demiAxeY ) )-1;//coef in X**0 of quadratic equation
+			var delta = j*j - 4*i*k;//disriminant
+			console.log(delta);
 			//test signe of discriminant
-			if( j*j - 4*i*k > 0 ) {
-				var solutionsOnX = [ (-j-Math.sqrt( ( j*j )-4*i*k ))/2*i, (-j+Math.sqrt( ( j*j) -4*i*k ))/2*i ];//solution of the equation
+			if( delta > 0 ) {
+				var solutionsOnX = [ (-j-Math.sqrt( ( j*j )-4*i*k ))/(2*i), (-j+Math.sqrt( ( j*j) -4*i*k ))/(2*i) ];//solution of the equation
 
 				for( var o in solutionsOnX ) {
+					
 					//test if supposed X coord is on segment
 					if( solutionsOnX[o] == NaN
 						|| solutionsOnX[o] == Infinity 
 						|| x1 < solutionsOnX[o] && x2 < solutionsOnX[o]
-						|| x1 > solutionsOnX[o] && x2 > solutionsOnX[o] ){
-						//solutions = solutions;
+						|| x1 > solutionsOnX[o] && x2 > solutionsOnX[o] 
+						|| origineEllipseX - demiAxeX > solutionsOnX && origineEllipseX + demiAxeX < solutionsOnX ) {
+						solutions = solutions;
 					} else {
 						var solutionOnY = segmentSlope * solutionsOnX[o] + segmentOriginOrdonate;//solution of the quadratic equation for X coord
+						console.log( solutionsOnX[o], solutionOnY )
 						if( solutionOnY == NaN
 							|| solutionOnY == Infinity 
 							|| y1 < solutionOnY && y2 < solutionOnY
-							|| y1 > solutionOnY && y2 > solutionOnY ){
-							//solutions = solutions;
+							|| y1 > solutionOnY && y2 > solutionOnY ) {
+							solutions = solutions;
 						} else {
 							solutions.push( [ solutionsOnX[o], solutionOnY ] );
 						}
 					}
 				}
-				if( solutions == [] ) {
+				if( solutions.length == 0 ) {
 					var intersectionData = new IntersectionData( "empty", [] );
 				} else {
 					var intersectionData = new IntersectionData( "point", solutions );
 				}
-			} else if( j*j - 4*i*k == 0 ) {
+			} else if( delta == 0 ) {
 				var solutionsOnX = -j/2*i;//solution of the equation
 				//test if supposed intersection point is on segment
 				if( solutionsOnX == NaN
@@ -149,6 +154,7 @@ Intersection =
 					var intersectionData = new IntersectionData( "empty", [] );
 				} else {
 					var solutionOnY = segmentSlope * solutionsOnX + segmentOriginOrdonate;
+					console.log( solutionsOnX, solutionOnY )
 					//test if supposed Y coord is on segment
 					if( solutionOnY[p] == NaN
 						|| solutionOnY[p] == Infinity 
@@ -160,6 +166,7 @@ Intersection =
 					}
 				}
 			} else {
+				console.log("delta neg")
 				var intersectionData = new IntersectionData( "empty", [] );
 			}
 		}
