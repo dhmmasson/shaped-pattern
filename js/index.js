@@ -48,5 +48,39 @@ Intersection =
 		return intersectionData;
 	}
 
+	intersectionLibrary.intersectionPathLine = function( path, line ){
+		var coords = line.array();
+		var points = path.array();
+
+		var x1 = coords.value[0][0];
+		var x2 = coords.value[1][0];
+		var y1 = coords.value[0][1];
+		var y2 = coords.value[1][1];
+		var Xp0;
+		var Yp0;
+		var Xp1;
+		var Yp1;
+		var Xp2;
+		var Yp2;
+		var Xp3;
+		var Yp3;
+
+		for( i in points.value ){
+			if( points.value[i][0] == "C" ){
+				Xp0 = points.value[i-1][-2];
+				Yp0 = points.value[i-1][-1];
+				Xp1 = points.value[i][1];
+				Yp1 = points.value[i][2];
+				Xp2 = points.value[i][3];
+				Yp2 = points.value[i][4];
+				Xp3 = points.value[i][5];
+				Yp3 = points.value[i][6];
+			}
+		}
+
+
+		return intersectionData;
+	}
+
 	return intersectionLibrary;
 }) () 
