@@ -53,7 +53,6 @@ var tester =
 
 				//call the target to be tested with the input values
 				var result = this.library[ test.target ].apply( this.library, input ) 
-				console.log( result )
 				if( result.type == "point" ) {
 					for( var point of result.data ) {
 						svg.circle( 4 )
@@ -76,9 +75,10 @@ var tester =
 							&& ( Math.abs( result.data[i][0] - test.output[i][0] ) < 0.00000000001 )
 							&& ( Math.abs( result.data[i][1] - test.output[i][1] ) < 0.00000000001 )
 					}
-
+				
 				$testBloc.append( correct  ? "success" : "error" ) 
 				if( !correct ) {
+					console.log( "error", result )
 					$testBloc.append( JSON.stringify( test.output  ) )
 					$testBloc.append( JSON.stringify( result ) ) 
 				}
