@@ -29,6 +29,7 @@ Intersection =
 		var y3 = coords2.value[0][1];
 		var y4 = coords2.value[1][1];
 
+
 		var quotient =  (x1-x2)*(y3-y4)-(x3-x4)*(y1-y2);
 		//supposed intersection coord on X axis
 		var solutionsOnX = ((x1*y2-x2*y1)*(x3-x4)-(x3*y4-x4*y3)*(x1-x2))/ quotient;
@@ -136,10 +137,12 @@ Intersection =
 			var intersectionData = new IntersectionData( "empty", [] );
 		} else {
 			var intersectionData = new IntersectionData( "point", solutions );
+
 		}
 		return intersectionData;
 
 	}
 
-	return intersectionLibrary ;
+	return intersectionLibrary;
+
 }) () 
