@@ -64,7 +64,7 @@ Intersection =
 		var Yp2;
 		var Xp3;
 		var Yp3;
-
+		//recuperation of the bezier curve control point
 		for( i in points.value ){
 			if( points.value[i][0] == "C" ){
 				Xp0 = points.value[i-1][-2];
@@ -77,8 +77,19 @@ Intersection =
 				Yp3 = points.value[i][6];
 			}
 		}
+		//parametric equation coefficients
+		var Ay = -Yp0 + 3*Yp1 - 3*Yp2 + Yp3;//coefficient t^3
+		var By = 3*Yp0 - 6*Yp1 + 3*Yp2;//coefficient t^2
+		var Cy = -3*Yp0 + 3*Yp1;//coefficient t
+		var Ax = -Xp0 + 3*Xp1 - 3*Xp2 + Xp3;//coefficient t^3
+		var Bx = 3*Xp0 - 6*Xp1 + 3*Xp2;//coefficient t^2
+		var Cx = -3*Xp0 + 3*Xp1;//coefficient t
 
+		//segment equation coefficients
+		var 
 
+		//cubic equation coefficients
+		var A = 
 		return intersectionData;
 	}
 
