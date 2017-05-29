@@ -2,6 +2,8 @@ var tester =
 (function() {
 	//require jquery, SVG.js
 	//TODO: test if jquery is included
+	//TODO: include case when points are not in the good order
+
 
 	var Tester = 
 	{	testSets : {}
@@ -66,24 +68,27 @@ var tester =
 					for( var i in result.data ) {
 						correct = correct
 							&& test.output[i] instanceof Array 
-							&& ( result.data[i][0] == test.output[i][0])
-							&& ( result.data[i][1] == test.output[i][1])
+							&& ( Math.abs( result.data[i][0] - test.output[i][0] ) < 0.00000000001 )
+							&& ( Math.abs( result.data[i][1] - test.output[i][1] ) < 0.00000000001 )
+
 					}
 					for( var i in test.output ) {
 						correct = correct
 							&& result.data[i] instanceof Array 
-							&& ( result.data[i][0] == test.output[i][0])
-							&& ( result.data[i][1] == test.output[i][1])
+							&& ( Math.abs( result.data[i][0] - test.output[i][0] ) < 0.00000000001 )
+							&& ( Math.abs( result.data[i][1] - test.output[i][1] ) < 0.00000000001 )
 					}
-
+				
 				$testBloc.append( correct  ? "success" : "error" ) 
 				if( !correct ) {
+					console.log( "error", result )
+
+
 					$testBloc.append( JSON.stringify( test.output  ) )
 					$testBloc.append( JSON.stringify( result ) ) 
 				}
 				$testBloc.addClass( correct  ? "success" : "error" ) 
 			}
-
 
 		}
 
