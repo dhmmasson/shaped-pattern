@@ -29,23 +29,20 @@ Intersection =
 		var y3 = coords2.value[0][1];
 		var y4 = coords2.value[1][1];
 
-		var quotient = ((x1-x2)*(y3-y4)-(x3-x4)*(y1-y2));
-		var solutionsOnX = ((x1*y2-x2*y1)*(x3-x4)-(x3*y4-x4*y3)*(x1-x2))/ quotient;//supposed intersection coord on X axis
-		var solutionOnY = ((x1*y2-x2*y1)*(y3-y4)-(x3*y4-x4*y3)*(y1-y2))/ quotient ;//supposed intersection coord on Y axis
+		var quotient =  (x1-x2)*(y3-y4)-(x3-x4)*(y1-y2);
+		//supposed intersection coord on X axis
+		var solutionsOnX = ((x1*y2-x2*y1)*(x3-x4)-(x3*y4-x4*y3)*(x1-x2))/ quotient;
+		//supposed intersection coord on Y axis
+		var solutionOnY = ((x1*y2-x2*y1)*(y3-y4)-(x3*y4-x4*y3)*(y1-y2))/ quotient;
 
-		if( solutionsOnX == NaN
-			|| solutionsOnX == Infinity
-			|| ( x1 < solutionsOnX && x2 < solutionsOnX )//intersection left of line1 on X axis
-			|| ( x1 > solutionsOnX && x2 > solutionsOnX )//intersection right of line1 on X axis
-			|| ( y1 < solutionOnY && y2 < solutionOnY )//intersection left of line1 on Y axis
-			|| ( y3 > solutionOnY && y4 > solutionOnY )//intersection right of line1 on Y axis
-			|| ( y1 > solutionOnY && y2 > solutionOnY )//intersection left of line2 on X axis
-			|| ( x3 < solutionsOnX && x4 < solutionsOnX )//intersection right of line2 on X axis
-			|| ( x3 > solutionsOnX && x4 > solutionsOnX )//intersection left of line2 on Y axis
-			|| ( y3 < solutionOnY && y4 < solutionOnY ) ) {//intersection right of line2 on Y axis
-			var intersectionData = new IntersectionData( "empty", [] );
-		} else {
+		if( isFinite( solution1 ) 
+			&& insideInterval( solutionsOnX, x1, x2 )//test if the solution on x is on the first segment
+			&& insideInterval( solutionOnY, y1, y2 )//test if the solution on y is on the first segment
+			&& insideInterval( solutionsOnX, x3, x4 )//test if the solution on x is on the second segment
+			&& insideInterval( solutionOnY, y3, y4 ) ){//test if the solution on y is on the second segment
 			var intersectionData = new IntersectionData( "point", [ solutionsOnX, solutionOnY ] );
+		} else {
+			var intersectionData = new IntersectionData( "empty", [] );
 		}
 		return intersectionData;
 	}
