@@ -10,6 +10,11 @@ Intersection =
 		this.data = data;
 	}
 
+	function insideInterval( a, end1, end2 ) {
+		return ( end1 <= a && a <= end2) || ( end2 <= a && a <= end1 )
+	}
+	//return solution list for a cubic equation
+	//based on https://www.particleincell.com/2013/cubic-line-intersection/
 	function cubicResolution( A, B, C, D ){
 		//resolution coefficients
 		var coefficient1 = B/A;
@@ -93,7 +98,7 @@ Intersection =
 		return intersectionData;
 	}
 
-	//based on https://www.particleincell.com/2013/cubic-line-intersection/
+	//return IntersectionData
 	intersectionLibrary.intersectionBezierLine = function( path, line ){
 		var coords = line.array();
 		var points = path.array();
@@ -135,7 +140,12 @@ Intersection =
 		var Ycoefficient = 1;// Ycoefficient = {0,1}
 		var segmentSlope = ( y2-y1 ) / ( x2-x1 );
 		var segmentOriginOrdinate = y1-x1*segmentSlope;
-
+		//test if the segment is type x=
+		if( x1 == x2 ){
+			Ycoefficient = 0;
+			segmentSlope = 1;
+			segmentOriginOrdinate = -x1;
+		}
 		//cubic equation coefficients
 		var A = Ycoefficient*Ay + segmentSlope*Ax;
 		var B = Ycoefficient*By + segmentSlope*Bx;
@@ -154,12 +164,14 @@ Intersection =
 				var solutionOnY = results[i]*results[i]*results[i]*Ay
 								+ results[i]*results[i]*By
 								+ results[i]*Cx + Yp0;
-				//test if the solution are on the segment
-				if(  ){
+
+				if( insideInterval( solutionOnX, x1, x2 )//test if the solution on x is on the first segment
+					&& insideInterval( solutionOnY, y1, y2 ) ){//test if the solution on y is on the first segment )
 					solution.add( [ solutionOnX, solutionOnY ] );
 				}
 			}
 		}
+		//test for what to return
 		if( sizeOf(solution) != 0 ){
 			var intersectionData = new IntersectionData( "point", solution );
 		} else {
