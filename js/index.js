@@ -9,33 +9,41 @@ Intersection =
 		this.type = type;
 		this.data = data;
 	}
+	function sgn( x ){
+    if (x < 0.0) return -1;
+    return 1;
+	}
 
 	function insideInterval( a, end1, end2 ) {
-		return ( end1 <= a && a <= end2) || ( end2 <= a && a <= end1 )
+		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 )
 	}
 	//return solution list for a cubic equation
 	//based on https://www.particleincell.com/2013/cubic-line-intersection/
 	function cubicResolution( A, B, C, D ){
 		//resolution coefficients
+		console.log("A " + A);
 		var coefficient1 = B/A;
 		var coefficient2 = C/A;
 		var coefficient3 = D/A;
 
 		//discrimiant and coefficients
-		var D1 = ( 3*B - Math.pow( coefficient1, 2 ) )/9;
-		var D2 = ( 9*A*B - 27*C - 2*Math.pow( A, 3 ) )/54;
+		var D1 = ( 3*coefficient2 - Math.pow( coefficient1, 2 ) )/9;
+		var D2 = ( 9*coefficient1*coefficient2 - 27*coefficient3 - 2*Math.pow( coefficient1, 3 ) )/54;
 		var D = Math.pow( D1, 3 ) + Math.pow( D2, 2 );
+		console.log("D1 " + D1 + " D2 " + D2 + " D " + D );
 
-		var results = array();
+		var results = [];
 
 		if( D >= 0 ){
 			var solutionPlus = sgn( D2 + Math.sqrt(D) )*Math.pow( Math.abs( D2 + Math.sqrt(D) ), (1/3) );
 			var solutionMoins = sgn( D2 - Math.sqrt(D) )*Math.pow( Math.abs( D2 - Math.sqrt(D) ), (1/3) );
-
+			console.log( "solutionPlus " + solutionPlus );
+			console.log( "solutionMoins " + solutionMoins );
 			results[0] = -coefficient1/3 + ( solutionPlus + solutionMoins );//real root
 			results[1] = -coefficient1/3 - ( solutionPlus + solutionMoins )/2;//real part of complex root
 
-			var imaginary = Math.abs(Math.sqrt(3)*(S - T)/2);// complex part of complex root
+			var imaginary = Math.abs(Math.sqrt(3)*(solutionPlus - solutionMoins)/2);// complex part of complex root
+			console.log( "imaginary " + imaginary );
 			if( imaginary != 0 ){
 				results[1] = -1;
 			}
@@ -50,12 +58,11 @@ Intersection =
 		}
 		//test if solution belong [0,1]
 		for ( var i=0; i<3; i++ ){
+			console.log( results[i] );
         	if( results[i]<0 || results[i]>1.0 ){
         		results[i]=-1;
         	}
         }
-        //order -1 at the end
-        results = sortSpecial( results );
 
         return results;
 	}
@@ -118,8 +125,8 @@ Intersection =
 		//recuperation of the bezier curve control point
 		for( i in points.value ){
 			if( points.value[i][0] == "C" ){
-				Xp0 = points.value[i-1][-2];
-				Yp0 = points.value[i-1][-1];
+				Xp0 = points.value[i-1][points.value[i-1].length-2];
+				Yp0 = points.value[i-1][points.value[i-1].length-1];
 				Xp1 = points.value[i][1];
 				Yp1 = points.value[i][2];
 				Xp2 = points.value[i][3];
@@ -137,42 +144,52 @@ Intersection =
 		var Cx = -3*Xp0 + 3*Xp1;//coefficient t
 
 		//segment equation coefficients
-		var Ycoefficient = 1;// Ycoefficient = {0,1}
-		var segmentSlope = ( y2-y1 ) / ( x2-x1 );
-		var segmentOriginOrdinate = y1-x1*segmentSlope;
-		//test if the segment is type x=
+		var Ycoefficient = x1-x2;
+		var Xcoefficient = y2-y1;
+		var constantCoefficient = x1*(y1-y2)+y1*(x2-x1);
+
 		if( x1 == x2 ){
 			Ycoefficient = 0;
-			segmentSlope = 1;
-			segmentOriginOrdinate = -x1;
+			Xcoefficient = 1;
+			constantCoefficient = -x1;
+		} else if( y1 == y2 ){
+			Ycoefficient = -1;
+			Xcoefficient = 0;
+			constantCoefficient = y1;
 		}
+
 		//cubic equation coefficients
-		var A = Ycoefficient*Ay + segmentSlope*Ax;
-		var B = Ycoefficient*By + segmentSlope*Bx;
-		var C = Ycoefficient*Cy + segmentSlope*Cx;
-		var D = Ycoefficient*Yp0 + segmentSlope*Xp0 + segmentOriginOrdinate;
+		console.log("Ay " + Ay);
+		var A = Ycoefficient*Ay + Xcoefficient*Ax;
+		var B = Ycoefficient*By + Xcoefficient*Bx;
+		var C = Ycoefficient*Cy + Xcoefficient*Cx;
+		var D = Ycoefficient*Yp0 + Xcoefficient*Xp0 + constantCoefficient;
 
 		var results = cubicResolution( A, B, C, D );
+		console.log( results );
 		var solution = [];
 		for( i in results ){
 			//test if the solution are correct
 			if( results[i] != -1 ){
 				//replace solutions in the parametric equation
 				var solutionOnX = results[i]*results[i]*results[i]*Ax 
-								+ results[i]*results[i]*Bx 
-								+ results[i]*Cx + Xp0;
+												+ results[i]*results[i]*Bx 
+												+ results[i]*Cx + Xp0;
+				console.log( "solution on X: " + solutionOnX );
 				var solutionOnY = results[i]*results[i]*results[i]*Ay
-								+ results[i]*results[i]*By
-								+ results[i]*Cx + Yp0;
+												+ results[i]*results[i]*By
+												+ results[i]*Cy + Yp0;
+				console.log( "solution on Y: " + solutionOnY );
 
 				if( insideInterval( solutionOnX, x1, x2 )//test if the solution on x is on the first segment
 					&& insideInterval( solutionOnY, y1, y2 ) ){//test if the solution on y is on the first segment )
-					solution.add( [ solutionOnX, solutionOnY ] );
+					console.log("solution inside segment")
+					solution.push( [ solutionOnX, solutionOnY ] );
 				}
 			}
 		}
 		//test for what to return
-		if( sizeOf(solution) != 0 ){
+		if( solution.length != 0 ){
 			var intersectionData = new IntersectionData( "point", solution );
 		} else {
 			var intersectionData = new IntersectionData( "empty", [ [] ] );
