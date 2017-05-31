@@ -17,11 +17,31 @@ Intersection =
 	function insideInterval( a, end1, end2 ) {
 		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 )
 	}
+	//return solution list for a quadratic equation
+	function quadraticResolution( A, B, C ){
+		//discriminant
+		var D = (B*B) - 4*A*C;
+		var results = [];
+
+		if( D > 0 ){
+			results[0] = ( -B-Math.sqrt(D) ) / ( 2*A );
+			results[1] = ( -B+Math.sqrt(D) ) / ( 2*A );
+		} else if( D == 0 ){
+			results[0] = (-B)/(2*A);
+		}
+		for ( var i=0; i<3; i++ ){
+			console.log( results[i] );
+        	if( results[i]<0 || results[i]>1.0 ){
+        		results[i]=-1;
+        	}
+        }
+
+		return results;
+	}
 	//return solution list for a cubic equation
 	//based on https://www.particleincell.com/2013/cubic-line-intersection/
 	function cubicResolution( A, B, C, D ){
 		//resolution coefficients
-		console.log("A " + A);
 		var coefficient1 = B/A;
 		var coefficient2 = C/A;
 		var coefficient3 = D/A;
@@ -150,8 +170,8 @@ Intersection =
 
 		if( x1 == x2 ){
 			Ycoefficient = 0;
-			Xcoefficient = 1;
-			constantCoefficient = -x1;
+			Xcoefficient = -1;
+			constantCoefficient = x1;
 		} else if( y1 == y2 ){
 			Ycoefficient = -1;
 			Xcoefficient = 0;
@@ -159,13 +179,16 @@ Intersection =
 		}
 
 		//cubic equation coefficients
-		console.log("Ay " + Ay);
 		var A = Ycoefficient*Ay + Xcoefficient*Ax;
 		var B = Ycoefficient*By + Xcoefficient*Bx;
 		var C = Ycoefficient*Cy + Xcoefficient*Cx;
 		var D = Ycoefficient*Yp0 + Xcoefficient*Xp0 + constantCoefficient;
 
-		var results = cubicResolution( A, B, C, D );
+		if( A == 0 ){
+			var results = quadraticResolution( B, C, D );
+		} else {
+			var results = cubicResolution( A, B, C, D );
+		}
 		console.log( results );
 		var solution = [];
 		for( i in results ){
