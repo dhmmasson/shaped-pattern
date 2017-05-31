@@ -539,3 +539,39 @@ test[44] =
 		}
 	, output : [ [97.76499071340086,45.92166357113365],[75.56417095232752,38.521390317442524] ]
 	}
+test[45] = 
+	{ name : "Test Intersection Path horitzontal 16 : no intersection left "
+	, target : "intersectionBezierLine"
+	, input : function( svg ) { 
+			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
+				 .stroke( { width : 1 } ).fill( "none" );
+			var line = svg.line( 5, 75, 20, 75 )
+				 .stroke( { width : 1 } );
+			return [ path, line ];
+		}
+	, output : [ [ ] ]
+	}
+test[46] = 
+	{ name : "Test Intersection Path horitzontal 17 : no intersection right "
+	, target : "intersectionBezierLine"
+	, input : function( svg ) { 
+			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
+				 .stroke( { width : 1 } ).fill( "none" );
+			var line = svg.line( 105, 75, 120, 75 )
+				 .stroke( { width : 1 } );
+			return [ path, line ];
+		}
+	, output : [ [ ] ]
+	}
+test[47] = 
+	{ name : "Test Intersection Path horitzontal 18 : no intersection top "
+	, target : "intersectionBezierLine"
+	, input : function( svg ) { 
+			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
+				 .stroke( { width : 1 } ).fill( "none" );
+			var line = svg.line( 5, 20, 120, 20 )
+				 .stroke( { width : 1 } );
+			return [ path, line ];
+		}
+	, output : [ [ ] ]
+	}
