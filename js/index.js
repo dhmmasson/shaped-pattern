@@ -17,6 +17,18 @@ Intersection =
 	function insideInterval( a, end1, end2 ) {
 		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 )
 	}
+	//return solution list for a linear equation
+	function linearResolution( A, B ){
+		var results = [];
+		results[0] = -B/A;
+		for ( var i=0; i<3; i++ ){
+			console.log( results[i] );
+        	if( results[i]<0 || results[i]>1.0 ){
+        		results[i]=-1;
+        	}
+        }
+		return results;
+	}
 	//return solution list for a quadratic equation
 	function quadraticResolution( A, B, C ){
 		//discriminant
@@ -50,20 +62,20 @@ Intersection =
 		var D1 = ( 3*coefficient2 - Math.pow( coefficient1, 2 ) )/9;
 		var D2 = ( 9*coefficient1*coefficient2 - 27*coefficient3 - 2*Math.pow( coefficient1, 3 ) )/54;
 		var D = Math.pow( D1, 3 ) + Math.pow( D2, 2 );
-		console.log("D1 " + D1 + " D2 " + D2 + " D " + D );
+		/*console.log("D1 " + D1 + " D2 " + D2 + " D " + D );*/
 
 		var results = [];
 
 		if( D >= 0 ){
 			var solutionPlus = sgn( D2 + Math.sqrt(D) )*Math.pow( Math.abs( D2 + Math.sqrt(D) ), (1/3) );
 			var solutionMoins = sgn( D2 - Math.sqrt(D) )*Math.pow( Math.abs( D2 - Math.sqrt(D) ), (1/3) );
-			console.log( "solutionPlus " + solutionPlus );
-			console.log( "solutionMoins " + solutionMoins );
+			/*console.log( "solutionPlus " + solutionPlus );*/
+			/*console.log( "solutionMoins " + solutionMoins );*/
 			results[0] = -coefficient1/3 + ( solutionPlus + solutionMoins );//real root
 			results[1] = -coefficient1/3 - ( solutionPlus + solutionMoins )/2;//real part of complex root
 
 			var imaginary = Math.abs(Math.sqrt(3)*(solutionPlus - solutionMoins)/2);// complex part of complex root
-			console.log( "imaginary " + imaginary );
+			/*console.log( "imaginary " + imaginary );*/
 			if( imaginary != 0 ){
 				results[1] = -1;
 			}
@@ -78,7 +90,7 @@ Intersection =
 		}
 		//test if solution belong [0,1]
 		for ( var i=0; i<3; i++ ){
-			console.log( results[i] );
+			/*console.log( results[i] );*/
         	if( results[i]<0 || results[i]>1.0 ){
         		results[i]=-1;
         	}
@@ -184,12 +196,18 @@ Intersection =
 		var C = Ycoefficient*Cy + Xcoefficient*Cx;
 		var D = Ycoefficient*Yp0 + Xcoefficient*Xp0 + constantCoefficient;
 
+		/*console.log( "A= " + A + "  B= " + B + "  C= " + C + "  D= " + D);*/
+
 		if( A == 0 ){
-			var results = quadraticResolution( B, C, D );
+			if( B == 0 ){
+				var results = linearResolution( C, D );
+			} else {
+				var results = quadraticResolution( B, C, D );
+			}
 		} else {
 			var results = cubicResolution( A, B, C, D );
 		}
-		console.log( results );
+		/*console.log( results );*/
 		var solution = [];
 		for( i in results ){
 			//test if the solution are correct
@@ -198,15 +216,14 @@ Intersection =
 				var solutionOnX = results[i]*results[i]*results[i]*Ax 
 												+ results[i]*results[i]*Bx 
 												+ results[i]*Cx + Xp0;
-				console.log( "solution on X: " + solutionOnX );
+				/*console.log( "solution on X: " + solutionOnX );*/
 				var solutionOnY = results[i]*results[i]*results[i]*Ay
 												+ results[i]*results[i]*By
 												+ results[i]*Cy + Yp0;
-				console.log( "solution on Y: " + solutionOnY );
+				/*console.log( "solution on Y: " + solutionOnY );*/
 
 				if( insideInterval( solutionOnX, x1, x2 )//test if the solution on x is on the first segment
 					&& insideInterval( solutionOnY, y1, y2 ) ){//test if the solution on y is on the first segment )
-					console.log("solution inside segment")
 					solution.push( [ solutionOnX, solutionOnY ] );
 				}
 			}
