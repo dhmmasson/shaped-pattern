@@ -117,7 +117,7 @@ test[9] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 93.322, 40 ] ]
+	, output : [ [ 93.32211811462604, 40 ] ]
 	}
 test[10] = 
 	{ name : "Test Intersection Path horizontal 11 : 2 intersections middle right "
@@ -153,7 +153,7 @@ test[12] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 25, 60 ], [ 62.5, 60 ] ]
+	, output : [ [31.677881885373967,60],[51.57196689004137,60] ]
 	}
 test[13] = 
 	{ name : "Test Intersection Path horizontal 14 : 2 intersections middle top "
@@ -165,7 +165,7 @@ test[13] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 100, 40 ], [ 62.5, 40 ] ]
+	, output : [ [93.32211811462604,40],[73.42803310995862,40] ]
 	}
 test[14] = 
 	{ name : "Test Intersection Path horizontal 15 : 3 intersections "
@@ -177,7 +177,7 @@ test[14] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 25, 50 ], [ 100, 50 ], [ 62.5, 50 ] ]
+	, output : [ [ 100, 50 ], [ 25, 50 ], [ 62.5, 50 ] ]
 	}
 test[15] = 
 	{ name : "Test Intersection Path vertical 1 : no intersections right "
@@ -273,7 +273,7 @@ test[22] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 50,50 ] ]
+	, output : [ [ 50,61.111111111111114 ] ]
 	}
 test[23] = 
 	{ name : "Test Intersection Path diagonal 1 : no intersections left "
@@ -369,7 +369,7 @@ test[30] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [41.11660036702074,64.43047179303812] ]
 	}
 test[31] = 
 	{ name : "Test Intersection Path diagonal 9 : 2 intersection bottom "
@@ -381,7 +381,7 @@ test[31] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [41.4243985437011,64.41861924094466],[65.93942100358088,46.58951199739573] ]
 	}
 test[32] = 
 	{ name : "Test Intersection Path diagonal 10 : 2 intersection top "
@@ -393,7 +393,7 @@ test[32] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [90.96082828250451,37.93298821562311],[62.85719841548036,49.64283399354984] ]
 	}
 test[33] = 
 	{ name : "Test Intersection Path diagonal 11 : 3 intersection middle "
@@ -405,7 +405,7 @@ test[33] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [89.01650429449553,36.74174785275224],[35.98349570550447,63.25825214724777],[62.5,50] ]
 	}
 test[34] = 
 	{ name : "Test Intersection Path diagonal 12 : 3 intersection rdm "
@@ -417,7 +417,7 @@ test[34] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [83.69893010751673,35.575601814521875],[35.22155426028647,62.844125728588864],[68.5795156321968,44.080272456889304] ]
 	}
 test[35] = 
 	{ name : "Test Intersection Path diagonal 13 : no intersections left "
@@ -513,7 +513,7 @@ test[42] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [53.91139431659997,58.138094624072664] ]
 	}
 test[43] = 
 	{ name : "Test Intersection Path diagonal 21 : 2 intersection bottom "
@@ -525,7 +525,7 @@ test[43] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [26.178274138978924,52.246645141446876],[50.195098386989535,60.98003577708711] ]
 	}
 test[44] = 
 	{ name : "Test Intersection Path diagonal 22 : 2 intersection top "
@@ -537,5 +537,5 @@ test[44] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5, 50 ] ]
+	, output : [ [97.76499071340086,45.92166357113365],[75.56417095232752,38.521390317442524] ]
 	}

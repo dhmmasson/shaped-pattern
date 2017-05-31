@@ -221,7 +221,12 @@ Intersection =
 												+ results[i]*results[i]*By
 												+ results[i]*Cy + Yp0;
 				/*console.log( "solution on Y: " + solutionOnY );*/
-
+				for( j in solution ){
+					if( solution[j][0] ==  solutionOnX 
+							&& solution[j][1] == solutionOnY){
+						solutionOnX = x2+1;
+					}
+				}
 				if( insideInterval( solutionOnX, x1, x2 )//test if the solution on x is on the first segment
 					&& insideInterval( solutionOnY, y1, y2 ) ){//test if the solution on y is on the first segment )
 					solution.push( [ solutionOnX, solutionOnY ] );

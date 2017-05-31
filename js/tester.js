@@ -64,16 +64,31 @@ var tester =
 
 				var correct = true 
 					for( var i in result.data ) {
-						correct = correct
-							&& test.output[i] instanceof Array 
-							&& ( result.data[i][0] == test.output[i][0])
-							&& ( result.data[i][1] == test.output[i][1])
+						if( result.data[i].length != 0 ){
+							correct = correct
+								&& test.output[i] instanceof Array 
+								&& ( Math.abs( result.data[i][0] - test.output[i][0] ) < 0.00000000001 )
+								&& ( Math.abs( result.data[i][1] - test.output[i][1] ) < 0.00000000001 )
+						} else {
+							correct = correct
+								&& test.output[i] instanceof Array 
+								&& ( result.data[i][0] == test.output[i][0] )
+								&& ( result.data[i][1] == test.output[i][1] )
+						}
+
 					}
 					for( var i in test.output ) {
-						correct = correct
-							&& result.data[i] instanceof Array 
-							&& ( result.data[i][0] == test.output[i][0])
-							&& ( result.data[i][1] == test.output[i][1])
+						if( test.output[i].length != 0 ){
+							correct = correct
+								&& result.data[i] instanceof Array 
+								&& ( Math.abs( result.data[i][0] - test.output[i][0] ) < 0.00000000001 )
+								&& ( Math.abs( result.data[i][1] - test.output[i][1] ) < 0.00000000001 )
+						} else {
+							correct = correct
+								&& result.data[i] instanceof Array 
+								&& ( result.data[i][0] == test.output[i][0] )
+								&& ( result.data[i][1] == test.output[i][1] )
+						}
 					}
 
 				$testBloc.append( correct  ? "success" : "error" ) 
