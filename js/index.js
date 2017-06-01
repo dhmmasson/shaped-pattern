@@ -23,7 +23,7 @@ Intersection =
 		results[0] = -B/A;
 		for ( var i=0; i<3; i++ ){
 			console.log( results[i] );
-        	if( results[i]<0 || results[i]>1.0 ){
+        	if( results[i]<-0.00000000001 || results[i]>1.00000000001 ){
         		results[i]=-1;
         	}
         }
@@ -43,7 +43,7 @@ Intersection =
 		}
 		for ( var i=0; i<3; i++ ){
 			console.log( results[i] );
-        	if( results[i]<0 || results[i]>1.0 ){
+        	if( results[i]<-0.00000000001 || results[i]>1.00000000001 ){
         		results[i]=-1;
         	}
         }
@@ -91,7 +91,7 @@ Intersection =
 		//test if solution belong [0,1]
 		for ( var i=0; i<3; i++ ){
 			/*console.log( results[i] );*/
-        	if( results[i]<0 || results[i]>1.0 ){
+        	if( results[i]<-0.00000000001 || results[i]>1.00000000001 ){
         		results[i]=-1;
         	}
         }
