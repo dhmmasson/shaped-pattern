@@ -153,7 +153,7 @@ test[12] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [31.677881885373967,60],[51.57196689004137,60] ]
+	, output : [ [ 31.677881885373967, 60 ], [ 51.57196689004137, 60 ] ]
 	}
 test[13] = 
 	{ name : "Test Intersection Path horizontal 14 : 2 intersections middle top "
@@ -165,7 +165,7 @@ test[13] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [93.32211811462604,40],[73.42803310995862,40] ]
+	, output : [ [ 93.32211811462604, 40 ], [ 73.42803310995862, 40 ] ]
 	}
 test[14] = 
 	{ name : "Test Intersection Path horizontal 15 : 3 intersections "
@@ -180,7 +180,7 @@ test[14] =
 	, output : [ [ 100, 50 ], [ 25, 50 ], [ 62.5, 50 ] ]
 	}
 test[15] = 
-	{ name : "Test Intersection Path vertical 1 : no intersections right "
+	{ name : "Test Intersection Path vertical 1 : no intersection right "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -192,7 +192,7 @@ test[15] =
 	, output : [ [ ] ]
 	}
 test[16] = 
-	{ name : "Test Intersection Path vertical 2 : no intersections left "
+	{ name : "Test Intersection Path vertical 2 : no intersection left "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -204,7 +204,7 @@ test[16] =
 	, output : [ [ ] ]
 	}
 test[17] = 
-	{ name : "Test Intersection Path vertical 3 : no intersections top "
+	{ name : "Test Intersection Path vertical 3 : no intersection top "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -216,7 +216,7 @@ test[17] =
 	, output : [ [ ] ]
 	}
 test[18] = 
-	{ name : "Test Intersection Path vertical 4 : no intersections bottom "
+	{ name : "Test Intersection Path vertical 4 : no intersection bottom "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -228,7 +228,7 @@ test[18] =
 	, output : [ [ ] ]
 	}
 test[19] = 
-	{ name : "Test Intersection Path vertical 5 : 1 intersections left "
+	{ name : "Test Intersection Path vertical 5 : 1 intersection left "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -237,10 +237,10 @@ test[19] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 25,50 ] ]
+	, output : [ [ 25, 50 ] ]
 	}
 test[20] = 
-	{ name : "Test Intersection Path vertical 6 : 1 intersections right "
+	{ name : "Test Intersection Path vertical 6 : 1 intersection right "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -249,10 +249,10 @@ test[20] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 100,50 ] ]
+	, output : [ [ 100, 50 ] ]
 	}
 test[21] = 
-	{ name : "Test Intersection Path vertical 7 : 1 intersections middle "
+	{ name : "Test Intersection Path vertical 7 : 1 intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -261,10 +261,10 @@ test[21] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 62.5,50 ] ]
+	, output : [ [ 62.5, 50 ] ]
 	}
 test[22] = 
-	{ name : "Test Intersection Path vertical 8 : 1 intersections rdm "
+	{ name : "Test Intersection Path vertical 8 : 1 intersection rdm "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -273,10 +273,10 @@ test[22] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 50,61.111111111111114 ] ]
+	, output : [ [ 50, 61.111111111111114 ] ]
 	}
 test[23] = 
-	{ name : "Test Intersection Path diagonal 1 : no intersections left "
+	{ name : "Test Intersection Path diagonal 1 : no intersection left "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -369,7 +369,7 @@ test[30] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [41.11660036702074,64.43047179303812] ]
+	, output : [ [ 41.11660036702074, 64.43047179303812 ] ]
 	}
 test[31] = 
 	{ name : "Test Intersection Path diagonal 9 : 2 intersection bottom "
@@ -381,7 +381,7 @@ test[31] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [41.4243985437011,64.41861924094466],[65.93942100358088,46.58951199739573] ]
+	, output : [ [ 41.4243985437011, 64.41861924094466 ], [ 65.93942100358088, 46.58951199739573 ] ]
 	}
 test[32] = 
 	{ name : "Test Intersection Path diagonal 10 : 2 intersection top "
@@ -393,7 +393,7 @@ test[32] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [90.96082828250451,37.93298821562311],[62.85719841548036,49.64283399354984] ]
+	, output : [ [ 90.96082828250451, 37.93298821562311 ], [ 62.85719841548036, 49.64283399354984 ] ]
 	}
 test[33] = 
 	{ name : "Test Intersection Path diagonal 11 : 3 intersection middle "
@@ -405,7 +405,7 @@ test[33] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [89.01650429449553,36.74174785275224],[35.98349570550447,63.25825214724777],[62.5,50] ]
+	, output : [ [ 89.01650429449553, 36.74174785275224 ], [ 35.98349570550447, 63.25825214724777 ], [ 62.5, 50 ] ]
 	}
 test[34] = 
 	{ name : "Test Intersection Path diagonal 12 : 3 intersection rdm "
@@ -417,10 +417,10 @@ test[34] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [83.69893010751673,35.575601814521875],[35.22155426028647,62.844125728588864],[68.5795156321968,44.080272456889304] ]
+	, output : [ [ 83.69893010751673, 35.575601814521875 ], [ 35.22155426028647, 62.844125728588864 ], [ 68.5795156321968, 44.080272456889304 ] ]
 	}
 test[35] = 
-	{ name : "Test Intersection Path diagonal 13 : no intersections left "
+	{ name : "Test Intersection Path diagonal 13 : no intersection left "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
@@ -513,7 +513,7 @@ test[42] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [53.91139431659997,58.138094624072664] ]
+	, output : [ [ 53.91139431659997, 58.138094624072664 ] ]
 	}
 test[43] = 
 	{ name : "Test Intersection Path diagonal 21 : 2 intersection bottom "
@@ -525,7 +525,7 @@ test[43] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [26.178274138978924,52.246645141446876],[50.195098386989535,60.98003577708711] ]
+	, output : [ [ 26.178274138978924, 52.246645141446876 ], [ 50.195098386989535, 60.98003577708711 ] ]
 	}
 test[44] = 
 	{ name : "Test Intersection Path diagonal 22 : 2 intersection top "
@@ -537,7 +537,7 @@ test[44] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [97.76499071340086,45.92166357113365],[75.56417095232752,38.521390317442524] ]
+	, output : [ [ 97.76499071340086, 45.92166357113365 ], [ 75.56417095232752, 38.521390317442524 ] ]
 	}
 test[45] = 
 	{ name : "Test Intersection Path horizontal 16 : no intersection left "
@@ -657,7 +657,7 @@ test[54] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [40.84936490538904,75], [84.15063509461096,74.99999999999999] ]
+	, output : [ [ 40.84936490538904, 75 ], [ 84.15063509461096, 74.99999999999999 ] ]
 	}
 test[55] = 
 	{ name : "Test Intersection Path vertical 9 : no intersection left "
@@ -669,7 +669,7 @@ test[55] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[56] = 
 	{ name : "Test Intersection Path vertical 10 : no intersection right "
@@ -681,7 +681,7 @@ test[56] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[57] = 
 	{ name : "Test Intersection Path vertical 11 : no intersection top "
@@ -693,7 +693,7 @@ test[57] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[58] = 
 	{ name : "Test Intersection Path vertical 12 : 1 intersection left "
@@ -741,7 +741,7 @@ test[61] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[62] = 
 	{ name : "Test Intersection Path diagonal 24 : no intersection right "
@@ -753,7 +753,7 @@ test[62] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[63] = 
 	{ name : "Test Intersection Path diagonal 25 : no intersection middle "
@@ -765,7 +765,7 @@ test[63] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[64] = 
 	{ name : "Test Intersection Path diagonal 26 : 1 intersection left "
@@ -837,7 +837,7 @@ test[69] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[70] = 
 	{ name : "Test Intersection Path diagonal 32 : no intersection right "
@@ -849,7 +849,7 @@ test[70] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[71] = 
 	{ name : "Test Intersection Path diagonal 33 : no intersection middle "
@@ -861,7 +861,7 @@ test[71] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[72] = 
 	{ name : "Test Intersection Path diagonal 34 : 1 intersection left "
@@ -921,10 +921,10 @@ test[76] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 27.860106902426867, 55.502074831698806 ], [ 70.88989309757312,85.62292516830118 ] ]
+	, output : [ [ 27.860106902426867, 55.502074831698806 ], [ 70.88989309757312, 85.62292516830118 ] ]
 	}
 test[77] = 
-	{ name : "Test Intersection Path horizontal 26 : no intersections top "
+	{ name : "Test Intersection Path horizontal 26 : no intersection top "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -933,10 +933,10 @@ test[77] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[78] = 
-	{ name : "Test Intersection Path horizontal 27 : no intersections bottom "
+	{ name : "Test Intersection Path horizontal 27 : no intersection bottom "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -945,10 +945,10 @@ test[78] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[79] = 
-	{ name : "Test Intersection Path horizontal 28 : no intersections middle "
+	{ name : "Test Intersection Path horizontal 28 : no intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -957,10 +957,10 @@ test[79] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[80] = 
-	{ name : "Test Intersection Path horizontal 29 : 1 intersections top "
+	{ name : "Test Intersection Path horizontal 29 : 1 intersection top "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -972,7 +972,7 @@ test[80] =
 	, output : [ [ 25, 50 ] ]
 	}
 test[81] = 
-	{ name : "Test Intersection Path horizontal 30 : 1 intersections bottom "
+	{ name : "Test Intersection Path horizontal 30 : 1 intersection bottom "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -984,7 +984,7 @@ test[81] =
 	, output : [ [ 25, 100 ] ]
 	}
 test[82] = 
-	{ name : "Test Intersection Path horizontal 31 : 1 intersections middle "
+	{ name : "Test Intersection Path horizontal 31 : 1 intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -996,7 +996,7 @@ test[82] =
 	, output : [ [ 81.25, 75 ] ]
 	}
 test[83] = 
-	{ name : "Test Intersection Path horizontal 32 : 1 intersections rdm "
+	{ name : "Test Intersection Path horizontal 32 : 1 intersection rdm "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1005,10 +1005,10 @@ test[83] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [ 77.04283440785956,64.99999999999996 ] ]
+	, output : [ [ 77.04283440785956, 64.99999999999996 ] ]
 	}
 test[84] = 
-	{ name : "Test Intersection Path vertical 15 : no intersections left "
+	{ name : "Test Intersection Path vertical 15 : no intersection left "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1017,10 +1017,10 @@ test[84] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[85] = 
-	{ name : "Test Intersection Path vertical 16 : no intersections right "
+	{ name : "Test Intersection Path vertical 16 : no intersection right "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1029,10 +1029,10 @@ test[85] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[86] = 
-	{ name : "Test Intersection Path vertical 17 : no intersections middle "
+	{ name : "Test Intersection Path vertical 17 : no intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1041,10 +1041,10 @@ test[86] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[87] = 
-	{ name : "Test Intersection Path vertical 18 : 1 intersections top "
+	{ name : "Test Intersection Path vertical 18 : 1 intersection top "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1056,7 +1056,7 @@ test[87] =
 	, output : [ [ 25, 50 ] ]
 	}
 test[88] = 
-	{ name : "Test Intersection Path vertical 19 : 1 intersections bottom "
+	{ name : "Test Intersection Path vertical 19 : 1 intersection bottom "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1068,7 +1068,7 @@ test[88] =
 	, output : [ [ 25, 100 ] ]
 	}
 test[89] = 
-	{ name : "Test Intersection Path vertical 20 : 1 intersections middle "
+	{ name : "Test Intersection Path vertical 20 : 1 intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1080,7 +1080,7 @@ test[89] =
 	, output : [ [ 81.25, 75 ] ]
 	}
 test[90] = 
-	{ name : "Test Intersection Path vertical 21 : 1 intersections rdm "
+	{ name : "Test Intersection Path vertical 21 : 1 intersection rdm "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1116,7 +1116,7 @@ test[92] =
 	, output : [ [ 45, 51.36279582681512 ], [ 44.99999999999997, 98.63720417318488 ] ]
 	}
 test[93] = 
-	{ name : "Test Intersection Path diagonal 39 : no intersections left "
+	{ name : "Test Intersection Path diagonal 39 : no intersection left "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1125,10 +1125,10 @@ test[93] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[94] = 
-	{ name : "Test Intersection Path diagonal 40 : no intersections right "
+	{ name : "Test Intersection Path diagonal 40 : no intersection right "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1137,10 +1137,10 @@ test[94] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[95] = 
-	{ name : "Test Intersection Path diagonal 41 : no intersections middle "
+	{ name : "Test Intersection Path diagonal 41 : no intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1149,10 +1149,10 @@ test[95] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[96] = 
-	{ name : "Test Intersection Path diagonal 42 : 1 intersections top "
+	{ name : "Test Intersection Path diagonal 42 : 1 intersection top "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1164,7 +1164,7 @@ test[96] =
 	, output : [ [ 25, 50 ] ]
 	}
 test[97] = 
-	{ name : "Test Intersection Path diagonal 43 : 1 intersections bottom "
+	{ name : "Test Intersection Path diagonal 43 : 1 intersection bottom "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1176,7 +1176,7 @@ test[97] =
 	, output : [ [ 25, 100 ] ]
 	}
 test[98] = 
-	{ name : "Test Intersection Path diagonal 44 : 1 intersections middle "
+	{ name : "Test Intersection Path diagonal 44 : 1 intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1200,7 +1200,7 @@ test[99] =
 	, output : [ [ 61.568628651420624, 94.59476940115502 ], [ 79.08465759488865, 67.73685835450402 ] ]
 	}
 test[100] = 
-	{ name : "Test Intersection Path diagonal 46 : no intersections left "
+	{ name : "Test Intersection Path diagonal 46 : no intersection left "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1209,10 +1209,10 @@ test[100] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[101] = 
-	{ name : "Test Intersection Path diagonal 47 : no intersections right "
+	{ name : "Test Intersection Path diagonal 47 : no intersection right "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1221,10 +1221,10 @@ test[101] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[102] = 
-	{ name : "Test Intersection Path diagonal 48 : no intersections middle "
+	{ name : "Test Intersection Path diagonal 48 : no intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1233,10 +1233,10 @@ test[102] =
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
-	, output : [ [] ]
+	, output : [ [ ] ]
 	}
 test[103] = 
-	{ name : "Test Intersection Path diagonal 49 : 1 intersections top "
+	{ name : "Test Intersection Path diagonal 49 : 1 intersection top "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1248,7 +1248,7 @@ test[103] =
 	, output : [ [ 25, 50 ] ]
 	}
 test[104] = 
-	{ name : "Test Intersection Path diagonal 50 : 1 intersections bottom "
+	{ name : "Test Intersection Path diagonal 50 : 1 intersection bottom "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1260,7 +1260,7 @@ test[104] =
 	, output : [ [ 25, 100 ] ]
 	}
 test[105] = 
-	{ name : "Test Intersection Path diagonal 51 : 1 intersections middle "
+	{ name : "Test Intersection Path diagonal 51 : 1 intersection middle "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
@@ -1272,7 +1272,7 @@ test[105] =
 	, output : [ [ 81.25, 75 ] ]
 	}
 test[106] = 
-	{ name : "Test Intersection Path diagonal 52 : 1 intersections rdm "
+	{ name : "Test Intersection Path diagonal 52 : 1 intersection rdm "
 	, target : "intersectionBezierLine"
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
