@@ -17,6 +17,27 @@ Intersection =
 	function insideInterval( a, end1, end2 ) {
 		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 )
 	}
+
+	function decompositionSextic( a0, a1, a2, a3, a4, a5 ){
+		var a6 = Math.sqrt( ( ( 5*Math.pow( a5, 4 ) )/64 ) - ( 3*a4*Math.pow( a5, 2 ) ) + ( Math.pow( a4, 2 )/4 ) + ( ( a3*a5 )/2 ) - a2 );
+		var a7 = ( ( a3*a4 )/4 ) + ( a4*Math.pow( a5, 3 )/16 ) - ( Math.pow( a4, 2 )*a5/8 ) - ( a3*Math.pow( a5, 2 )/16 ) - ( Math.pow( a5, 5 )/128 ) - (a1/2);
+		//test if the methode can be use on the equation
+		if( a0 == Math.pow( ( a3/2 ) + ( Math.pow( a5, 3 )/16 ) - ( ( a4*a5 )/4 ), 2 ) - Math.pow( a7/a6, 2 ) ){
+			//return the differents factorisation factor
+			b0 = ( ( a3/2 ) + ( Math.pow( a5, 3 )/16 ) - ( ( a4*a5 )/4 ) ) - (a7/a6);
+			b1 = ( ( a4/2 ) - ( Math.pow( a5, 2 )/8 ) ) - a6;
+			b2 = a5/2;
+			c0 = ( ( a3/2 ) + ( Math.pow( a5, 3 )/16 ) - ( ( a4*a5 )/4 ) ) + (a7/a6);
+			c1 = ( ( a4/2 ) - ( Math.pow( a5, 2 )/8 ) ) + a6;
+			c2 = a5/2;
+
+			var decomposition = [ [ b2, b1, b0 ], [ c2, c1, c0 ] ];
+		} else {
+			console.log("impossible resolution with this methode");
+		}
+		return decomposition
+	}
+
 	//return solution list for a linear equation
 	function linearResolution( A, B ){
 		var results = [];
@@ -242,10 +263,14 @@ Intersection =
 
 		return intersectionData;
 	}
+	//retrun coords of intersection between bezier curve ans ellipse
+	//TODO: prevent case of A=0
 	intersectionLibrary.intersectionBezierEllipse = function( path, ellipse ){
-		var coords = ellipse.array();
+		var origineEllipseX = ellipse.cx();
+		var origineEllipseY = ellipse.cy();
+		var demiAxeX = ellipse.rx();
+		var demiAxeY = ellipse.ry();
 		var points = path.array();
-
 		var Xp0;
 		var Yp0;
 		var Xp1;
@@ -274,10 +299,68 @@ Intersection =
 		var Ax = -Xp0 + 3*Xp1 - 3*Xp2 + Xp3;//coefficient t^3
 		var Bx = 3*Xp0 - 6*Xp1 + 3*Xp2;//coefficient t^2
 		var Cx = -3*Xp0 + 3*Xp1;//coefficient t
+		//coefficient of the sextic equation to decompose
+		var A = ( ( Ax*Ax )/demiAxeX ) + ( ( Ay*Ay )/demiAxeY );//coefficient t^6
+		var B = ( ( 2*Ax*Bx )/demiAxeX ) + ( ( 2*Ay*By )/demiAxeY );//coefficient t^5
+		var C = ( ( ( 2*Ax*Cx ) + ( Bx*Bx ) )/demiAxeX ) 
+					+ ( ( ( 2*Ay*Cy ) + ( By*By ) )/demiAxeY );//coefficient t^4
+		var D = ( ( ( 2*Xp0*Ax ) + ( 2*origineEllipseX*Ax ) + ( 2*Bx*Cx ) )/demiAxeX ) 
+					+ ( ( ( 2*Yp0*Ay ) + ( 2*origineEllipseY*Ay ) + ( 2*By*Cy ) )/demiAxeY );//coefficient t^3
+		var E = ( ( ( Cx*Cx ) + ( 2*Xp0*Bx ) + ( 2*origineEllipseX*Bx ) )/demiAxeX ) 
+					+ ( ( ( Cy*Cy ) + ( 2*Yp0*By ) + ( 2*origineEllipseY*By ) )/demiAxeY );//coefficient t^2
+		var F = ( ( ( 2*Xp0*Cx ) + ( 2*origineEllipseX*Cx ) )/demiAxeX ) 
+					+ ( ( ( 2*Yp0*Cy ) + ( 2*origineEllipseY*Cy ) )/demiAxeY );//coefficient t^1
+		var G = ( ( ( Xp0*Xp0 ) + ( 2*origineEllipseX*Xp0 ) + ( origineEllipseX*origineEllipseX ) )/demiAxeX ) 
+					+ ( ( ( Yp0*Yp0 ) + ( 2*origineEllipseY*Yp0 ) + ( origineEllipseY*origineEllipseY ) )/demiAxeY );//coefficient t^0
+		//first simplification of the coefficient t^6 to 1
+		var a0 = G/A;
+		var a1 = F/A;
+		var a2 = E/A;
+		var a3 = D/A;
+		var a4 = C/A;
+		var a5 = B/A;
 
-
-
-
+		var decomposition = decompositionSextic( a0, a1, a2, a3, a4, a5 );
+		var results = [];
+		//solve the to cubic equation determine by the decomposition
+		for( i in decomposition ){
+			var roots = cubicResolution( 0, decomposition[i][0], decomposition[i][1], decomposition[i][2] );
+			for(j in roots){
+				results.push( roots[j] );
+			}
+		}
+		var solution = [];
+		for( i in results ){
+			//test if the solution are correct
+			if( results[i] != -1 ){
+				//replace solutions in the parametric equation
+				var solutionOnX = results[i]*results[i]*results[i]*Ax 
+												+ results[i]*results[i]*Bx 
+												+ results[i]*Cx + Xp0;
+				/*console.log( "solution on X: " + solutionOnX );*/
+				var solutionOnY = results[i]*results[i]*results[i]*Ay
+												+ results[i]*results[i]*By
+												+ results[i]*Cy + Yp0;
+				/*console.log( "solution on Y: " + solutionOnY );*/
+				for( j in solution ){
+					if( solution[j][0] ==  solutionOnX 
+							&& solution[j][1] == solutionOnY){
+						solutionOnX = x2+1;
+					}
+				}
+				//test if the coordonates are in the ellipse and solve the equation  
+				if( ( Math.pow(solutionOnX + origineEllipseX, 2)/( demiAxeX*demiAxeX ) )
+							+ ( Math.pow(solutionOnY + origineEllipseY, 2)/( demiAxeY*demiAxeY ) ) == 1 ){
+					solution.push( [ solutionOnX, solutionOnY ] );
+				}
+			}
+		}
+		//test for what to return
+		if( solution.length != 0 ){
+			var intersectionData = new IntersectionData( "point", solution );
+		} else {
+			var intersectionData = new IntersectionData( "empty", [ [] ] );
+		}
 
 		return intersectionData;
 	}
