@@ -18,24 +18,58 @@ Intersection =
 		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 )
 	}
 
-	function decompositionSextic( a0, a1, a2, a3, a4, a5 ){
-		var a6 = Math.sqrt( ( ( 5*Math.pow( a5, 4 ) )/64 ) - ( 3*a4*Math.pow( a5, 2 ) ) + ( Math.pow( a4, 2 )/4 ) + ( ( a3*a5 )/2 ) - a2 );
-		var a7 = ( ( a3*a4 )/4 ) + ( a4*Math.pow( a5, 3 )/16 ) - ( Math.pow( a4, 2 )*a5/8 ) - ( a3*Math.pow( a5, 2 )/16 ) - ( Math.pow( a5, 5 )/128 ) - (a1/2);
-		//test if the methode can be use on the equation
-		if( a0 == Math.pow( ( a3/2 ) + ( Math.pow( a5, 3 )/16 ) - ( ( a4*a5 )/4 ), 2 ) - Math.pow( a7/a6, 2 ) ){
-			//return the differents factorisation factor
-			b0 = ( ( a3/2 ) + ( Math.pow( a5, 3 )/16 ) - ( ( a4*a5 )/4 ) ) - (a7/a6);
-			b1 = ( ( a4/2 ) - ( Math.pow( a5, 2 )/8 ) ) - a6;
-			b2 = a5/2;
-			c0 = ( ( a3/2 ) + ( Math.pow( a5, 3 )/16 ) - ( ( a4*a5 )/4 ) ) + (a7/a6);
-			c1 = ( ( a4/2 ) - ( Math.pow( a5, 2 )/8 ) ) + a6;
-			c2 = a5/2;
+	function inflexionPoint( Ay, By, Cy, Yp0, Ax, Bx, Cx, Xp0 ){
+		var solution = [];
+		var coordonatesX = [];
+		var coordonatesY = [];
 
-			var decomposition = [ [ b2, b1, b0 ], [ c2, c1, c0 ] ];
-		} else {
-			console.log("impossible resolution with this methode");
+		if( Ay != 0 && By != 0 ){
+			var dAy = 3*Ay;
+			var dBy = 2*By;
+			coordonatesY = quadraticResolution(dAy, dBy, Cy);
+		} else if( Ay == 0 && By != 0 ){
+			var dBy = 2*By;
+			coordonatesY = linearResolution( dBy, Cy );
 		}
-		return decomposition
+
+		if( Ax != 0 && Bx != 0 ){
+			var dAx = 3*Ax;
+			var dBx = 2*Bx;
+			coordonatesX = quadraticResolution(dAx, dBx, Cx);
+		} else if( Ax == 0 && Bx != 0 ){
+			var dBx = 2*Bx;
+			coordonatesX = linearResolution( dBx, Cx );
+		}
+
+		for( i in coordonatesX ){
+			if( coordonatesX[i] != -1){
+				//replace solutions in the parametric equation
+				var solutionOnX = coordonatesX[i]*coordonatesX[i]*coordonatesX[i]*Ax 
+												+ coordonatesX[i]*coordonatesX[i]*Bx 
+												+ coordonatesX[i]*Cx + Xp0;
+				/*console.log( "solution on X: " + solutionOnX );*/
+				var solutionOnY = coordonatesX[i]*coordonatesX[i]*coordonatesX[i]*Ay
+												+ coordonatesX[i]*coordonatesX[i]*By
+												+ coordonatesX[i]*Cy + Yp0;
+				/*console.log( "solution on Y: " + solutionOnY );*/
+				solution.push( [ solutionOnX, solutionOnY ] );
+			}
+		}
+		for( i in coordonatesY ){
+			if( coordonatesY[i] != -1){
+				//replace solutions in the parametric equation
+				var solutionOnX = coordonatesY[i]*coordonatesY[i]*coordonatesY[i]*Ax 
+												+ coordonatesY[i]*coordonatesY[i]*Bx 
+												+ coordonatesY[i]*Cx + Xp0;
+				/*console.log( "solution on X: " + solutionOnX );*/
+				var solutionOnY = coordonatesY[i]*coordonatesY[i]*coordonatesY[i]*Ay
+												+ coordonatesY[i]*coordonatesY[i]*By
+												+ coordonatesY[i]*Cy + Yp0;
+				/*console.log( "solution on Y: " + solutionOnY );*/
+				solution.push( [ solutionOnX, solutionOnY ] );
+			}
+		}
+		return solution;
 	}
 
 	//return solution list for a linear equation
@@ -52,8 +86,10 @@ Intersection =
 	}
 	//return solution list for a quadratic equation
 	function quadraticResolution( A, B, C ){
+		console.log( " A : " + A + "  B : " + B + "  C : " + C );
 		//discriminant
 		var D = (B*B) - 4*A*C;
+		console.log( " discriminant : " + D );
 		var results = [];
 
 		if( D > 0 ){
@@ -62,8 +98,8 @@ Intersection =
 		} else if( D == 0 ){
 			results[0] = (-B)/(2*A);
 		}
-		for ( var i=0; i<3; i++ ){
-			console.log( results[i] );
+		for ( i in results ){
+			console.log( " quadratic : " + results[i] );
         	if( results[i]<-0.00000000001 || results[i]>1.00000000001 ){
         		results[i]=-1;
         	}
@@ -320,49 +356,67 @@ Intersection =
 		var a4 = C/A;
 		var a5 = B/A;
 
-		var decomposition = decompositionSextic( a0, a1, a2, a3, a4, a5 );
-		var results = [];
-		//solve the to cubic equation determine by the decomposition
-		for( i in decomposition ){
-			var roots = cubicResolution( 0, decomposition[i][0], decomposition[i][1], decomposition[i][2] );
-			for(j in roots){
-				results.push( roots[j] );
-			}
-		}
-		var solution = [];
-		for( i in results ){
-			//test if the solution are correct
-			if( results[i] != -1 ){
-				//replace solutions in the parametric equation
-				var solutionOnX = results[i]*results[i]*results[i]*Ax 
-												+ results[i]*results[i]*Bx 
-												+ results[i]*Cx + Xp0;
-				/*console.log( "solution on X: " + solutionOnX );*/
-				var solutionOnY = results[i]*results[i]*results[i]*Ay
-												+ results[i]*results[i]*By
-												+ results[i]*Cy + Yp0;
-				/*console.log( "solution on Y: " + solutionOnY );*/
-				for( j in solution ){
-					if( solution[j][0] ==  solutionOnX 
-							&& solution[j][1] == solutionOnY){
-						solutionOnX = x2+1;
+		var inflexionPoints = inflexionPoint( Ay, By, Cy, Yp0, Ax, Bx, Cx, Xp0 );
+		var intersectionData = new IntersectionData( "point", inflexionPoints );
+		return intersectionData;
+	}
+
+	//initialise it with t1=0.5 and t2=0.5
+	//parameter are the composants of the equation and the two extremity points of the curve
+	intersectionLibrary.dichotomy = function( Ay1, By1, Cy1, Dy1, Yp0, Yp3, Ax1, Bx1, Cx1, Dx1, Xp0, Xp3, Ay2, By2, Cy2, Dy2, Yp4, Yp7, Ax2, Bx2, Cx2, Dx2, Xp4, Xp7, t1, t2 ){
+		//test if the angle of the rectangle formed by the two extremity of the curve are in the other rectangle
+		if( Xp0 > Xp4 && Xp0 < Xp07 && Yp0 > Yp4 && Yp0 < Yp7
+				|| Xp0 > Xp4 && Xp0 < Xp07 && Yp3 > Yp4 && Yp3 < Yp7
+				|| Xp3 > Xp4 && Xp3 < Xp07 && Yp3 > Yp4 && Yp3 < Yp7 
+				|| Xp3 > Xp4 && Xp3 < Xp07 && Yp0 > Yp4 && Yp0 < Yp7 ){
+			//test if the precision wanted is respected
+			if( Math.abs( Xp0 - Xp3 ) > epsilon && Math.abs( Yp0 - Yp3 ) > epsilon
+					|| Math.abs( Xp4 - Xp7 ) > epsilon && Math.abs( Yp4 - Yp7 ) > epsilon ){
+				//cut the curve in the middle
+				middleX1 = t1*t1*t1*Ax1 + t1*t1*Bx1 + t1*Cx1 + Dx1;
+				middleX2 = t2*t2*t2*Ax2 + t2*t2*Bx2 + t2*Cx2 + Dx2;
+				middleY1 = t1*t1*t1*Ay1 + t1*t1*By1 + t1*Cy1 + Dy1;
+				middleY2 = t2*t2*t2*Ay2 + t2*t2*By2 + t2*Cy2 + Dy2;
+				//call again the function until the precision is good enought
+				return ( dichotomy( Ay1, By1, Cy1, Dy1, Yp0, middleY1, Ax1, Bx1, Cx1, Dx1, Xp0, middleX1, Ay2, By2, Cy2, Dy2, Yp4, middleY2, Ax2, Bx2, Cx2, Dx2, Xp4, middleX2, t1/2, t2/2  ),
+									dichotomy( Ay1, By1, Cy1, Dy1, Yp0, middleY1, Ax1, Bx1, Cx1, Dx1, Xp0, middleX1, Ay2, By2, Cy2, Dy2, middleY2, Yp7, Ax2, Bx2, Cx2, Dx2, middleX2, Xp7, t1/2, (t2/2)+1 ),
+									dichotomy( Ay1, By1, Cy1, Dy1, middleY1, Yp3, Ax1, Bx1, Cx1, Dx1, middleX1, Xp3, Ay2, By2, Cy2, Dy2, Yp4, middleY2, Ax2, Bx2, Cx2, Dx2, Xp4, middleX2, (t1/2)+1, t2/2 ),
+									dichotomy( Ay1, By1, Cy1, Dy1, middleY1, Yp3, Ax1, Bx1, Cx1, Dx1, middleX1, Xp3, Ay2, By2, Cy2, Dy2, middleY2, Yp7, Ax2, Bx2, Cx2, Dx2, middleX2, Xp7, (t1/2)+1, (t2/2)+1 ))
+			} else {
+				//if precision is reach test which segment is now a point 
+				if( Math.abs( Xp0 - Xp3 ) < epsilon && Math.abs( Yp0 - Yp3 ) < epsilon ){
+					//test if the point is on the curve by solving the equation
+					if( Ay1 != 0 && By1 != 0 ){
+						result = cubicResolution(Ay1, By1, Cy1, Dy1-Yp0 );
+					} else if( Ay1 == 0 && By1 != 0 ){
+						result = quadraticResolution( By1, Cy1, Dy1-Yp0 );
+					} else {
+						result = linearResolution( Cy1, Dy1-Yp0 );
+					}
+					for( i in result ){
+						var X = result[i]*result[i]*result[i]*Ax1 + result[i]*result[i]*Bx1 + result[i]*Cx1 + Dx1;
+						if( Math.abs( X - Xp0 ) < epsilon ){
+							return [ Xp0, Yp0 ];
+						}
+					}
+				} else {
+					if( Ay2 != 0 && By2 != 0 ){
+						result = cubicResolution(Ay2, By2, Cy2, Dy2-Yp4 );
+					} else if( Ay2 == 0 && By2 != 0 ){
+						result = quadraticResolution( By2, Cy2, Dy2-Yp4 );
+					} else {
+						result = linearResolution( Cy2, Dy2-Yp4 );
+					}
+					for( i in result ){
+						var X = result[i]*result[i]*result[i]*Ax2 + result[i]*result[i]*Bx2 + result[i]*Cx2 + Dx2;
+						if( Math.abs( X - Xp4 ) < epsilon ){
+							return [ Xp4, Yp4 ];
+						}
 					}
 				}
-				//test if the coordonates are in the ellipse and solve the equation  
-				if( ( Math.pow(solutionOnX + origineEllipseX, 2)/( demiAxeX*demiAxeX ) )
-							+ ( Math.pow(solutionOnY + origineEllipseY, 2)/( demiAxeY*demiAxeY ) ) == 1 ){
-					solution.push( [ solutionOnX, solutionOnY ] );
-				}
 			}
 		}
-		//test for what to return
-		if( solution.length != 0 ){
-			var intersectionData = new IntersectionData( "point", solution );
-		} else {
-			var intersectionData = new IntersectionData( "empty", [ [] ] );
-		}
 
-		return intersectionData;
 	}
 
 	return intersectionLibrary;
