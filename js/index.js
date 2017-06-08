@@ -163,25 +163,17 @@ Intersection =
 		//test if the angle of the rectangle formed by the two extremity of the curve are in the other rectangle
 		console.log( "step : " + i )
 		i = i+1;
-		if( Xp0 > Xp4 && Xp0 < Xp7 && Yp0 > Yp4 && Yp0 < Yp7
-				|| Xp0 < Xp4 && Xp0 > Xp7 && Yp0 < Yp4 && Yp0 > Yp7
-				|| Xp0 > Xp4 && Xp0 < Xp7 && Yp3 > Yp4 && Yp3 < Yp7
-				|| Xp0 < Xp4 && Xp0 > Xp7 && Yp3 < Yp4 && Yp3 > Yp7
-				|| Xp3 > Xp4 && Xp3 < Xp7 && Yp3 > Yp4 && Yp3 < Yp7 
-				|| Xp3 < Xp4 && Xp3 > Xp7 && Yp3 < Yp4 && Yp3 > Yp7 
-				|| Xp3 > Xp4 && Xp3 < Xp7 && Yp0 > Yp4 && Yp0 < Yp7
-				|| Xp3 < Xp4 && Xp3 > Xp7 && Yp0 < Yp4 && Yp0 > Yp7
+		if( insideInterval( Xp0, Xp4, Xp7 ) && insideInterval( Yp0, Yp4, Yp7 )
+				|| insideInterval( Xp0, Xp4, Xp7 ) && insideInterval( Yp3, Yp4, Yp7 )
+				|| insideInterval( Xp3, Xp4, Xp7 ) && insideInterval( Yp3, Yp4, Yp7 )
+				|| insideInterval( Xp3, Xp4, Xp7 ) && insideInterval( Yp0, Yp4, Yp7 )
 
-				|| Xp4 > Xp0 && Xp4 < Xp3 && Yp4 > Yp0 && Yp4 < Yp3
-				|| Xp4 < Xp0 && Xp4 > Xp3 && Yp4 < Yp0 && Yp4 > Yp3
-				|| Xp4 > Xp0 && Xp4 < Xp3 && Yp7 > Yp0 && Yp7 < Yp3
-				|| Xp4 < Xp0 && Xp4 > Xp3 && Yp7 < Yp0 && Yp7 > Yp3
-				|| Xp7 > Xp0 && Xp7 < Xp3 && Yp7 > Yp0 && Yp7 < Yp3 
-				|| Xp7 < Xp0 && Xp7 > Xp3 && Yp7 < Yp0 && Yp7 > Yp3 
-				|| Xp7 > Xp0 && Xp7 < Xp3 && Yp4 > Yp0 && Yp4 < Yp3
-				|| Xp7 < Xp0 && Xp7 > Xp3 && Yp4 < Yp0 && Yp4 > Yp3 // tests for one point inside rectangle
+				|| insideInterval( Xp4, Xp0, Xp3 ) && insideInterval( Yp4, Yp0, Yp3 )
+				|| insideInterval( Xp4, Xp0, Xp3 ) && insideInterval( Yp7, Yp0, Yp3 )
+				|| insideInterval( Xp7, Xp0, Xp3 ) && insideInterval( Yp7, Yp0, Yp3 )
+				|| insideInterval( Xp7, Xp0, Xp3 ) && insideInterval( Yp4, Yp0, Yp3 ) // tests for one point inside rectangle
 
-				|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp0 > Yp4 && Yp0 < Yp7
+				/*|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp0 > Yp4 && Yp0 < Yp7
 				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp0 < Yp4 && Yp0 > Yp7
 				|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp3 > Yp4 && Yp3 < Yp7
 				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp3 < Yp4 && Yp3 > Yp7
@@ -202,46 +194,78 @@ Intersection =
 				|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp0 < Yp4 && Yp0 < Yp7 && Yp3 > Yp4 && Yp3 > Yp7
 				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp0 > Yp4 && Yp0 > Yp7 && Yp3 < Yp4 && Yp3 < Yp7
 				|| Xp4 < Xp0 && Xp4 < Xp3 && Xp7 > Xp0 && Xp7 > Xp3 && Yp4 < Yp0 && Yp4 < Yp3 && Yp7 > Yp0 && Yp7 > Yp3
-				|| Xp4 > Xp0 && Xp4 > Xp3 && Xp7 < Xp0 && Xp7 < Xp3 && Yp4 > Yp0 && Yp4 > Yp3 && Yp7 < Yp0 && Yp7 < Yp3 ){ // test if include the complette rectangle
+				|| Xp4 > Xp0 && Xp4 > Xp3 && Xp7 < Xp0 && Xp7 < Xp3 && Yp4 > Yp0 && Yp4 > Yp3 && Yp7 < Yp0 && Yp7 < Yp3 */){ // test if include the complette rectangle
 			console.log( "intersection" );
 			//test if the precision wanted is respected
-			if( Math.abs( Xp0 - Xp3 ) < epsilon && Math.abs( Yp0 - Yp3 ) < epsilon
-					|| Math.abs( Xp4 - Xp7 ) < epsilon && Math.abs( Yp4 - Yp7 ) < epsilon ){
+			if( Math.abs( Xp0 - Xp3 ) < epsilon && Math.abs( Yp0 - Yp3 ) < epsilon ){
 				console.log( "precision reach" );
 				//if precision is reach test which segment is now a point 
-				if( Math.abs( Xp0 - Xp3 ) < epsilon && Math.abs( Yp0 - Yp3 ) < epsilon ){
-					//test if the point is on the curve by solving the equation
-					console.log( Ay1, By1 );
-					if( Ay1 != 0 ){
-						result = cubicResolution(Ay1, By1, Cy1, Dy1-Yp0 );
-					} else if( Ay1 == 0 && By1 != 0 ){
-						result = quadraticResolution( By1, Cy1, Dy1-Yp0 );
-					} else {
-						result = linearResolution( Cy1, Dy1-Yp0 );
-					}
-					//for( i in result ){
-						var X = result[0]*result[0]*result[0]*Ax1 + result[0]*result[0]*Bx1 + result[0]*Cx1 + Dx1;
-						if( Math.abs( X - Xp0 ) < 0.00000000000000000000001){
-							solution.push( [ Xp0, Yp0 ] );
-							console.log( solution );
-						}
-					//}
+				//test if the point is on the curve by solving the equation
+				middleX1 = ((t1+t2)/2)*((t1+t2)/2)*((t1+t2)/2)*Ax1 + ((t1+t2)/2)*((t1+t2)/2)*Bx1 + ((t1+t2)/2)*Cx1 + Dx1;
+				middleY1 = ((t1+t2)/2)*((t1+t2)/2)*((t1+t2)/2)*Ay1 + ((t1+t2)/2)*((t1+t2)/2)*By1 + ((t1+t2)/2)*Cy1 + Dy1;
+				//middleX1 = (Xp0 + Xp3)/2;
+				//middleY1 = (Yp0 + Yp3)/2;
+				if( Ay2 != 0 ){
+					result = cubicResolution(Ay2, By2, Cy2, Dy2-middleY1 );
+				} else if( Ay2 == 0 && By2 != 0 ){
+					result = quadraticResolution( By2, Cy2, Dy2-middleY1 );
 				} else {
-					console.log( Ay2, By2 );
-					if( Ay2 != 0 && By2 != 0 ){
-						result = cubicResolution(Ay2, By2, Cy2, Dy2-Yp4 );
-					} else if( Ay2 == 0 && By2 != 0 ){
-						result = quadraticResolution( By2, Cy2, Dy2-Yp4 );
-					} else {
-						result = linearResolution( Cy2, Dy2-Yp4 );
-					}
-					//for( i in result ){
-						var X = result[0]*result[0]*result[0]*Ax2 + result[0]*result[0]*Bx2 + result[0]*Cx2 + Dx2;
-						if( Math.abs( X - Xp4 ) < 0.00000000000000000000001 ){
-							solution.push( [ Xp4, Yp4 ] );
+					result = linearResolution( Cy2, Dy2-middleY1 );
+				}
+				var X1 = result[0]*result[0]*result[0]*Ax1 + result[0]*result[0]*Bx1 + result[0]*Cx1 + Dx1;
+				var X2 = result[0]*result[0]*result[0]*Ax2 + result[0]*result[0]*Bx2 + result[0]*Cx2 + Dx2;
+				console.log( X1, X2, middleX1 )
+				console.log( Math.abs( X2 - middleX1 ) )
+				if( Math.abs( X2 - middleX1 ) < 1/epsilon ){
+					var add = true;
+					if( solution.length != 0 ){
+						for( i in solution ){
+							if( Math.abs( solution[i][0] - middleX1 ) < epsilon*100
+									|| Math.abs( solution[i][1] - middleY1 ) < epsilon*100 ){
+								add = false;
+							}
+						}
+						if( add ){
+							solution.push( [ middleX1, middleY1 ] );
 							console.log( solution );
 						}
-					//}
+					} else {
+						solution.push( [ middleX1, middleY1 ] );
+						console.log( solution );
+					}
+				}
+			} else if(  Math.abs( Xp4 - Xp7 ) < epsilon && Math.abs( Yp4 - Yp7 ) < epsilon ){
+				console.log( "precision reach" );
+				middleX2 = ((t3+t4)/2)*((t3+t4)/2)*((t3+t4)/2)*Ax2 + ((t3+t4)/2)*((t3+t4)/2)*Bx2 + ((t3+t4)/2)*Cx2 + Dx2;
+				middleY2 = ((t3+t4)/2)*((t3+t4)/2)*((t3+t4)/2)*Ay2 + ((t3+t4)/2)*((t3+t4)/2)*By2 + ((t3+t4)/2)*Cy2 + Dy2;
+				//middleX2 = (Xp4 + Xp7)/2;
+				//middleY2 = (Yp4 + Yp7)/2;
+				if( Ay1 != 0 ){
+					result = cubicResolution(Ay1, By1, Cy1, Dy1-middleY2 );
+				} else if( Ay1 == 0 && By1 != 0 ){
+					result = quadraticResolution( By1, Cy1, Dy1-middleY2 );
+				} else {
+					result = linearResolution( Cy1, Dy1-middleY2 );
+				}
+				var X = result[0]*result[0]*result[0]*Ax1 + result[0]*result[0]*Bx1 + result[0]*Cx1 + Dx1;
+				if( Math.abs( X - middleX2 ) < 1/epsilon ){
+					var add = 0;
+					if( solution.length != 0 ){
+						for( i in solution ){
+							if( Math.abs( solution[i][0] - middleX2 ) > epsilon*100
+									|| Math.abs( solution[i][1] - middleY2 ) > epsilon*100 ){
+								console.log( add );
+								add = false;
+							}
+						}
+						if( add ){
+							solution.push( [ middleX2, middleY2 ] );
+							console.log( solution );
+						}
+					} else {
+						solution.push( [ middleX2, middleY2 ] );
+						console.log( solution );
+					}
 				}
 			} else {
 				console.log( "no precision" );
@@ -503,7 +527,7 @@ Intersection =
 		var a5 = B/A;*/
 		//var inflexionPoints = inflexionPoint( Ay, By, Cy, Yp0, Ax, Bx, Cx, Xp0 );
 		var solution = [];
-		dichotomy( Ay1, By1, Cy1, Dy1, Yp0, Yp3, Ax1, Bx1, Cx1, Dx1, Xp0, Xp3, Ay2, By2, Cy2, Dy2, Yp4, Yp7, Ax2, Bx2, Cx2, Dx2, Xp4, Xp7, 0, 1, 0, 1, 0.01, 1, solution );
+		dichotomy( Ay1, By1, Cy1, Dy1, Yp0, Yp3, Ax1, Bx1, Cx1, Dx1, Xp0, Xp3, Ay2, By2, Cy2, Dy2, Yp4, Yp7, Ax2, Bx2, Cx2, Dx2, Xp4, Xp7, 0, 1, 0, 1, 0.001, 1, solution );
 		//console.log( solution );
 		var intersectionData = new IntersectionData( "point", solution );
 		return intersectionData;
