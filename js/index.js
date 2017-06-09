@@ -173,9 +173,9 @@ Intersection =
 				|| insideInterval( Xp7, Xp0, Xp3 ) && insideInterval( Yp7, Yp0, Yp3 )
 				|| insideInterval( Xp7, Xp0, Xp3 ) && insideInterval( Yp4, Yp0, Yp3 ) // tests for one point inside rectangle
 
-				/*|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp0 > Yp4 && Yp0 < Yp7
+				|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp0 > Yp4 && Yp0 < Yp7
 				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp0 < Yp4 && Yp0 > Yp7
-				|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp3 > Yp4 && Yp3 < Yp7
+				/*|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp3 > Yp4 && Yp3 < Yp7
 				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp3 < Yp4 && Yp3 > Yp7
 				|| Yp0 < Yp4 && Yp0 < Yp7 && Yp3 > Yp4 && Yp3 > Yp7 && Xp0 > Xp4 && Xp0 < Xp7
 				|| Yp0 > Yp4 && Yp0 > Yp7 && Yp3 < Yp4 && Yp3 < Yp7 && Xp0 < Xp4 && Xp0 > Xp7
