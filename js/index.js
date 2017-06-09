@@ -157,16 +157,16 @@ Intersection =
 	}
 
 
-	function ParametricCubic( a, b, c, d ) {
-		this.a = a ;
-		this.b = b ; 
-		this.c = c ; 
-		this.d = d ;  
+	function ParametricCubic( a, b, c, d ){
+		this.a = a;
+		this.b = b; 
+		this.c = c; 
+		this.d = d;  
 	}
-	ParametricCubic.prototype.apply = function( t ) {
-		return this.d + t * ( this.c + t * ( this.b + t * this.a ))
+	ParametricCubic.prototype.apply = function( t ){
+		return this.d + t * ( this.c + t * ( this.b + t * this.a ) );
 	}
-	function Bezier( x0, y0, x1, y1, x2, y2, x3, y3 ) {
+	function Bezier( x0, y0, x1, y1, x2, y2, x3, y3 ){
 		var a = -y0 + 3*y1 - 3*y2 + y3;//coefficient t^3
 		var b = 3*y0 - 6*y1 + 3*y2;//coefficient t^2
 		var c = -3*y0 + 3*y1;//coefficient t
@@ -178,18 +178,18 @@ Intersection =
 		d = x0;
 		this.cubicX = new ParametricCubic( a,b,c,d );
 	}
-	function BezierPoint( t, bezier ) {
+	function BezierPoint( t, bezier ){
 		this.t = t; 
 		this.x = bezier.cubicX.apply( t );
 		this.y = bezier.cubicY.apply( t );
 	}
-	function distanceT( t1, t2 ) {
+	function distanceT( t1, t2 ){
 		var x = t1.x - t2.x; 
 		var y = t2.y - t1.y; 
 		return  x*x + y*y ;
 	}
 
-	function findIntersectionByDichotomy( bezierT, bezierS, t1, t2, s1, s2 ) {
+	function findIntersectionByDichotomy( bezierT, bezierS, t1, t2, s1, s2 ){
 		if( ( !insideInterval( t1.x, s1.x, s2.x ) 
 		   && !insideInterval( t2.x, s1.x, s2.x ) 
 		   && !insideInterval( s1.x, t1.x, t2.x ) 
@@ -197,12 +197,13 @@ Intersection =
 		 || ( !insideInterval( t1.y, s1.y, s2.y ) 
 		   && !insideInterval( t2.y, s1.y, s2.y ) 
 		   && !insideInterval( s1.y, t1.y, t2.y ) 
-		   && !insideInterval( s2.y, t1.y, t2.y ) )) {
+		   && !insideInterval( s2.y, t1.y, t2.y ) ) ) {
 			//no intersection 
 			return []; 
 		} else {
 			//Atomic square
-			if( distanceT( t1, t2 ) < 0.000000000001 ) {
+			if( distanceT( t1, t2 ) < 0.0000000000001 ){
+
 				return [[ t1, t2, s1, s2 ]]
 			} else {
 			//Subdivisable squares
@@ -214,143 +215,6 @@ Intersection =
 				var r4 = findIntersectionByDichotomy( bezierT, bezierS, middleT, t2, middleS, s2 );
 				return Array.prototype.concat( r1, r2, r3, r4 );	
 			}
-		} 
-	}
-
-
-
-//initialise it with t1=0 and t2=1 and t3=0 and t4 =1
-	//parameter are the composants of the equation and the two extremity points of the curve
-	function dichotomy( Ay1, By1, Cy1, Dy1, Yp0, Yp3, Ax1, Bx1, Cx1, Dx1, Xp0, Xp3, Ay2, By2, Cy2, Dy2, Yp4, Yp7, Ax2, Bx2, Cx2, Dx2, Xp4, Xp7, t1, t2, t3, t4, epsilon, i, solution ){
-		//console.log( "totototototot" );
-		//test if the angle of the rectangle formed by the two extremity of the curve are in the other rectangle
-		console.log( "step : " + i )
-		i = i+1;
-		if( insideInterval( Xp0, Xp4, Xp7 ) && insideInterval( Yp0, Yp4, Yp7 )
-				|| insideInterval( Xp0, Xp4, Xp7 ) && insideInterval( Yp3, Yp4, Yp7 )
-				|| insideInterval( Xp3, Xp4, Xp7 ) && insideInterval( Yp3, Yp4, Yp7 )
-				|| insideInterval( Xp3, Xp4, Xp7 ) && insideInterval( Yp0, Yp4, Yp7 )
-
-				|| insideInterval( Xp4, Xp0, Xp3 ) && insideInterval( Yp4, Yp0, Yp3 )
-				|| insideInterval( Xp4, Xp0, Xp3 ) && insideInterval( Yp7, Yp0, Yp3 )
-				|| insideInterval( Xp7, Xp0, Xp3 ) && insideInterval( Yp7, Yp0, Yp3 )
-				|| insideInterval( Xp7, Xp0, Xp3 ) && insideInterval( Yp4, Yp0, Yp3 ) // tests for one point inside rectangle
-
-				|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp0 > Yp4 && Yp0 < Yp7
-				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp0 < Yp4 && Yp0 > Yp7
-				/*|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp3 > Yp4 && Yp3 < Yp7
-				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp3 < Yp4 && Yp3 > Yp7
-				|| Yp0 < Yp4 && Yp0 < Yp7 && Yp3 > Yp4 && Yp3 > Yp7 && Xp0 > Xp4 && Xp0 < Xp7
-				|| Yp0 > Yp4 && Yp0 > Yp7 && Yp3 < Yp4 && Yp3 < Yp7 && Xp0 < Xp4 && Xp0 > Xp7
-				|| Yp0 < Yp4 && Yp0 < Yp7 && Yp3 > Yp4 && Yp3 > Yp7 && Xp3 > Xp4 && Xp3 < Xp7
-				|| Yp0 > Yp4 && Yp0 > Yp7 && Yp3 < Yp4 && Yp3 < Yp7 && Xp3 < Xp4 && Xp3 > Xp7 
-
-				|| Xp4 < Xp0 && Xp4 < Xp3 && Xp7 > Xp0 && Xp7 > Xp3 && Yp4 > Yp0 && Yp4 < Yp3
-				|| Xp4 > Xp0 && Xp4 > Xp3 && Xp7 < Xp0 && Xp7 < Xp3 && Yp4 < Yp0 && Yp4 > Yp3
-				|| Xp4 < Xp0 && Xp4 < Xp3 && Xp7 > Xp0 && Xp7 > Xp3 && Yp7 > Yp0 && Yp7 < Yp3
-				|| Xp4 > Xp0 && Xp4 > Xp3 && Xp7 < Xp0 && Xp7 < Xp3 && Yp7 < Yp0 && Yp7 > Yp3
-				|| Yp4 < Yp0 && Yp4 < Yp3 && Yp7 > Yp0 && Yp7 > Yp3 && Xp4 > Xp0 && Xp4 < Xp3
-				|| Yp4 > Yp0 && Yp4 > Yp3 && Yp7 < Yp0 && Yp7 < Yp3 && Xp4 < Xp0 && Xp4 > Xp3
-				|| Yp4 < Yp0 && Yp4 < Yp3 && Yp7 > Yp0 && Yp7 > Yp3 && Xp7 > Xp0 && Xp7 < Xp3
-				|| Yp4 > Yp0 && Yp4 > Yp3 && Yp7 < Yp0 && Yp7 < Yp3 && Xp7 < Xp0 && Xp7 > Xp3// tests if include a part of a rectangle 
-
-				|| Xp0 < Xp4 && Xp0 < Xp7 && Xp3 > Xp4 && Xp3 > Xp7 && Yp0 < Yp4 && Yp0 < Yp7 && Yp3 > Yp4 && Yp3 > Yp7
-				|| Xp0 > Xp4 && Xp0 > Xp7 && Xp3 < Xp4 && Xp3 < Xp7 && Yp0 > Yp4 && Yp0 > Yp7 && Yp3 < Yp4 && Yp3 < Yp7
-				|| Xp4 < Xp0 && Xp4 < Xp3 && Xp7 > Xp0 && Xp7 > Xp3 && Yp4 < Yp0 && Yp4 < Yp3 && Yp7 > Yp0 && Yp7 > Yp3
-				|| Xp4 > Xp0 && Xp4 > Xp3 && Xp7 < Xp0 && Xp7 < Xp3 && Yp4 > Yp0 && Yp4 > Yp3 && Yp7 < Yp0 && Yp7 < Yp3 */){ // test if include the complette rectangle
-			console.log( "intersection" );
-			//test if the precision wanted is respected
-			if( Math.abs( Xp0 - Xp3 ) < epsilon && Math.abs( Yp0 - Yp3 ) < epsilon ){
-				console.log( "precision reach" );
-				//if precision is reach test which segment is now a point 
-				//test if the point is on the curve by solving the equation
-				middleX1 = ((t1+t2)/2)*((t1+t2)/2)*((t1+t2)/2)*Ax1 + ((t1+t2)/2)*((t1+t2)/2)*Bx1 + ((t1+t2)/2)*Cx1 + Dx1;
-				middleY1 = ((t1+t2)/2)*((t1+t2)/2)*((t1+t2)/2)*Ay1 + ((t1+t2)/2)*((t1+t2)/2)*By1 + ((t1+t2)/2)*Cy1 + Dy1;
-				//middleX1 = (Xp0 + Xp3)/2;
-				//middleY1 = (Yp0 + Yp3)/2;
-				if( Ay2 != 0 ){
-					result = cubicResolution(Ay2, By2, Cy2, Dy2-middleY1 );
-				} else if( Ay2 == 0 && By2 != 0 ){
-					result = quadraticResolution( By2, Cy2, Dy2-middleY1 );
-				} else {
-					result = linearResolution( Cy2, Dy2-middleY1 );
-				}
-				var X1 = result[0]*result[0]*result[0]*Ax1 + result[0]*result[0]*Bx1 + result[0]*Cx1 + Dx1;
-				var X2 = result[0]*result[0]*result[0]*Ax2 + result[0]*result[0]*Bx2 + result[0]*Cx2 + Dx2;
-				console.log( X1, X2, middleX1 )
-				console.log( Math.abs( X2 - middleX1 ) )
-				if( Math.abs( X2 - middleX1 ) < 1/epsilon ){
-					var add = true;
-					if( solution.length != 0 ){
-						for( i in solution ){
-							if( Math.abs( solution[i][0] - middleX1 ) < epsilon*100
-									|| Math.abs( solution[i][1] - middleY1 ) < epsilon*100 ){
-								add = false;
-							}
-						}
-						if( add ){
-							solution.push( [ middleX1, middleY1 ] );
-							console.log( solution );
-						}
-					} else {
-						solution.push( [ middleX1, middleY1 ] );
-						console.log( solution );
-					}
-				}
-			} else if(  Math.abs( Xp4 - Xp7 ) < epsilon && Math.abs( Yp4 - Yp7 ) < epsilon ){
-				console.log( "precision reach" );
-				middleX2 = ((t3+t4)/2)*((t3+t4)/2)*((t3+t4)/2)*Ax2 + ((t3+t4)/2)*((t3+t4)/2)*Bx2 + ((t3+t4)/2)*Cx2 + Dx2;
-				middleY2 = ((t3+t4)/2)*((t3+t4)/2)*((t3+t4)/2)*Ay2 + ((t3+t4)/2)*((t3+t4)/2)*By2 + ((t3+t4)/2)*Cy2 + Dy2;
-				//middleX2 = (Xp4 + Xp7)/2;
-				//middleY2 = (Yp4 + Yp7)/2;
-				if( Ay1 != 0 ){
-					result = cubicResolution(Ay1, By1, Cy1, Dy1-middleY2 );
-				} else if( Ay1 == 0 && By1 != 0 ){
-					result = quadraticResolution( By1, Cy1, Dy1-middleY2 );
-				} else {
-					result = linearResolution( Cy1, Dy1-middleY2 );
-				}
-				var X = result[0]*result[0]*result[0]*Ax1 + result[0]*result[0]*Bx1 + result[0]*Cx1 + Dx1;
-				if( Math.abs( X - middleX2 ) < 1/epsilon ){
-					var add = 0;
-					if( solution.length != 0 ){
-						for( i in solution ){
-							if( Math.abs( solution[i][0] - middleX2 ) > epsilon*100
-									|| Math.abs( solution[i][1] - middleY2 ) > epsilon*100 ){
-								console.log( add );
-								add = false;
-							}
-						}
-						if( add ){
-							solution.push( [ middleX2, middleY2 ] );
-							console.log( solution );
-						}
-					} else {
-						solution.push( [ middleX2, middleY2 ] );
-						console.log( solution );
-					}
-				}
-			} else {
-				console.log( "no precision" );
-				//console.log( Math.abs( Xp0 - Xp3 ), Math.abs( Yp0 - Yp3 ) );
-				//console.log( Math.abs( Xp4 - Xp7 ), Math.abs( Yp4 - Yp7 ) );
-				//cut the curve in the middle
-				middleX1 = ((t1+t2)/2)*((t1+t2)/2)*((t1+t2)/2)*Ax1 + ((t1+t2)/2)*((t1+t2)/2)*Bx1 + ((t1+t2)/2)*Cx1 + Dx1;
-				middleX2 = ((t3+t4)/2)*((t3+t4)/2)*((t3+t4)/2)*Ax2 + ((t3+t4)/2)*((t3+t4)/2)*Bx2 + ((t3+t4)/2)*Cx2 + Dx2;
-				middleY1 = ((t1+t2)/2)*((t1+t2)/2)*((t1+t2)/2)*Ay1 + ((t1+t2)/2)*((t1+t2)/2)*By1 + ((t1+t2)/2)*Cy1 + Dy1;
-				middleY2 = ((t3+t4)/2)*((t3+t4)/2)*((t3+t4)/2)*Ay2 + ((t3+t4)/2)*((t3+t4)/2)*By2 + ((t3+t4)/2)*Cy2 + Dy2;
-				//console.log( middleX1, middleY1, middleX2, middleY2 );
-				//solution.push( [ middleX1, middleY1 ], [ middleX2, middleY2 ] );
-				//call again the function until the precision is good enought
-				var r1 = dichotomy( Ay1, By1, Cy1, Dy1, Yp0, middleY1, Ax1, Bx1, Cx1, Dx1, Xp0, middleX1, Ay2, By2, Cy2, Dy2, Yp4, middleY2, Ax2, Bx2, Cx2, Dx2, Xp4, middleX2, t1, ((t1+t2)/2), t3, ((t3+t4)/2), epsilon, i, solution );
-				var r2 = dichotomy( Ay1, By1, Cy1, Dy1, Yp0, middleY1, Ax1, Bx1, Cx1, Dx1, Xp0, middleX1, Ay2, By2, Cy2, Dy2, middleY2, Yp7, Ax2, Bx2, Cx2, Dx2, middleX2, Xp7, t1, ((t1+t2)/2), ((t3+t4)/2), t4, epsilon, i, solution );
-				var r3 = dichotomy( Ay1, By1, Cy1, Dy1, middleY1, Yp3, Ax1, Bx1, Cx1, Dx1, middleX1, Xp3, Ay2, By2, Cy2, Dy2, Yp4, middleY2, Ax2, Bx2, Cx2, Dx2, Xp4, middleX2, ((t1+t2)/2), t2, t3, ((t3+t4)/2), epsilon, i, solution );
-				var r4 = dichotomy( Ay1, By1, Cy1, Dy1, middleY1, Yp3, Ax1, Bx1, Cx1, Dx1, middleX1, Xp3, Ay2, By2, Cy2, Dy2, middleY2, Yp7, Ax2, Bx2, Cx2, Dx2, middleX2, Xp7, ((t1+t2)/2), t2, ((t3+t4)/2), t4, epsilon, i, solution );
-				//solution.concat( r1, r2, r3, r4 );
-			}
-		} else { 
-			//solution.concat( [] );
-			console.log( "NOPE" ); 
 		}
 	}
 
@@ -568,28 +432,6 @@ Intersection =
 		var Bx2 = 3*Xp4 - 6*Xp5 + 3*Xp6;//coefficient t^2
 		var Cx2 = -3*Xp4 + 3*Xp5;//coefficient t
 		var Dx2 = Xp4;
-		//coefficient of the sextic equation to decompose
-		/*var A = ( ( Ax*Ax )/demiAxeX ) + ( ( Ay*Ay )/demiAxeY );//coefficient t^6
-		var B = ( ( 2*Ax*Bx )/demiAxeX ) + ( ( 2*Ay*By )/demiAxeY );//coefficient t^5
-		var C = ( ( ( 2*Ax*Cx ) + ( Bx*Bx ) )/demiAxeX ) 
-					+ ( ( ( 2*Ay*Cy ) + ( By*By ) )/demiAxeY );//coefficient t^4
-		var D = ( ( ( 2*Xp0*Ax ) + ( 2*origineEllipseX*Ax ) + ( 2*Bx*Cx ) )/demiAxeX ) 
-					+ ( ( ( 2*Yp0*Ay ) + ( 2*origineEllipseY*Ay ) + ( 2*By*Cy ) )/demiAxeY );//coefficient t^3
-		var E = ( ( ( Cx*Cx ) + ( 2*Xp0*Bx ) + ( 2*origineEllipseX*Bx ) )/demiAxeX ) 
-					+ ( ( ( Cy*Cy ) + ( 2*Yp0*By ) + ( 2*origineEllipseY*By ) )/demiAxeY );//coefficient t^2
-		var F = ( ( ( 2*Xp0*Cx ) + ( 2*origineEllipseX*Cx ) )/demiAxeX ) 
-					+ ( ( ( 2*Yp0*Cy ) + ( 2*origineEllipseY*Cy ) )/demiAxeY );//coefficient t^1
-		var G = ( ( ( Xp0*Xp0 ) + ( 2*origineEllipseX*Xp0 ) + ( origineEllipseX*origineEllipseX ) )/demiAxeX ) 
-					+ ( ( ( Yp0*Yp0 ) + ( 2*origineEllipseY*Yp0 ) + ( origineEllipseY*origineEllipseY ) )/demiAxeY );//coefficient t^0*/
-		//first simplification of the coefficient t^6 to 1
-		/*var a0 = G/A;
-		var a1 = F/A;
-		var a2 = E/A;
-		var a3 = D/A;
-		var a4 = C/A;
-		var a5 = B/A;*/
-		//var inflexionPoints = inflexionPoint( Ay, By, Cy, Yp0, Ax, Bx, Cx, Xp0 );
-		var solution = [];
 
 		bezier1 = new Bezier( Xp0 , Yp0 , Xp1 , Yp1 , Xp2 , Yp2 , Xp3 , Yp3 );
 		bezier2 = new Bezier( Xp4 , Yp4 , Xp5 , Yp5 , Xp6 , Yp6 , Xp7 , Yp7 );
@@ -601,13 +443,20 @@ Intersection =
 
 		resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
 		console.log( resultat ) ;
+		var solution = [[]];
 		for( var intersection of resultat ) {
-			console.log( Math.floor (100000 * intersection[0].x),  Math.floor (100000 * intersection[0].y  )) 
-
+			console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
+			var add = true;
+			for( i in solution ){
+				if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
+					add = false;
+				}
+			}
+			if( add ){
+				solution.push( [ intersection[0].x, intersection[0].y ] );
+			}
 		}
-/*
-		dichotomy( Ay1, By1, Cy1, Dy1, Yp0, Yp3, Ax1, Bx1, Cx1, Dx1, Xp0, Xp3, Ay2, By2, Cy2, Dy2, Yp4, Yp7, Ax2, Bx2, Cx2, Dx2, Xp4, Xp7, 0, 1, 0, 1, 0.001, 1, solution );
-		//console.log( solution );*/
+
 		var intersectionData = new IntersectionData( "point", solution );
 		return intersectionData;
 	}
