@@ -156,6 +156,69 @@ Intersection =
         return results;
 	}
 
+
+	function ParametricCubic( a, b, c, d ) {
+		this.a = a ;
+		this.b = b ; 
+		this.c = c ; 
+		this.d = d ;  
+	}
+	ParametricCubic.prototype.apply = function( t ) {
+		return this.d + t * ( this.c + t * ( this.b + t * this.a ))
+	}
+	function Bezier( x0, y0, x1, y1, x2, y2, x3, y3 ) {
+		var a = -y0 + 3*y1 - 3*y2 + y3;//coefficient t^3
+		var b = 3*y0 - 6*y1 + 3*y2;//coefficient t^2
+		var c = -3*y0 + 3*y1;//coefficient t
+		var d = y0;
+		this.cubicY = new ParametricCubic( a,b,c,d );
+		a = -x0 + 3*x1 - 3*x2 + x3;//coefficient t^3
+		b = 3*x0 - 6*x1 + 3*x2;//coefficient t^2
+		c = -3*x0 + 3*x1;//coefficient t
+		d = x0;
+		this.cubicX = new ParametricCubic( a,b,c,d );
+	}
+	function BezierPoint( t, bezier ) {
+		this.t = t; 
+		this.x = bezier.cubicX.apply( t );
+		this.y = bezier.cubicY.apply( t );
+	}
+	function distanceT( t1, t2 ) {
+		var x = t1.x - t2.x; 
+		var y = t2.y - t1.y; 
+		return  x*x + y*y ;
+	}
+
+	function findIntersectionByDichotomy( bezierT, bezierS, t1, t2, s1, s2 ) {
+		if( ( !insideInterval( t1.x, s1.x, s2.x ) 
+		   && !insideInterval( t2.x, s1.x, s2.x ) 
+		   && !insideInterval( s1.x, t1.x, t2.x ) 
+		   && !insideInterval( s2.x, t1.x, t2.x ) )
+		 || ( !insideInterval( t1.y, s1.y, s2.y ) 
+		   && !insideInterval( t2.y, s1.y, s2.y ) 
+		   && !insideInterval( s1.y, t1.y, t2.y ) 
+		   && !insideInterval( s2.y, t1.y, t2.y ) )) {
+			//no intersection 
+			return []; 
+		} else {
+			//Atomic square
+			if( distanceT( t1, t2 ) < 0.000000000001 ) {
+				return [[ t1, t2, s1, s2 ]]
+			} else {
+			//Subdivisable squares
+				middleT = new BezierPoint( (t1.t  + t2.t)/2, bezierT );
+				middleS = new BezierPoint( (s1.t  + s2.t)/2, bezierS );
+				var r1 = findIntersectionByDichotomy( bezierT, bezierS, t1, middleT, s1, middleS );
+				var r2 = findIntersectionByDichotomy( bezierT, bezierS, middleT, t2, s1, middleS );
+				var r3 = findIntersectionByDichotomy( bezierT, bezierS, t1, middleT, middleS, s2 );
+				var r4 = findIntersectionByDichotomy( bezierT, bezierS, middleT, t2, middleS, s2 );
+				return Array.prototype.concat( r1, r2, r3, r4 );	
+			}
+		} 
+	}
+
+
+
 //initialise it with t1=0 and t2=1 and t3=0 and t4 =1
 	//parameter are the composants of the equation and the two extremity points of the curve
 	function dichotomy( Ay1, By1, Cy1, Dy1, Yp0, Yp3, Ax1, Bx1, Cx1, Dx1, Xp0, Xp3, Ay2, By2, Cy2, Dy2, Yp4, Yp7, Ax2, Bx2, Cx2, Dx2, Xp4, Xp7, t1, t2, t3, t4, epsilon, i, solution ){
@@ -527,8 +590,24 @@ Intersection =
 		var a5 = B/A;*/
 		//var inflexionPoints = inflexionPoint( Ay, By, Cy, Yp0, Ax, Bx, Cx, Xp0 );
 		var solution = [];
+
+		bezier1 = new Bezier( Xp0 , Yp0 , Xp1 , Yp1 , Xp2 , Yp2 , Xp3 , Yp3 );
+		bezier2 = new Bezier( Xp4 , Yp4 , Xp5 , Yp5 , Xp6 , Yp6 , Xp7 , Yp7 );
+
+		p1 = new BezierPoint( 0, bezier1 );
+		p2 = new BezierPoint( 1, bezier1 );
+		p3 = new BezierPoint( 0, bezier2 );
+		p4 = new BezierPoint( 1, bezier2 );
+
+		resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
+		console.log( resultat ) ;
+		for( var intersection of resultat ) {
+			console.log( Math.floor (100000 * intersection[0].x),  Math.floor (100000 * intersection[0].y  )) 
+
+		}
+/*
 		dichotomy( Ay1, By1, Cy1, Dy1, Yp0, Yp3, Ax1, Bx1, Cx1, Dx1, Xp0, Xp3, Ay2, By2, Cy2, Dy2, Yp4, Yp7, Ax2, Bx2, Cx2, Dx2, Xp4, Xp7, 0, 1, 0, 1, 0.001, 1, solution );
-		//console.log( solution );
+		//console.log( solution );*/
 		var intersectionData = new IntersectionData( "point", solution );
 		return intersectionData;
 	}
