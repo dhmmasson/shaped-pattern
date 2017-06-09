@@ -18,7 +18,13 @@ Intersection =
 		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 )
 	}
 
-	function inflexionPoint( Ay, By, Cy, Yp0, Ax, Bx, Cx, Xp0 ){
+	function inflexionPoint( bezier ){
+		var Ay = bezier.cubicY.a;
+		var By = bezier.cubicY.b;
+		var Cy = bezier.cubicY.c;
+		var Ax = bezier.cubicX.a;
+		var Bx = bezier.cubicX.b;
+		var Cx = bezier.cubicX.c;
 		var solution = [];
 		var coordonatesX = [];
 		var coordonatesY = [];
@@ -43,30 +49,12 @@ Intersection =
 
 		for( i in coordonatesX ){
 			if( coordonatesX[i] != -1){
-				//replace solutions in the parametric equation
-				var solutionOnX = coordonatesX[i]*coordonatesX[i]*coordonatesX[i]*Ax 
-												+ coordonatesX[i]*coordonatesX[i]*Bx 
-												+ coordonatesX[i]*Cx + Xp0;
-				/*console.log( "solution on X: " + solutionOnX );*/
-				var solutionOnY = coordonatesX[i]*coordonatesX[i]*coordonatesX[i]*Ay
-												+ coordonatesX[i]*coordonatesX[i]*By
-												+ coordonatesX[i]*Cy + Yp0;
-				/*console.log( "solution on Y: " + solutionOnY );*/
-				solution.push( [ solutionOnX, solutionOnY ] );
+				solution.push( coordonatesX[i] );
 			}
 		}
 		for( i in coordonatesY ){
 			if( coordonatesY[i] != -1){
-				//replace solutions in the parametric equation
-				var solutionOnX = coordonatesY[i]*coordonatesY[i]*coordonatesY[i]*Ax 
-												+ coordonatesY[i]*coordonatesY[i]*Bx 
-												+ coordonatesY[i]*Cx + Xp0;
-				/*console.log( "solution on X: " + solutionOnX );*/
-				var solutionOnY = coordonatesY[i]*coordonatesY[i]*coordonatesY[i]*Ay
-												+ coordonatesY[i]*coordonatesY[i]*By
-												+ coordonatesY[i]*Cy + Yp0;
-				/*console.log( "solution on Y: " + solutionOnY );*/
-				solution.push( [ solutionOnX, solutionOnY ] );
+				solution.push( coordonatesY[i] );
 			}
 		}
 		return solution;
@@ -77,7 +65,7 @@ Intersection =
 		var results = [];
 		results[0] = -B/A;
 		for ( var i=0; i<3; i++ ){
-			console.log( results[i] );
+			//console.log( results[i] );
         	if( results[i]<-0.00000000001 || results[i]>1.00000000001 ){
         		results[i]=-1;
         	}
@@ -86,10 +74,10 @@ Intersection =
 	}
 	//return solution list for a quadratic equation
 	function quadraticResolution( A, B, C ){
-		console.log( " A : " + A + "  B : " + B + "  C : " + C );
+		//console.log( " A : " + A + "  B : " + B + "  C : " + C );
 		//discriminant
 		var D = (B*B) - 4*A*C;
-		console.log( " discriminant : " + D );
+		//console.log( " discriminant : " + D );
 		var results = [];
 
 		if( D > 0 ){
@@ -99,7 +87,7 @@ Intersection =
 			results[0] = (-B)/(2*A);
 		}
 		for ( i in results ){
-			console.log( " quadratic : " + results[i] );
+			//console.log( " quadratic : " + results[i] );
         	if( results[i]<-0.00000000001 || results[i]>1.00000000001 ){
         		results[i]=-1;
         	}
@@ -361,13 +349,9 @@ Intersection =
 
 		return intersectionData;
 	}
-	//retrun coords of intersection between bezier curve ans ellipse
-	//TODO: prevent case of A=0
-	intersectionLibrary.intersectionBezierEllipse = function( path1, path2 ){
-		/*var origineEllipseX = ellipse.cx();
-		var origineEllipseY = ellipse.cy();
-		var demiAxeX = ellipse.rx();
-		var demiAxeY = ellipse.ry();*/
+
+	//retrun coords of intersection between bezier curve and another bezier curve
+	intersectionLibrary.intersectionBezierBezier = function( path1, path2 ){
 		var points1 = path1.array();
 		var Xp0;
 		var Yp0;
@@ -390,16 +374,6 @@ Intersection =
 				Yp3 = points1.value[i][6];
 			}
 		}
-		console.log( Xp0 , Yp0 , Xp1 , Yp1 , Xp2 , Yp2 , Xp3 , Yp3 );
-			//parametric equation coefficients
-		var Ay1 = -Yp0 + 3*Yp1 - 3*Yp2 + Yp3;//coefficient t^3
-		var By1 = 3*Yp0 - 6*Yp1 + 3*Yp2;//coefficient t^2
-		var Cy1 = -3*Yp0 + 3*Yp1;//coefficient t
-		var Dy1 = Yp0;
-		var Ax1 = -Xp0 + 3*Xp1 - 3*Xp2 + Xp3;//coefficient t^3
-		var Bx1 = 3*Xp0 - 6*Xp1 + 3*Xp2;//coefficient t^2
-		var Cx1 = -3*Xp0 + 3*Xp1;//coefficient t
-		var Dx1 = Xp0;
 		//coord of the second path
 		var points2 = path2.array();
 		var Xp4;
@@ -423,45 +397,114 @@ Intersection =
 				Yp7 = points2.value[i][6];
 			}
 		}
-			//parametric equation coefficients
-		var Ay2 = -Yp4 + 3*Yp5 - 3*Yp6 + Yp7;//coefficient t^3
-		var By2 = 3*Yp4 - 6*Yp5 + 3*Yp6;//coefficient t^2
-		var Cy2 = -3*Yp4 + 3*Yp5;//coefficient t
-		var Dy2 = Yp4;
-		var Ax2 = -Xp4 + 3*Xp5 - 3*Xp6 + Xp7;//coefficient t^3
-		var Bx2 = 3*Xp4 - 6*Xp5 + 3*Xp6;//coefficient t^2
-		var Cx2 = -3*Xp4 + 3*Xp5;//coefficient t
-		var Dx2 = Xp4;
 
 		bezier1 = new Bezier( Xp0 , Yp0 , Xp1 , Yp1 , Xp2 , Yp2 , Xp3 , Yp3 );
 		bezier2 = new Bezier( Xp4 , Yp4 , Xp5 , Yp5 , Xp6 , Yp6 , Xp7 , Yp7 );
+		//console.log( bezier1, bezier2 );
 
 		p1 = new BezierPoint( 0, bezier1 );
 		p2 = new BezierPoint( 1, bezier1 );
 		p3 = new BezierPoint( 0, bezier2 );
 		p4 = new BezierPoint( 1, bezier2 );
+		//console.log( p1, p2, p3, p4 );
 
-		resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
-		console.log( resultat ) ;
-		var solution = [[]];
-		for( var intersection of resultat ) {
-			console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
-			var add = true;
-			for( i in solution ){
-				if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
-					add = false;
+		inflexionPoints1 = inflexionPoint( bezier1 );
+		inflexionPoints2 = inflexionPoint( bezier2 );
+		console.log( inflexionPoints1.length, inflexionPoints2.length );
+		console.log( inflexionPoints1, inflexionPoints2 )
+		//if( inflexionPoints1.length == 0 && inflexionPoints2.length == 0 ){
+			var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
+			console.log( resultat );
+			var solution = [[]];
+			for( var intersection of resultat ){
+				console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
+				var add = true;
+				for( i in solution ){
+					if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
+						add = false;
+					}
+				}
+				if( add ){
+					solution.push( [ intersection[0].x, intersection[0].y ] );
 				}
 			}
-			if( add ){
-				solution.push( [ intersection[0].x, intersection[0].y ] );
+		/*} else if( inflexionPoints1.length == 0 ){
+			inflexionPoints1.push( 0, 1 );
+			inflexionPoints1.sort(function(a,b) { return a>b });
+			for( var i = 1 ; i++; inflexionPoints1.length ){
+				var p1 = new BezierPoint( inflexionPoints1[i-1], bezier1 );
+				var p2 = new BezierPoint( inflexionPoints1[i], bezier1 );
+				var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
+				var solution = [[]];
+				for( var intersection of resultat ){
+					console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
+					var add = true;
+					for( i in solution ){
+						if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
+							add = false;
+						}
+					}
+					if( add ){
+						solution.push( [ intersection[0].x, intersection[0].y ] );
+					}
+				}
 			}
-		}
-
-		var intersectionData = new IntersectionData( "point", solution );
+		} else if( inflexionPoints2.length == 0 ){
+			inflexionPoints2.push( 0, 1 );
+			inflexionPoints2.sort(function(a,b) { return a>b });
+			for( var i = 1 ; i++; inflexionPoints2.length ){
+				var p3 = new BezierPoint( inflexionPoints2[i-1], bezier2 );
+				var p4 = new BezierPoint( inflexionPoints2[i], bezier2 );
+				var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
+				var solution = [[]];
+				for( var intersection of resultat ){
+					console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
+					var add = true;
+					for( i in solution ){
+						if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
+							add = false;
+						}
+					}
+					if( add ){
+						solution.push( [ intersection[0].x, intersection[0].y ] );
+					}
+				}
+			}
+		} else {
+			inflexionPoints1.push( 0, 1 );
+			inflexionPoints2.push( 0, 1 );
+			inflexionPoints1.sort(function(a,b) { return a>b });
+			inflexionPoints2.sort(function(a,b) { return a>b });
+			for( var i = 1 ; i++; inflexionPoints1.length ){
+				for( var j = 1 ; j++; inflexionPoints2.length ){
+					var p1 = new BezierPoint( inflexionPoints1[i-1], bezier1 );
+					var p2 = new BezierPoint( inflexionPoints1[i], bezier1 );
+					var p3 = new BezierPoint( inflexionPoints2[j-1], bezier2 );
+					var p4 = new BezierPoint( inflexionPoints2[j], bezier2 );
+					var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
+					var solution = [[]];
+					for( var intersection of resultat ){
+						console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
+						var add = true;
+						for( i in solution ){
+							if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
+								add = false;
+							}
+						}
+						if( add ){
+							solution.push( [ intersection[0].x, intersection[0].y ] );
+						}
+					}
+				}
+			}
+		}*/
+		if( solution.length != 0 ){
+				var intersectionData = new IntersectionData( "point", solution );
+			} else {
+				var intersectionData = new IntersectionData( "empty", [ [] ] );
+			}
 		return intersectionData;
 	}
-
-	
 
 	return intersectionLibrary;
 }) () 
