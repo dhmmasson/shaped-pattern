@@ -26,35 +26,35 @@ Intersection =
 		var Bx = bezier.cubicX.b;
 		var Cx = bezier.cubicX.c;
 		var solution = [];
-		var coordonatesX = [];
-		var coordonatesY = [];
+		var tX = [];
+		var tY = [];
 
 		if( Ay != 0 && By != 0 ){
 			var dAy = 3*Ay;
 			var dBy = 2*By;
-			coordonatesY = quadraticResolution(dAy, dBy, Cy);
+			tY = quadraticResolution(dAy, dBy, Cy);
 		} else if( Ay == 0 && By != 0 ){
 			var dBy = 2*By;
-			coordonatesY = linearResolution( dBy, Cy );
+			tY = linearResolution( dBy, Cy );
 		}
 
 		if( Ax != 0 && Bx != 0 ){
 			var dAx = 3*Ax;
 			var dBx = 2*Bx;
-			coordonatesX = quadraticResolution(dAx, dBx, Cx);
+			tX = quadraticResolution(dAx, dBx, Cx);
 		} else if( Ax == 0 && Bx != 0 ){
 			var dBx = 2*Bx;
-			coordonatesX = linearResolution( dBx, Cx );
+			tX = linearResolution( dBx, Cx );
 		}
 
-		for( i in coordonatesX ){
-			if( coordonatesX[i] != -1){
-				solution.push( coordonatesX[i] );
+		for( i in tX ){
+			if( tX[i] != -1 && tX[i] != 0 && tX[i] != 1 ){
+				solution.push( tX[i] );
 			}
 		}
-		for( i in coordonatesY ){
-			if( coordonatesY[i] != -1){
-				solution.push( coordonatesY[i] );
+		for( i in tY ){
+			if( tY[i] != -1 && tY[i] != 0 && tY[i] != 1 ){
+				solution.push( tY[i] );
 			}
 		}
 		return solution;
@@ -177,7 +177,15 @@ Intersection =
 		return  x*x + y*y ;
 	}
 
+function find2( ) {
+	console.log( arguments )
+	var results = findIntersectionByDichotomy.apply( this, arguments ) 
+	console.log( results )
+	return results ;
+}
+
 	function findIntersectionByDichotomy( bezierT, bezierS, t1, t2, s1, s2 ){
+		
 		if( ( !insideInterval( t1.x, s1.x, s2.x ) 
 		   && !insideInterval( t2.x, s1.x, s2.x ) 
 		   && !insideInterval( s1.x, t1.x, t2.x ) 
@@ -187,20 +195,20 @@ Intersection =
 		   && !insideInterval( s1.y, t1.y, t2.y ) 
 		   && !insideInterval( s2.y, t1.y, t2.y ) ) ) {
 			//no intersection 
+
 			return []; 
 		} else {
 			//Atomic square
 			if( distanceT( t1, t2 ) < 0.0000000000001 ){
-
 				return [[ t1, t2, s1, s2 ]]
 			} else {
 			//Subdivisable squares
-				middleT = new BezierPoint( (t1.t  + t2.t)/2, bezierT );
-				middleS = new BezierPoint( (s1.t  + s2.t)/2, bezierS );
-				var r1 = findIntersectionByDichotomy( bezierT, bezierS, t1, middleT, s1, middleS );
-				var r2 = findIntersectionByDichotomy( bezierT, bezierS, middleT, t2, s1, middleS );
-				var r3 = findIntersectionByDichotomy( bezierT, bezierS, t1, middleT, middleS, s2 );
-				var r4 = findIntersectionByDichotomy( bezierT, bezierS, middleT, t2, middleS, s2 );
+				var middleT = new BezierPoint( (t1.t  + t2.t)/2, bezierT );
+				var middleS = new BezierPoint( (s1.t  + s2.t)/2, bezierS );
+				var r1 = findIntersectionByDichotomy( bezierT, bezierS, t1, middleT, s1, middleS )
+				var r2 = findIntersectionByDichotomy( bezierT, bezierS, middleT, t2, s1, middleS )
+				var r3 = findIntersectionByDichotomy( bezierT, bezierS, t1, middleT, middleS, s2 )
+				var r4 = findIntersectionByDichotomy( bezierT, bezierS, middleT, t2, middleS, s2 )
 				return Array.prototype.concat( r1, r2, r3, r4 );	
 			}
 		}
@@ -350,6 +358,24 @@ Intersection =
 		return intersectionData;
 	}
 
+	function ajouterSolutions( solutions, resultat ) {
+		/**A copier a la fin **/ 
+		for( var intersection of resultat ){
+			//console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) );
+			var add = true;
+			for( var solution of solutions ){
+				if( ( Math.floor( 10000 * intersection[0].x ) == Math.floor( 10000 * solution[0] ) )
+				 && ( Math.floor( 10000 * intersection[0].y ) == Math.floor( 10000 * solution[1] ) ) ) {
+					add = false;
+				}
+			}
+			if( add ){
+				solutions.push( [ intersection[0].x, intersection[0].y ] );
+			}
+		}
+		return solutions
+	}
+
 	//retrun coords of intersection between bezier curve and another bezier curve
 	intersectionLibrary.intersectionBezierBezier = function( path1, path2 ){
 		var points1 = path1.array();
@@ -385,6 +411,7 @@ Intersection =
 		var Xp7;
 		var Yp7;
 		//recuperation of the bezier curve control point
+
 		for( i in points2.value ){
 			if( points2.value[i][0] == "C" ){
 				Xp4 = points2.value[i-1][points2.value[i-1].length-2];
@@ -410,96 +437,63 @@ Intersection =
 
 		inflexionPoints1 = inflexionPoint( bezier1 );
 		inflexionPoints2 = inflexionPoint( bezier2 );
-		console.log( inflexionPoints1.length, inflexionPoints2.length );
-		console.log( inflexionPoints1, inflexionPoints2 )
-		//if( inflexionPoints1.length == 0 && inflexionPoints2.length == 0 ){
-			var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
+		//console.log( inflexionPoints1.length, inflexionPoints2.length );
+		//console.log( inflexionPoints1, inflexionPoints2 )
+		var solutions = [] 
+		if( inflexionPoints1.length == 0 && inflexionPoints2.length == 0 ){
+			var resultat = find2( bezier1, bezier2, p1, p2, p3, p4 );
 			console.log( resultat );
-			var solution = [[]];
-			for( var intersection of resultat ){
-				console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
-				var add = true;
-				for( i in solution ){
-					if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
-						add = false;
-					}
-				}
-				if( add ){
-					solution.push( [ intersection[0].x, intersection[0].y ] );
-				}
-			}
-		/*} else if( inflexionPoints1.length == 0 ){
+			solutions = ajouterSolutions( solutions, resultat )
+
+
+		} else if( inflexionPoints2.length == 0 ){
 			inflexionPoints1.push( 0, 1 );
 			inflexionPoints1.sort(function(a,b) { return a>b });
-			for( var i = 1 ; i++; inflexionPoints1.length ){
+			console.log( "inflexionPoints1 = " + inflexionPoints1 );
+			for( var i = 1; i < inflexionPoints1.length; i++ ){
 				var p1 = new BezierPoint( inflexionPoints1[i-1], bezier1 );
+				console.log(p1)
 				var p2 = new BezierPoint( inflexionPoints1[i], bezier1 );
-				var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
-				var solution = [[]];
-				for( var intersection of resultat ){
-					console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
-					var add = true;
-					for( i in solution ){
-						if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
-							add = false;
-						}
-					}
-					if( add ){
-						solution.push( [ intersection[0].x, intersection[0].y ] );
-					}
-				}
+				console.log(p2)
+				var resultat = find2( bezier1, bezier2, p1, p2, p3, p4 );
+				solutions = ajouterSolutions( solutions, resultat )
+				console.log( resultat )
 			}
-		} else if( inflexionPoints2.length == 0 ){
+		} else if( inflexionPoints1.length == 0 ){
 			inflexionPoints2.push( 0, 1 );
 			inflexionPoints2.sort(function(a,b) { return a>b });
-			for( var i = 1 ; i++; inflexionPoints2.length ){
+			console.log( " inflexionPoints2 = " + inflexionPoints2 );
+			for( var i = 1; i < inflexionPoints2.length; i++ ){
 				var p3 = new BezierPoint( inflexionPoints2[i-1], bezier2 );
+				console.log(p3)
 				var p4 = new BezierPoint( inflexionPoints2[i], bezier2 );
-				var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
-				var solution = [[]];
-				for( var intersection of resultat ){
-					console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
-					var add = true;
-					for( i in solution ){
-						if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
-							add = false;
-						}
-					}
-					if( add ){
-						solution.push( [ intersection[0].x, intersection[0].y ] );
-					}
-				}
+				console.log(p4)
+				var resultat = find2( bezier1, bezier2, p1, p2, p3, p4 );
+				solutions = ajouterSolutions( solutions, resultat )
+				console.log( resultat )
 			}
 		} else {
 			inflexionPoints1.push( 0, 1 );
 			inflexionPoints2.push( 0, 1 );
 			inflexionPoints1.sort(function(a,b) { return a>b });
 			inflexionPoints2.sort(function(a,b) { return a>b });
-			for( var i = 1 ; i++; inflexionPoints1.length ){
-				for( var j = 1 ; j++; inflexionPoints2.length ){
+			console.log( " inflexionPoints1 = " + inflexionPoints1 );
+			console.log( " inflexionPoints2 = " + inflexionPoints2 );
+			for( var i = 1; i < inflexionPoints1.length; i++ ){
+				for( var j = 1; j < inflexionPoints2.length; j++ ){
 					var p1 = new BezierPoint( inflexionPoints1[i-1], bezier1 );
 					var p2 = new BezierPoint( inflexionPoints1[i], bezier1 );
 					var p3 = new BezierPoint( inflexionPoints2[j-1], bezier2 );
 					var p4 = new BezierPoint( inflexionPoints2[j], bezier2 );
-					var resultat = findIntersectionByDichotomy( bezier1, bezier2, p1, p2, p3, p4 );
-					var solution = [[]];
-					for( var intersection of resultat ){
-						console.log( Math.floor( 100000 * intersection[0].x ),  Math.floor( 100000 * intersection[0].y ) ) 
-						var add = true;
-						for( i in solution ){
-							if( ( Math.floor( 100000 * intersection[0].x ) == Math.floor( 100000 * solution[i][0] ) ) && ( Math.floor( 100000 * intersection[0].y ) == Math.floor( 100000 * solution[i][1] ) ) ) {
-								add = false;
-							}
-						}
-						if( add ){
-							solution.push( [ intersection[0].x, intersection[0].y ] );
-						}
-					}
+					var resultat = find2( bezier1, bezier2, p1, p2, p3, p4 );
+					solutions = ajouterSolutions( solutions, resultat )
 				}
 			}
-		}*/
-		if( solution.length != 0 ){
-				var intersectionData = new IntersectionData( "point", solution );
+		}
+
+
+		if( solutions.length != 0 ){
+				var intersectionData = new IntersectionData( "point", solutions );
 			} else {
 				var intersectionData = new IntersectionData( "empty", [ [] ] );
 			}
