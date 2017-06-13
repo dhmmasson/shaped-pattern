@@ -143,18 +143,18 @@ Intersection =
 		return this.d + t * ( this.c + t * ( this.b + t * this.a ) );
 	}
 
-	function ParametricX( u, a ){
+	function ParametricCos( u, a ){
 		this.u = u;
 		this.a = a; 
 	}
-	ParametricX.prototype.apply = function( t ){
+	ParametricCos.prototype.apply = function( t ){
 		return this.u + this.a*Math.cos(t);
 	}
-	function ParametricY( v, b ){
+	function ParametricSin( v, b ){
 		this.v = v;
 		this.b = b; 
 	}
-	ParametricY.prototype.apply = function( t ){
+	ParametricSin.prototype.apply = function( t ){
 		return this.v + this.b*Math.sin(t);
 	}
 
@@ -174,8 +174,8 @@ Intersection =
 
 	//create a bezier curve with is parametric coefficients
 	function Ellipse( a, b, u, v ){
-		this.parametricX = new ParametricSin( u, a );
-		this.parametricY = new ParametricCos( v, b );
+		this.parametricX = new ParametricCos( u, a );
+		this.parametricY = new ParametricSin( v, b );
 	}
 
 	function BezierPoint( t, bezier ){
@@ -417,7 +417,7 @@ Intersection =
 		return intersectionData;
 	}
 	//return coords of intersection between bezier curve and ellispse
-	intersectionLibrary.intersectionBezierEllipse = function( path, ellispse ){
+	intersectionLibrary.intersectionBezierEllipse = function( path, ellipse ){
 		var points1 = path.array();
 		var Xp0;
 		var Yp0;
@@ -440,19 +440,26 @@ Intersection =
 				Yp3 = points1.value[i][6];
 			}
 		}
-
+		var origineEllipseX = ellipse.cx();
+		var origineEllipseY = ellipse.cy();
+		var demiAxeX = ellipse.rx();
+		var demiAxeY = ellipse.ry();
 		
 		bezier = new Bezier( Xp0 , Yp0 , Xp1 , Yp1 , Xp2 , Yp2 , Xp3 , Yp3 );
-		ellipse = new Ellipse( a, b, u, v );
+		ellipse = new Ellipse( demiAxeX, demiAxeY, origineEllipseX, origineEllipseY );
 
 		p1 = new BezierPoint( 0, bezier );
 		p2 = new BezierPoint( 1, bezier );
 		p3 = new EllipsePoint( 0, ellipse );
+		console.log("p3 : " + p3.x );
+		console.log("p3 : " + p3.y );
 		p4 = new EllipsePoint( 2*Math.PI, ellipse );
+		console.log("p4 : " + p4.x );
+		console.log("p4 : " + p4.y );
 		//looking for inflexion points on both curves
 		inflexionPoints1 = inflexionPointBezier( bezier );
 		inflexionPoints2 = inflexionPointEllipse( ellipse );
-
+		solutions = [];
 		if( inflexionPoints1.length == 0 ){
 			for( var i = 1; i < inflexionPoints2.length; i++ ){
 				var p3 = new EllipsePoint( inflexionPoints2[i-1], ellipse );
@@ -470,7 +477,7 @@ Intersection =
 					var p2 = new BezierPoint( inflexionPoints1[i], bezier );
 					var p3 = new EllipsePoint( inflexionPoints2[j-1], ellipse );
 					var p4 = new EllipsePoint( inflexionPoints2[j], ellipse );
-					var result = findIntersectionByDichotomyBezier( bezier, ellipse, p1, p2, p3, p4 );
+					var result = findIntersectionByDichotomyEllipse( bezier, ellipse, p1, p2, p3, p4 );
 					solutions = ajouterSolutions( solutions, result )
 				}
 			}
@@ -543,7 +550,7 @@ Intersection =
 		inflexionPoints1 = inflexionPointBezier( bezier1 );
 		inflexionPoints2 = inflexionPointBezier( bezier2 );
 
-		var solutions = [] 
+		var solutions = [];
 		//test if there is no inflexion point
 		if( inflexionPoints1.length == 0 && inflexionPoints2.length == 0 ){
 			var result = findIntersectionByDichotomyBezier( bezier1, bezier2, p1, p2, p3, p4 );
