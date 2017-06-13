@@ -9,15 +9,18 @@ Intersection =
 		this.type = type;
 		this.data = data;
 	}
+
 	function sgn( x ){
     if (x < 0.0) return -1;
     return 1;
 	}
 
+	//determine if the value is inside the interval
 	function insideInterval( a, end1, end2 ) {
-		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 )
+		return ( end1-0.00000001 <= a && a <= end2 + 0.000000001) || ( end2-0.000000001 <= a && a <= end1+0.00000001 );
 	}
 
+	//determine the inflexion point of a bezier curve
 	function inflexionPointBezier( bezier ){
 		var Ay = bezier.cubicY.a;
 		var By = bezier.cubicY.b;
@@ -32,7 +35,7 @@ Intersection =
 		if( Ay != 0 && By != 0 ){
 			var dAy = 3*Ay;
 			var dBy = 2*By;
-			tY = quadraticResolution(dAy, dBy, Cy);
+			tY = quadraticResolution( dAy, dBy, Cy );
 		} else if( Ay == 0 && By != 0 ){
 			var dBy = 2*By;
 			tY = linearResolution( dBy, Cy );
@@ -41,11 +44,12 @@ Intersection =
 		if( Ax != 0 && Bx != 0 ){
 			var dAx = 3*Ax;
 			var dBx = 2*Bx;
-			tX = quadraticResolution(dAx, dBx, Cx);
+			tX = quadraticResolution( dAx, dBx, Cx );
 		} else if( Ax == 0 && Bx != 0 ){
 			var dBx = 2*Bx;
 			tX = linearResolution( dBx, Cx );
 		}
+		//push solutions on a solution variable
 		for( i in tX ){
 			if( tX[i] != -1 && tX[i] != 0 && tX[i] != 1 ){
 				solution.push( tX[i] );
@@ -59,11 +63,12 @@ Intersection =
 		return solution;
 	}
 
+	//return the nflexion point of an ellipse
 	function inflexionPointEllipse( ellipse ){
-		return [ 0, Math.PI/2, Math.PI, (3*Math.PI)/2, 2*Math.PI ];
+		return [ 0, Math.PI/2, Math.PI, ( 3*Math.PI )/2, 2*Math.PI ];
 	}
 
-	//return solution list for a linear equation
+	//return solution list for a linear equation if inside [0..1]
 	function linearResolution( A, B ){
 		var results = [];
 		results[0] = -B/A;
@@ -75,7 +80,7 @@ Intersection =
         }
 		return results;
 	}
-	//return solution list for a quadratic equation
+	//return solution list for a quadratic equation if inside [0..1]
 	function quadraticResolution( A, B, C ){
 		//discriminant
 		var D = (B*B) - 4*A*C;
@@ -94,7 +99,7 @@ Intersection =
 
 		return results;
 	}
-	//return solution list for a cubic equation
+	//return solution list for a cubic equation if inside [0..1]
 	//based on https://www.particleincell.com/2013/cubic-line-intersection/
 	function cubicResolution( A, B, C, D ){
 		//resolution coefficients
@@ -132,7 +137,6 @@ Intersection =
         return results;
 	}
 
-
 	function ParametricCubic( a, b, c, d ){
 		this.a = a;
 		this.b = b; 
@@ -150,6 +154,7 @@ Intersection =
 	ParametricCos.prototype.apply = function( t ){
 		return this.u + this.a*Math.cos(t);
 	}
+
 	function ParametricSin( v, b ){
 		this.v = v;
 		this.b = b; 
@@ -172,24 +177,27 @@ Intersection =
 		this.cubicX = new ParametricCubic( a,b,c,d );
 	}
 
-	//create a bezier curve with is parametric coefficients
+	//create an ellipse with is parametric coefficients
 	function Ellipse( a, b, u, v ){
 		this.parametricX = new ParametricCos( u, a );
 		this.parametricY = new ParametricSin( v, b );
 	}
 
+	//create a point part of a bezier curve
 	function BezierPoint( t, bezier ){
 		this.t = t; 
-		this.x = bezier.cubicX.apply( t );
-		this.y = bezier.cubicY.apply( t );
+		this.x = bezier.cubicX.apply(t);
+		this.y = bezier.cubicY.apply(t);
 	}
 
+	//create a point part of an ellipse
 	function EllipsePoint( t, ellipse ){
 		this.t = t; 
-		this.x = ellipse.parametricX.apply( t );
-		this.y = ellipse.parametricY.apply( t );
+		this.x = ellipse.parametricX.apply(t);
+		this.y = ellipse.parametricY.apply(t);
 	}
 
+	//return the square distance between two coordonate 
 	function distanceT( t1, t2 ){
 		var x = t1.x - t2.x; 
 		var y = t2.y - t1.y; 
@@ -211,15 +219,17 @@ Intersection =
 		} else {
 			//Atomic square
 			if( distanceT( t1, t2 ) < 0.0000000000001 ){
-				return [[ t1, t2, s1, s2 ]]
+				return [ [ t1, t2, s1, s2 ] ];
+
 			} else {
 			//Subdivisable squares
 				var middleT = new BezierPoint( (t1.t  + t2.t)/2, bezierT );
 				var middleS = new BezierPoint( (s1.t  + s2.t)/2, bezierS );
-				var r1 = findIntersectionByDichotomyBezier( bezierT, bezierS, t1, middleT, s1, middleS )
-				var r2 = findIntersectionByDichotomyBezier( bezierT, bezierS, middleT, t2, s1, middleS )
-				var r3 = findIntersectionByDichotomyBezier( bezierT, bezierS, t1, middleT, middleS, s2 )
-				var r4 = findIntersectionByDichotomyBezier( bezierT, bezierS, middleT, t2, middleS, s2 )
+
+				var r1 = findIntersectionByDichotomyBezier( bezierT, bezierS, t1, middleT, s1, middleS );
+				var r2 = findIntersectionByDichotomyBezier( bezierT, bezierS, middleT, t2, s1, middleS );
+				var r3 = findIntersectionByDichotomyBezier( bezierT, bezierS, t1, middleT, middleS, s2 );
+				var r4 = findIntersectionByDichotomyBezier( bezierT, bezierS, middleT, t2, middleS, s2 );
 				return Array.prototype.concat( r1, r2, r3, r4 );	
 			}
 		}
@@ -239,15 +249,17 @@ Intersection =
 		} else {
 			//Atomic square
 			if( distanceT( b1, b2 ) < 0.0000000000001 ){
-				return [[ b1, b2, e1, e2 ]]
+				return [ [ b1, b2, e1, e2 ] ];
+
 			} else {
 			//Subdivisable squares
 				var middleB = new BezierPoint( (b1.t  + b2.t)/2, bezier );
 				var middleE = new EllipsePoint( (e1.t  + e2.t)/2, ellipse );
-				var r1 = findIntersectionByDichotomyEllipse( bezier, ellipse, b1, middleB, e1, middleE )
-				var r2 = findIntersectionByDichotomyEllipse( bezier, ellipse, middleB, b2, e1, middleE )
-				var r3 = findIntersectionByDichotomyEllipse( bezier, ellipse, b1, middleB, middleE, e2 )
-				var r4 = findIntersectionByDichotomyEllipse( bezier, ellipse, middleB, b2, middleE, e2 )
+
+				var r1 = findIntersectionByDichotomyEllipse( bezier, ellipse, b1, middleB, e1, middleE );
+				var r2 = findIntersectionByDichotomyEllipse( bezier, ellipse, middleB, b2, e1, middleE );
+				var r3 = findIntersectionByDichotomyEllipse( bezier, ellipse, b1, middleB, middleE, e2 );
+				var r4 = findIntersectionByDichotomyEllipse( bezier, ellipse, middleB, b2, middleE, e2 );
 				return Array.prototype.concat( r1, r2, r3, r4 );	
 			}
 		}
@@ -257,20 +269,17 @@ Intersection =
 	function ajouterSolutions( solutions, result ){
 		for( var intersection of result ){
 			var add = true;
-
 			for( var solution of solutions ){
 				if( ( Math.floor( 10000 * intersection[0].x ) == Math.floor( 10000 * solution[0] ) )
 				 && ( Math.floor( 10000 * intersection[0].y ) == Math.floor( 10000 * solution[1] ) ) ){
 					add = false;
 				}
 			}
-
 			if( add ){
 				solutions.push( [ intersection[0].x, intersection[0].y ] );
 			}
 		}
-
-		return solutions
+		return solutions;
 	}
 
 	//return IntersectionData
@@ -451,11 +460,8 @@ Intersection =
 		p1 = new BezierPoint( 0, bezier );
 		p2 = new BezierPoint( 1, bezier );
 		p3 = new EllipsePoint( 0, ellipse );
-		console.log("p3 : " + p3.x );
-		console.log("p3 : " + p3.y );
 		p4 = new EllipsePoint( 2*Math.PI, ellipse );
-		console.log("p4 : " + p4.x );
-		console.log("p4 : " + p4.y );
+
 		//looking for inflexion points on both curves
 		inflexionPoints1 = inflexionPointBezier( bezier );
 		inflexionPoints2 = inflexionPointEllipse( ellipse );
@@ -464,21 +470,23 @@ Intersection =
 			for( var i = 1; i < inflexionPoints2.length; i++ ){
 				var p3 = new EllipsePoint( inflexionPoints2[i-1], ellipse );
 				var p4 = new EllipsePoint( inflexionPoints2[i], ellipse );
+
 				var result = findIntersectionByDichotomyEllipse( bezier, ellipse, p1, p2, p3, p4 );
-				solutions = ajouterSolutions( solutions, result )
+				solutions = ajouterSolutions( solutions, result );
 			}
 		//same if inflexion point on both curves
 		} else {
 			inflexionPoints1.push( 0, 1 );
-			inflexionPoints1.sort(function(a,b) { return a>b });
+			inflexionPoints1.sort( function( a,b ){ return a>b } );
 			for( var i = 1; i < inflexionPoints1.length; i++ ){
 				for( var j = 1; j < inflexionPoints2.length; j++ ){
 					var p1 = new BezierPoint( inflexionPoints1[i-1], bezier );
 					var p2 = new BezierPoint( inflexionPoints1[i], bezier );
 					var p3 = new EllipsePoint( inflexionPoints2[j-1], ellipse );
 					var p4 = new EllipsePoint( inflexionPoints2[j], ellipse );
+
 					var result = findIntersectionByDichotomyEllipse( bezier, ellipse, p1, p2, p3, p4 );
-					solutions = ajouterSolutions( solutions, result )
+					solutions = ajouterSolutions( solutions, result );
 				}
 			}
 		}
@@ -554,35 +562,35 @@ Intersection =
 		//test if there is no inflexion point
 		if( inflexionPoints1.length == 0 && inflexionPoints2.length == 0 ){
 			var result = findIntersectionByDichotomyBezier( bezier1, bezier2, p1, p2, p3, p4 );
-			solutions = ajouterSolutions( solutions, result )
+			solutions = ajouterSolutions( solutions, result );
 		//if inflexion point on first curve
 		} else if( inflexionPoints2.length == 0 ){
 			inflexionPoints1.push( 0, 1 );
-			inflexionPoints1.sort(function(a,b) { return a>b });
+			inflexionPoints1.sort( function( a,b ){ return a>b } );
 			for( var i = 1; i < inflexionPoints1.length; i++ ){
 				//calculate new bezier point at the coordonate of the inflexion point
 				var p1 = new BezierPoint( inflexionPoints1[i-1], bezier1 );
 				var p2 = new BezierPoint( inflexionPoints1[i], bezier1 );
 				//call the intersection function on all new intervals
 				var result = findIntersectionByDichotomyBezier( bezier1, bezier2, p1, p2, p3, p4 );
-				solutions = ajouterSolutions( solutions, result )
+				solutions = ajouterSolutions( solutions, result );
 			}
 		//same if inflexion point on the second
 		} else if( inflexionPoints1.length == 0 ){
 			inflexionPoints2.push( 0, 1 );
-			inflexionPoints2.sort(function(a,b) { return a>b });
+			inflexionPoints2.sort( function( a,b ){ return a>b } );
 			for( var i = 1; i < inflexionPoints2.length; i++ ){
 				var p3 = new BezierPoint( inflexionPoints2[i-1], bezier2 );
 				var p4 = new BezierPoint( inflexionPoints2[i], bezier2 );
 				var result = findIntersectionByDichotomyBezier( bezier1, bezier2, p1, p2, p3, p4 );
-				solutions = ajouterSolutions( solutions, result )
+				solutions = ajouterSolutions( solutions, result );
 			}
 		//same if inflexion point on both curves
 		} else {
 			inflexionPoints1.push( 0, 1 );
 			inflexionPoints2.push( 0, 1 );
-			inflexionPoints1.sort(function(a,b) { return a>b });
-			inflexionPoints2.sort(function(a,b) { return a>b });
+			inflexionPoints1.sort( function( a,b ){ return a>b } );
+			inflexionPoints2.sort( function( a,b ){ return a>b } );
 			for( var i = 1; i < inflexionPoints1.length; i++ ){
 				for( var j = 1; j < inflexionPoints2.length; j++ ){
 					var p1 = new BezierPoint( inflexionPoints1[i-1], bezier1 );
@@ -590,7 +598,7 @@ Intersection =
 					var p3 = new BezierPoint( inflexionPoints2[j-1], bezier2 );
 					var p4 = new BezierPoint( inflexionPoints2[j], bezier2 );
 					var result = findIntersectionByDichotomyBezier( bezier1, bezier2, p1, p2, p3, p4 );
-					solutions = ajouterSolutions( solutions, result )
+					solutions = ajouterSolutions( solutions, result );
 				}
 			}
 		}

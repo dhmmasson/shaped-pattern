@@ -29,7 +29,20 @@ test[2] =
 	{ name : "Test Intersection Path horizontal 1 : no intersection top"
 	, target : "intersectionBezierEllipse"
 	, input : function( svg ) { 
-			var path = svg.path( 'M 15 25 C 350 50 -250 55 135 65' )
+			var path = svg.path( 'M 15 25 C 400 50 -250 55 135 65' )
+				 .stroke( { width : 1 } ).fill( "none" );
+			var ellipse = svg.ellipse( 100, 50 )
+				 .move(20,20)
+				 .stroke( { width : 1 } ).fill( "none" );
+			return [ path, ellipse ];
+		}
+	, output : [ [ ] ]
+	}
+test[3] = 
+	{ name : "Test Intersection Path horizontal 1 : no intersection top"
+	, target : "intersectionBezierEllipse"
+	, input : function( svg ) { 
+			var path = svg.path( 'M 30 65 C 50 -150 75 200 115 25' )
 				 .stroke( { width : 1 } ).fill( "none" );
 			var ellipse = svg.ellipse( 100, 50 )
 				 .move(20,20)
