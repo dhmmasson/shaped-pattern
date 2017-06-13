@@ -1,4 +1,6 @@
-var test = [] 
+testCourbeEllipse = 
+function (){ 
+	var test = [] 
 test[0] = 
 	{ name : "Test Intersection Path horizontal 1 : no intersection top"
 	, target : "intersectionBezierEllipse"
@@ -23,7 +25,7 @@ test[1] =
 				 .stroke( { width : 1 } ).fill( "none" );
 			return [ path, ellipse ];
 		}
-	, output : [ [ ] ]
+	, output : [[87.31097656721039,60.880621336109876]]	
 	}
 test[2] = 
 	{ name : "Test Intersection Path horizontal 1 : no intersection top"
@@ -51,3 +53,5 @@ test[3] =
 		}
 	, output : [ [ ] ]
 	}
+		return test
+}

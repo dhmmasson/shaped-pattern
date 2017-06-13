@@ -1,3 +1,5 @@
+testCourbeCourbe = 
+function() { 
 var test = [] 
 test[0] = 
 	{ name : "Test Intersection Path horizontal 1 : no intersection top"
@@ -83,3 +85,5 @@ test[6] =
 		}
 	, output : [ [ ] ]
 	}
+	return test
+}
