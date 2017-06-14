@@ -1,3 +1,5 @@
+testLineLine = 
+function() { 
 var test = [] 
 test[0] = 
 	{ name : "Test Intersection horizontal vertical 1 : intersection rdm"
@@ -875,3 +877,5 @@ test[72] =
 		}
 	, output : [ [] ]
 	}
+	return test 
+}

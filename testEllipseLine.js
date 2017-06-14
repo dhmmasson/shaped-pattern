@@ -1,3 +1,5 @@
+testEllipseLine = 
+function (){ 
 var test = [] 
 test[0] = 
 	{ name : "Test Intersection ellipse horizontal 1 : no intersection top left"
@@ -783,3 +785,5 @@ test[55] =
 		}
 	, output : [ [ 110, 100 ], [ 200, 60 ] ]
 	}
+		return test
+}
