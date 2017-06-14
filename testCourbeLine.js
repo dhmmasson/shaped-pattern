@@ -1,4 +1,6 @@
-var test = [] 
+testCourbeLine = 
+function (){ 
+	var test = [] 
 test[0] = 
 	{ name : "Test Intersection Path horizontal 1 : no intersection top"
 	, target : "intersectionBezierLine"
@@ -1295,3 +1297,5 @@ test[107] =
 		}
 	, output : [ [ 66.38444624084626, 57.42029857173852 ], [ 81.1943174014132, 76.17946870845674 ] ]
 	}
+		return test
+}
