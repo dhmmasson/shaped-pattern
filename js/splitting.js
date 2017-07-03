@@ -38,7 +38,7 @@ Splitting =
 					var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
 					 .stroke( { width : 0 } ).fill("none");
 					var intersectionData = Intersection.intersectionBezierEllipse( path, form );
-					console.log( "intersectionDataBezier", intersectionData.data[0].length );
+					console.log( "intersectionDataBezier", intersectionData.data );
 					var solution = phase2( [ Xp0, Yp0, Xp1, Yp1, Xp2, Yp2, Xp3, Yp3 ], form, j, intersectionData )
 					var splittedData = new SplittedData( [solution], "b" )
 
@@ -65,7 +65,7 @@ Splitting =
 		} else {
 			console.log( "The form is not an ellipse" )
 		}
-		//return splittedData;
+		return splittedData;
 	}
 
 	function phase2( path, form, j, intersectionData ){
@@ -77,13 +77,20 @@ Splitting =
 		var Yp2 = path[5];
 		var Xp3 = path[6];
 		var Yp3 = path[7];
-		intersectionData
+		var newIntersectionData = []; 
+		intersectionData.data.sort( function( a,b ){ return a[2]>b[2] } );
+		console.log( "ordered intersectionData ", intersectionData.data )
 		var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
 					 .stroke( { width : 0 } ).fill("none");
-		var newIntersectionData = Intersection.intersectionBezierEllipse( path, form );
-		console.log("newIntersectionData ", newIntersectionData.data);
+		var currentIntersectionData = Intersection.intersectionBezierEllipse( path, form );
+		for( var k in currentIntersectionData.data ){
+			if( currentIntersectionData.data[k][2] != 0 && currentIntersectionData.data[k][2] != 1 ){
+				newIntersectionData.push(currentIntersectionData.data[k]) ;
+			}
+		}
+		console.log("newIntersectionData ", newIntersectionData);
 		var intersection =  intersectionData.data[j];
-		if( newIntersectionData.data.length > 1){
+		if( newIntersectionData.length > 1 && j<intersectionData.data.length ){
 			var part1 = splittingBezier( [ Xp0, Yp0, Xp1, Yp1, Xp2, Yp2, Xp3, Yp3 ], intersection )[0];
 			var part2 = splittingBezier( [ Xp0, Yp0, Xp1, Yp1, Xp2, Yp2, Xp3, Yp3 ], intersection )[1];
 			console.log( "p1 : ", part1,"   p2 : ", part2 );
@@ -91,7 +98,7 @@ Splitting =
  	 		var s = phase2( part1, form, j, intersectionData );
  	 		var t = phase2( part2, form, j, intersectionData );
  	 		return Array.prototype.concat( s, t );
-		}else if( newIntersectionData.data.length == 1 && newIntersectionData.data[0].length != 0 ){
+		}else if( newIntersectionData.length == 1 && newIntersectionData[0].length != 0 && j<intersectionData.data.length ){
 			return splittingBezier( [ Xp0, Yp0, Xp1, Yp1, Xp2, Yp2, Xp3, Yp3 ], intersection )
 		}else{
 			return [ [ Xp0, Yp0, Xp1, Yp1, Xp2, Yp2, Xp3, Yp3 ] ];
