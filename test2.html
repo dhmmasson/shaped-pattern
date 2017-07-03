@@ -18,22 +18,20 @@
 <body>
 
 	<script type="text/javascript" src="js/index.js"></script>
+	<script type="text/javascript" src="js/splitting.js"></script>
 	<script type="text/javascript" src="test.js"></script>
-	<script type="text/javascript" src="testCourbeCourbe.js"></script>
-	<script type="text/javascript" src="testCourbeEllipse.js"></script>
-	<script type="text/javascript" src="testCourbeLine.js"></script>
-	<script type="text/javascript" src="testEllipseLine.js"></script>
-	<script type="text/javascript" src="js/tester.js"></script>
+	<script type="text/javascript" src="js/tester2.js"></script>
 	<svg id="shape"></svg>
 	<script> 
-		tester.loadLibrary( Intersection )
-
-		tester.loadTestSet( "test Intersection Courbe Ellipse", testCourbeEllipse() )
-		tester.loadTestSet( "test Intersection Courbe Line", testCourbeLine() )
-		tester.loadTestSet( "Test Intersection Ellipse Line", testEllipseLine() )
-		tester.loadTestSet( "test Intersection Line Line", testLineLine() )
-    	tester.loadTestSet( "test Intersection Courbe Courbe", testCourbeCourbe()) 
-		tester.run() 
+		tester2.loadLibrary( Intersection );
+		tester2.loadLibrary( Splitting );
+		var svg = SVG("shape") ;
+		var path = svg.path( 'M 15 35 C 40 15 100 -30 100 60' )
+				 .stroke( { width : 1 } ).fill( "none" );
+		var ellipse = svg.ellipse( 100, 50 )
+				 .move(10,10)
+				 .stroke( { width : 1 } ).fill( "none" );
+		tester2.run( path, ellipse );
 	</script>
 	
 </body>	

@@ -234,7 +234,7 @@ Intersection =
 				}
 			}
 			if( add ){
-				solutions.push( [ intersection[0].x, intersection[0].y ] );
+				solutions.push( [ intersection[0].x, intersection[0].y, intersection[0].t] );
 			}
 		}
 		return solutions;
@@ -282,12 +282,15 @@ Intersection =
 		var origineEllipseY = ellipse.cy();
 		var demiAxeX = ellipse.rx();
 		var demiAxeY = ellipse.ry();
-		var coordsLine = line.array();
-		var x1 = coordsLine.value[0][0];//coord first point segment on X
-		var x2 = coordsLine.value[1][0];//coord second point segment on X
-		var y1 = coordsLine.value[0][1];//coord first point segment on Y
-		var y2 = coordsLine.value[1][1];//coord second point segment on Y
-
+		var points = line.array();
+			for( var i in points.value ){
+				if( points.value[i][0] == "L" ){
+					var x1 = points.value[i-1][points.value[i-1].length-2];
+					var y1 = points.value[i-1][points.value[i-1].length-1];
+					var x2 = points.value[i][1];
+					var y2 = points.value[i][2];
+				}
+			}
 		var solutions = [];
 
 		//test if segment type x = a or y = ax + b
