@@ -116,7 +116,20 @@ Splitting =
 					var intersectionData = Intersection.intersectionPathPath( path, form );
 					//console.log( "intersectionDataBezier ", intersectionData.data );
 					var solution = phase2Bezier( [ Xp0, Yp0, Xp1, Yp1, Xp2, Yp2, Xp3, Yp3 ], form, j, intersectionData );
-					var intersectionNumber = splittingLibrary.cutting( Xp0, Yp0, form );
+
+					var corner = false;
+					var formPoints = form.array();
+					for( val of formPoints.value ){
+						if( val[ val.length-2 ] == Xp0
+						 && val[ val.length-1 ] == Yp0 ){
+							corner = true;
+						}
+					}
+					if( corner ){
+						var intersectionNumber = splittingLibrary.cutting( Xp1, Yp1, form );
+					}else{
+						var intersectionNumber = splittingLibrary.cutting( Xp3, Yp3, form );
+					}
 					//console.log(intersectionNumber)
 					var finalSolution = []
 					for( var u in solution ){
@@ -144,11 +157,24 @@ Splitting =
 					var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 					 .stroke( { width : 0 } ).fill("none");
 					var intersectionData = Intersection.intersectionPathPath( path, form );
-					//console.log( "intersectionDataLine", intersectionData.data );
+					console.log( "intersectionDataLine", intersectionData.data );
 
 					var solution = phase2Line( [ Xp0, Yp0, Xp1, Yp1 ], form, j, intersectionData );
-					var intersectionNumber = splittingLibrary.cutting( Xp0, Yp0, form );
-					//console.log(intersectionNumber)
+					
+					var corner = false;
+					var formPoints = form.array();
+					for( val of formPoints.value ){
+						if( val[ val.length-2 ] == Xp0
+						 && val[ val.length-1 ] == Yp0 ){
+							corner = true;
+						}
+					}
+					if( corner ){
+						var intersectionNumber = splittingLibrary.cutting( Xp1, Yp1, form );
+					}else{
+						var intersectionNumber = splittingLibrary.cutting( Xp0, Yp0, form );
+					}
+					console.log(intersectionNumber)
 					var finalSolution = []
 					for( var u in solution ){
 						if( isEven(intersectionNumber) ){
@@ -161,8 +187,8 @@ Splitting =
 							}
 						}
 					}
-					//console.log( " solution ", solution );
-					//console.log( " final solution ", finalSolution );
+					console.log( " solution ", solution );
+					console.log( " final solution ", finalSolution );
 					var splittedData = new SplittedData( [finalSolution], "l" );
 					solutions.push(splittedData);
 				}
@@ -262,7 +288,7 @@ Splitting =
 			}
 			newIntersectionData.sort( function( a,b ){ return a[1]>b[1] } );
 		}
-		//console.log( "intersectionData ", newIntersectionData )
+		console.log( "intersectionData ", newIntersectionData )
 		if( intersectionData.type == "empty" ){
 			return [ [ Xp0, Yp0, Xp1, Yp1 ] ];
 		}else if( newIntersectionData.length > 1 && j<intersectionData.data.length ){
@@ -339,7 +365,7 @@ Splitting =
 		var y = -10
 
 		var path = svg.path( 'M ' + x + ' ' + y + ' L ' + Xp + ' ' + Yp )
-					 .stroke( { width : 0 } ).fill("none");
+								  .stroke( { width : 0 } ).fill("none");
 
 		if( form.type == "ellipse" ){
 			var intersectionData = Intersection.calculCoordsEllipseLine( form, path );

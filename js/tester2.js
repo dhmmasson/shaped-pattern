@@ -51,7 +51,7 @@ var tester2 =
 
 	Tester2.run = function( svg, form ){
 		for( var x = 0; x<17; x++ ){
-			for(var y = 0; y<25; y++ ){
+			for(var y = 0; y<25; y++ ){	
 				drawPath( svg, 50, 20, x, y, form );
 			}
 		}
