@@ -277,7 +277,7 @@ Intersection =
 	}
 
 	//return intersectionData
-	intersectionLibrary.calculCoordsEllipseLine = function( ellipse, line ) {
+	intersectionLibrary.intersectionEllipseLine = function( line, ellipse ) {
 		var origineEllipseX = ellipse.cx();
 		var origineEllipseY = ellipse.cy();
 		var demiAxeX = ellipse.rx();
