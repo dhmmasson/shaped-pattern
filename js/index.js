@@ -452,7 +452,7 @@ Intersection =
 		} else {
 			results = cubicResolution( A, B, C, D );
 		}
-		/*console.log( results );*/
+		//console.log( results );
 		var solution = [];
 		for( i in results ){
 			//test if the solution are correct
@@ -809,13 +809,23 @@ Intersection =
 		for( var intersection of solution ){
 			var add = true;
 			for( var sol of newSolution ){
-				if(  Math.floor( 10000 * intersection[0] ) ==  Math.floor( 10000 * sol[0] )
-				 &&  Math.floor( 10000 * intersection[1] ) ==  Math.floor( 10000 * sol[1] ) ){
-					add = false;
+				if( intersection.length == 2 ){
+					if(  Math.floor( 10000 * intersection[0] ) ==  Math.floor( 10000 * sol[0] )
+					 &&  Math.floor( 10000 * intersection[1] ) ==  Math.floor( 10000 * sol[1] ) ){
+						add = false;
+					}
+				} else {
+					if(  Math.floor( 10000 * intersection[2] ) ==  Math.floor( 10000 * sol[2] ) ){
+						add = false;
+					}
 				}
 			}
 			if( add ){
-				newSolution.push( [ intersection[0], intersection[1] ] );
+				if( intersection.length == 2 ){
+					newSolution.push( [ intersection[0], intersection[1] ] );
+				} else {
+					newSolution.push( [ intersection[0], intersection[1], intersection[2] ] );
+				}
 			}
 		}
 
