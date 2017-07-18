@@ -1,7 +1,73 @@
-//login page
-doctype html 
-html 
-	include head.pug
-	body
-		include header.pug
-		block content 
+include layout
+	block content 
+		.row
+			form( action="#") 
+				.col.s12.m5
+					.row 
+						.file-field.input-field
+							.btn
+								span File For Pattern
+								input#inputPattern( type="file")
+							.file-path-wrapper
+								input(
+									class="file-path validate"
+									type="text"
+									)
+
+			form( action="#") 
+				.col.s12.m5
+					.row 
+						.file-field.input-field
+							.btn
+								span File For form
+								input#inputForm( type="file")
+							.file-path-wrapper
+								input(
+									class="file-path validate"
+									type="text"
+									)
+			.col.s12.m2
+				a(id="validate", class="waves-effect waves-light btn", href="#") OK
+			
+			tr
+				td
+					svg(id="shape")
+				td
+					table
+						tr
+							a(id="generate", class="waves-effect waves-light btn", href="#") Generate
+							a(id="download", class="waves-effect waves-light btn", href="#") Telecharger
+						tr
+							p Le fichier svg du pattern contient t-il plusieurs path ?
+							div(class="switch")
+								label
+									Off
+									input(type="checkbox", id="switch")
+									span(class="lever")
+									On
+		table
+			tr
+				td
+					p espacement en X
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="espacementX", min="0", max="100")
+				td
+					p espacement en Y
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="espacementY", min="0", max="100")
+			tr
+				td
+					p nombre de répétition en X
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="numberX", min="0", max="50")
+				td
+					p nombre de répétition en Y
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="numberY", min="0", max="50")
+
+
+

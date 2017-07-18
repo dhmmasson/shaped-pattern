@@ -19,6 +19,7 @@
   "homepage": "https://github.com/dhmmasson/shaped-pattern#readme",
   "dependencies": {
     "express": "^4.15.3",
+    "materialize-css": "^0.99.0",
     "pug": "^2.0.0-rc.2"
   }
 }
