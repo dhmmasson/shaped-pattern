@@ -33,15 +33,19 @@ dataStructure.update = function ( ) {
 }
 
 dataStructure.compute = function( ) {
-
+	console.log( this )
+	
+	svg.clear()
 	var svgPathPattern = this.pattern.node.getElementById( "SvgjsPath1007" )
 	var path = svg.path(svgPathPattern.getAttribute("d"))
-	.stroke( { width : 0 } ).fill( "none" )
+				  .stroke( { width : 0 } ).fill( "none" )
 
 	var svgPathForm = this.shape.node.getElementById( "SvgjsPath1007" )
 	var form = svg.path(svgPathForm.getAttribute("d"))
-	.stroke( { width : 1 } ).fill( "none" )
+				  .stroke( { width : 1 } ).fill( "none" )
 	
+
+
 	var espacementX = document.getElementById("espacementX")
 	var espacementY = document.getElementById("espacementY")
 	var numberX = document.getElementById("numberX")
@@ -52,7 +56,6 @@ dataStructure.compute = function( ) {
 	var i = numberX.value
 	var j = numberY.value
 
-	svg.clear()
 	tester2.run( svg, form, path, X, Y, i, j )
 	tester2.createSVG( svg )
 }
