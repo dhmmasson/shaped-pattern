@@ -66,9 +66,9 @@ var tester2 =
 	}
 
 	Tester2.run = function( svg, form, path, X, Y, i, j ){
-		for( var x = 0; x<17; x++ ){
-			for(var y = 0; y<12; y++ ){	
-				drawPath( svg, X, Y, i, j, form, path );
+		for( var x = 0; x<i; x++ ){
+			for(var y = 0; y<j; y++ ){	
+				drawPath( svg, X, Y, x, y, form, path );
 			}
 		}
 	}
