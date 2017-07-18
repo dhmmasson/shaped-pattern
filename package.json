@@ -1,0 +1,24 @@
+{
+  "name": "shaped-pattern",
+  "version": "1.0.0",
+  "description": "This project allows to draw a pattern in a shape for laser cutter.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dhmmasson/shaped-pattern.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dhmmasson/shaped-pattern/issues"
+  },
+  "homepage": "https://github.com/dhmmasson/shaped-pattern#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "pug": "^2.0.0-rc.2"
+  }
+}

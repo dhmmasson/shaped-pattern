@@ -65,10 +65,10 @@ var tester2 =
 	  //drawSplittedData( path2, form );
 	}
 
-	Tester2.run = function( svg, form, path ){
+	Tester2.run = function( svg, form, path, X, Y, i, j ){
 		for( var x = 0; x<17; x++ ){
 			for(var y = 0; y<12; y++ ){	
-				drawPath( svg, 50, 40, x, y, form, path );
+				drawPath( svg, X, Y, i, j, form, path );
 			}
 		}
 	}
