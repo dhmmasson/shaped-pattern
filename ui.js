@@ -54,15 +54,15 @@ dataStructure.compute = function( ) {
 
 	var allPathShape = dataStructure.shape.node.getElementsByTagName("path")
 	if( allPathShape.length != 0 ){
-		for( var i = 0 ; i < allPathShape.length	; i++ ) { 
-			var svgPathForm = this.shape.node.getElementById( allPathShape[i].id )
+		for( var m = 0 ; m < allPathShape.length	; m++ ) { 
+			var svgPathForm = this.shape.node.getElementById( allPathShape[m].id )
 			var form = svg.path(svgPathForm.getAttribute("d"))
 						  .stroke( { width : 1 } ).fill( "none" )
 
 			var allPathPattern = dataStructure.pattern.node.getElementsByTagName("path")
 
-			for( var i = 0 ; i < allPathPattern.length	; i++ ) { 
-				var svgPathPattern = this.pattern.node.getElementById( allPathPattern[i].id )
+			for( var n = 0 ; n < allPathPattern.length	; n++ ) { 
+				var svgPathPattern = this.pattern.node.getElementById( allPathPattern[n].id )
 				var path = svgOut.path(svgPathPattern.getAttribute("d"))
 							  .stroke( { width : 0 } ).fill( "none" )
 
@@ -71,8 +71,8 @@ dataStructure.compute = function( ) {
 		}
 	} else{
 		var allEllipseShape = dataStructure.shape.node.getElementsByTagName("ellipse")
-		for( var i = 0 ; i < allEllipseShape.length	; i++ ) { 
-			var svgEllipseForm = this.shape.node.getElementById( allEllipseShape[i].id )
+		for( var m = 0 ; m < allEllipseShape.length	; m++ ) { 
+			var svgEllipseForm = this.shape.node.getElementById( allEllipseShape[m].id )
 			var rx = svgEllipseForm.getAttribute("rx")*2
 			var ry = svgEllipseForm.getAttribute("ry")*2
 			var x = svgEllipseForm.getAttribute("cx") - rx/2
@@ -82,8 +82,8 @@ dataStructure.compute = function( ) {
 
 			var allPathPattern = dataStructure.pattern.node.getElementsByTagName("path")
 
-			for( var i = 0 ; i < allPathPattern.length	; i++ ) { 
-				var svgPathPattern = this.pattern.node.getElementById( allPathPattern[i].id )
+			for( var n = 0 ; n < allPathPattern.length	; n++ ) { 
+				var svgPathPattern = this.pattern.node.getElementById( allPathPattern[n].id )
 				var path = svgOut.path(svgPathPattern.getAttribute("d"))
 							  .stroke( { width : 0 } ).fill( "none" )
 
