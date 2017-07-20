@@ -693,7 +693,7 @@ Intersection =
 				Yp2 = points1.value[i][4];
 				Xp3 = points1.value[i][5];
 				Yp3 = points1.value[i][6];
-				var path11 = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
+				var path11 = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
 					 .stroke( { width : 0, color: 'hsla(0,100%,50%,0.5)'} ).fill("none");
 				//coord of the second path
 				var points2 = path2.array();
@@ -716,7 +716,7 @@ Intersection =
 						Yp6 = points2.value[j][4];
 						Xp7 = points2.value[j][5];
 						Yp7 = points2.value[j][6];
-						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' C ' + Xp5 + ' ' + Yp5 + ' ' + Xp6 + ' ' + Yp6 + ' ' + Xp7 + ' ' + Yp7 )
+						var path22 = svgOut.path( 'M ' + Xp4 + ' ' + Yp4 + ' C ' + Xp5 + ' ' + Yp5 + ' ' + Xp6 + ' ' + Yp6 + ' ' + Xp7 + ' ' + Yp7 )
 							 .stroke( { width : 0, color: 'hsla(120,100%,50%,0.5)' } ).fill("none");
 
 						var intersection = intersectionLibrary.intersectionBezierBezier( path11, path22 );
@@ -733,7 +733,7 @@ Intersection =
 						Yp4 = points2.value[j-1][points2.value[j-1].length-1];
 						Xp5 = points2.value[j][1];
 						Yp5 = points2.value[j][2];
-						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' L ' + Xp5 + ' ' + Yp5 )
+						var path22 = svgOut.path( 'M ' + Xp4 + ' ' + Yp4 + ' L ' + Xp5 + ' ' + Yp5 )
 							 .stroke( { width : 0, color: 'hsla(240,100%,50%,0.5)' } ).fill("none");
 
 						var intersection = intersectionLibrary.intersectionBezierLine( path11, path22 );
@@ -751,7 +751,7 @@ Intersection =
 				Yp0 = points1.value[i-1][points1.value[i-1].length-1];
 				Xp1 = points1.value[i][1];
 				Yp1 = points1.value[i][2];
-				var path11 = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
+				var path11 = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 					 .stroke( { width :0, color: 'hsla(50,100%,50%,0.5)' } ).fill("none");
 				//coord of the second path
 				var points2 = path2.array();
@@ -774,7 +774,7 @@ Intersection =
 						Yp6 = points2.value[j][4];
 						Xp7 = points2.value[j][5];
 						Yp7 = points2.value[j][6];
-						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' C ' + Xp5 + ' ' + Yp5 + ' ' + Xp6 + ' ' + Yp6 + ' ' + Xp7 + ' ' + Yp7 )
+						var path22 = svgOut.path( 'M ' + Xp4 + ' ' + Yp4 + ' C ' + Xp5 + ' ' + Yp5 + ' ' + Xp6 + ' ' + Yp6 + ' ' + Xp7 + ' ' + Yp7 )
 							 .stroke( { width : 0, color: 'hsla(170,100%,50%,0.5)' } ).fill("none");
 
 						var intersection = intersectionLibrary.intersectionBezierLine( path22, path11 );
@@ -790,7 +790,7 @@ Intersection =
 						Yp4 = points2.value[j-1][points2.value[j-1].length-1];
 						Xp5 = points2.value[j][1];
 						Yp5 = points2.value[j][2];
-						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' L ' + Xp5 + ' ' + Yp5 )
+						var path22 = svgOut.path( 'M ' + Xp4 + ' ' + Yp4 + ' L ' + Xp5 + ' ' + Yp5 )
 							 .stroke( { width : 0 } ).fill("none");
 
 						var intersection = intersectionLibrary.intersectionLineLine( path11, path22 );

@@ -26,37 +26,45 @@ block content
 								class="file-path validate"
 								type="text"
 								)
-	table
-		tr
-			td
-				svg(id="shape")
-			td
-				table
-					tr
-						a(id="download", class="waves-effect waves-light btn", href="#") Telecharger
-	table
-		tr
-			td
-				p espacement en X
-				form(action="#")
-					p(class="range-field")
-						input(type="range", id="espacementX", min="0", max="100")
-			td
-				p espacement en Y
-				form(action="#")
-					p(class="range-field")
-						input(type="range", id="espacementY", min="0", max="100")
-		tr
-			td
-				p nombre de répétition en X
-				form(action="#")
-					p(class="range-field")
-						input(type="range", id="numberX", min="0", max="50")
-			td
-				p nombre de répétition en Y
-				form(action="#")
-					p(class="range-field")
-						input(type="range", id="numberY", min="0", max="50")
+	.row
+		.col.s12.m8
+			svg(id="shape")
+		.col.s12.m4
+			.row
+				a(id="download", class="waves-effect waves-light btn", href="#") Telecharger
+			.row
+				.col.s6.m6
+					p espacement en X
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="espacementX", min="0", max="500")
+				.col.s6.m6
+					p espacement en Y
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="espacementY", min="0", max="500")
+			.row
+				.col.s6.m6
+					p nombre de répétition en X
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="numberX", min="0", max="50")
+				.col.s6.m6
+					p nombre de répétition en Y
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="numberY", min="0", max="50")
+			.row
+				.col.s6.m6
+					p point de départ du premier pattern en X
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="startX", min="-500", max="500")
+				.col.s6.m6
+					p point de départ du premier pattern en Y
+					form(action="#")
+						p(class="range-field")
+							input(type="range", id="startY", min="-500", max="500")
 
 
 

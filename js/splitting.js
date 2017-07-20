@@ -360,7 +360,7 @@ Splitting =
 	  }
   return solution;
 	}
-
+	//return number of intersection between the [-10;-10] point (out of form) and the extremity of the pattern element
 	splittingLibrary.cutting = function( Xp, Yp, form ){
 
 		var x = -10
