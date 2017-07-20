@@ -3,7 +3,7 @@ function (){
 var test = [] 
 test[0] = 
 	{ name : "Test Intersection ellipse horizontal 1 : no intersection top left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -17,7 +17,7 @@ test[0] =
 	}
 test[1] = 
 	{ name : "Test Intersection ellipse horizontal 2 : no intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -31,7 +31,7 @@ test[1] =
 	}
 test[2] = 
 	{ name : "Test Intersection ellipse horizontal 3 : no intersection top right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -45,7 +45,7 @@ test[2] =
 	}
 test[3] = 
 	{ name : "Test Intersection ellipse horizontal 4 : no intersection middle left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -59,7 +59,7 @@ test[3] =
 	}
 test[4] = 
 	{ name : "Test Intersection ellipse horizontal 5 : no intersection middle"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -73,7 +73,7 @@ test[4] =
 	}
 test[5] = 
 	{ name : "Test Intersection ellipse horizontal 6 : no intersection middle right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -87,7 +87,7 @@ test[5] =
 	}
 test[6] = 
 	{ name : "Test Intersection ellipse horizontal 7 : no intersection bottom left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -101,7 +101,7 @@ test[6] =
 	}
 test[7] = 
 	{ name : "Test Intersection ellipse horizontal 8 : no intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -115,7 +115,7 @@ test[7] =
 	}
 test[8] = 
 	{ name : "Test Intersection ellipse horizontal 9 : no intersection bottom right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -129,7 +129,7 @@ test[8] =
 	}
 test[9] = 
 	{ name : "Test Intersection ellipse horizontal 10 : one intersection left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -143,7 +143,7 @@ test[9] =
 	}
 test[10] = 
 	{ name : "Test Intersection ellipse horizontal 11 : one intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -157,7 +157,7 @@ test[10] =
 	}
 test[11] = 
 	{ name : "Test Intersection ellipse horizontal 12 : one intersection right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -171,7 +171,7 @@ test[11] =
 	}
 test[12] = 
 	{ name : "Test Intersection ellipse horizontal 13 : one intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -185,7 +185,7 @@ test[12] =
 	}
 test[13] = 
 	{ name : "Test Intersection ellipse horizontal 14 : two intersections rdm"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -199,7 +199,7 @@ test[13] =
 	}
 test[14] = 
 	{ name : "Test Intersection ellipse vertical 1 : no intersection top left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -213,7 +213,7 @@ test[14] =
 	}
 test[15] = 
 	{ name : "Test Intersection ellipse vertical 2 : no intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -227,7 +227,7 @@ test[15] =
 	}
 test[16] = 
 	{ name : "Test Intersection ellipse vertical 3 : no intersection top right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -241,7 +241,7 @@ test[16] =
 	}
 test[17] = 
 	{ name : "Test Intersection ellipse vertical 4 : no intersection middle left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -255,7 +255,7 @@ test[17] =
 	}
 test[18] = 
 	{ name : "Test Intersection ellipse vertical 5 : no intersection middle"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -269,7 +269,7 @@ test[18] =
 	}
 test[19] = 
 	{ name : "Test Intersection ellipse vertical 6 : no intersection middle right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -283,7 +283,7 @@ test[19] =
 	}
 test[20] = 
 	{ name : "Test Intersection ellipse vertical 7 : no intersection bottom left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -297,7 +297,7 @@ test[20] =
 	}
 test[21] = 
 	{ name : "Test Intersection ellipse vertical 8 : no intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -311,7 +311,7 @@ test[21] =
 	}
 test[22] = 
 	{ name : "Test Intersection ellipse vertical 9 : no intersection bottom right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -325,7 +325,7 @@ test[22] =
 	}
 test[23] = 
 	{ name : "Test Intersection ellipse vertical 10 : one intersection left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -339,7 +339,7 @@ test[23] =
 	}
 test[24] = 
 	{ name : "Test Intersection ellipse vertical 11 : one intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -353,7 +353,7 @@ test[24] =
 	}
 test[25] = 
 	{ name : "Test Intersection ellipse vertical 12 : one intersection right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -367,7 +367,7 @@ test[25] =
 	}
 test[26] = 
 	{ name : "Test Intersection ellipse vertical 13 : one intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -381,7 +381,7 @@ test[26] =
 	}
 test[27] = 
 	{ name : "Test Intersection ellipse vertical 14 : two intersections rdm"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -395,7 +395,7 @@ test[27] =
 	}
 test[28] = 
 	{ name : "Test Intersection ellipse diagonal 1 : no intersection top left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -409,7 +409,7 @@ test[28] =
 	}
 test[29] = 
 	{ name : "Test Intersection ellipse diagonal 2 : no intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -423,7 +423,7 @@ test[29] =
 	}
 test[30] = 
 	{ name : "Test Intersection ellipse diagonal 3 : no intersection top right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -437,7 +437,7 @@ test[30] =
 	}
 test[31] = 
 	{ name : "Test Intersection ellipse diagonal 4 : no intersection middle left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -451,7 +451,7 @@ test[31] =
 	}
 test[32] = 
 	{ name : "Test Intersection ellipse diagonal 5 : no intersection middle"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -465,7 +465,7 @@ test[32] =
 	}
 test[33] = 
 	{ name : "Test Intersection ellipse diagonal 6 : no intersection middle right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -479,7 +479,7 @@ test[33] =
 	}
 test[34] = 
 	{ name : "Test Intersection ellipse diagonal 7 : no intersection bottom left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -493,7 +493,7 @@ test[34] =
 	}
 test[35] = 
 	{ name : "Test Intersection ellipse diagonal 8 : no intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -507,7 +507,7 @@ test[35] =
 	}
 test[36] = 
 	{ name : "Test Intersection ellipse diagonal 9 : no intersection bottom right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -521,7 +521,7 @@ test[36] =
 	}
 test[37] = 
 	{ name : "Test Intersection ellipse diagonal 10 : one intersection left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -535,7 +535,7 @@ test[37] =
 	}
 test[38] = 
 	{ name : "Test Intersection ellipse diagonal 11 : one intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -549,7 +549,7 @@ test[38] =
 	}
 test[39] = 
 	{ name : "Test Intersection ellipse diagonal 12 : one intersection right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -563,7 +563,7 @@ test[39] =
 	}
 test[40] = 
 	{ name : "Test Intersection ellipse diagonal 13 : one intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -577,7 +577,7 @@ test[40] =
 	}
 test[41] = 
 	{ name : "Test Intersection ellipse diagonal 14 : two intersections rdm"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -591,7 +591,7 @@ test[41] =
 	}
 test[42] = 
 	{ name : "Test Intersection ellipse diagonal 15 : no intersection top left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -605,7 +605,7 @@ test[42] =
 	}
 test[43] = 
 	{ name : "Test Intersection ellipse diagonal 16 : no intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -619,7 +619,7 @@ test[43] =
 	}
 test[44] = 
 	{ name : "Test Intersection ellipse diagonal 17 : no intersection top right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -633,7 +633,7 @@ test[44] =
 	}
 test[45] = 
 	{ name : "Test Intersection ellipse diagonal 18 : no intersection middle left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -647,7 +647,7 @@ test[45] =
 	}
 test[46] = 
 	{ name : "Test Intersection ellipse diagonal 19 : no intersection middle"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -661,7 +661,7 @@ test[46] =
 	}
 test[47] = 
 	{ name : "Test Intersection ellipse diagonal 20 : no intersection middle right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -675,7 +675,7 @@ test[47] =
 	}
 test[48] = 
 	{ name : "Test Intersection ellipse diagonal 21 : no intersection bottom left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -689,7 +689,7 @@ test[48] =
 	}
 test[49] = 
 	{ name : "Test Intersection ellipse diagonal 22 : no intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -703,7 +703,7 @@ test[49] =
 	}
 test[50] = 
 	{ name : "Test Intersection ellipse diagonal 23 : no intersection bottom right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -717,7 +717,7 @@ test[50] =
 	}
 test[51] = 
 	{ name : "Test Intersection ellipse diagonal 24 : one intersection left"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -731,7 +731,7 @@ test[51] =
 	}
 test[52] = 
 	{ name : "Test Intersection ellipse diagonal 25 : one intersection top"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -745,7 +745,7 @@ test[52] =
 	}
 test[53] = 
 	{ name : "Test Intersection ellipse diagonal 26 : one intersection right"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -759,7 +759,7 @@ test[53] =
 	}
 test[54] = 
 	{ name : "Test Intersection ellipse diagonal 27 : one intersection bottom"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
@@ -773,7 +773,7 @@ test[54] =
 	}
 test[55] = 
 	{ name : "Test Intersection ellipse diagonal 28 : two intersections rdm"
-	, target : "calculCoordsEllipseLine"
+	, target : "intersectionEllipseLine"
 	, input : function( svg ) { 
 			var ellipse = svg.ellipse( 180, 80 )
 				 .move( 20, 20 )
