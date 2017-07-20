@@ -4,9 +4,11 @@ tester2.loadLibrary( Splitting )
 
 
 var svg = null
+var svgOut = null
 
 $( function() { 
 	svg = SVG("shape").size(1000,500) 
+	svgOut = SVG( document.createElement( "svg" ) )
 
 	$("#inputPattern").on("change", e => dataStructure.load( "pattern", e.target.files[0] ) )
 	$("#inputForm").on("change", e => dataStructure.load( "shape", e.target.files[0] ) )
@@ -25,7 +27,7 @@ dataStructure.load = function ( svgObject, filename ) {
 	var reader = new FileReader() ;
 	reader.onload = function(event) {
 		//TODO: do not create a new element for each new svg... but reuse previous one...
-		dataStructure[ svgObject ] = SVG( document.createElement( "svg" ) ).svg( event.target.result )
+		dataStructure[ svgObject ] = svgOut.svg( event.target.result )
 		dataStructure.update()      
 	}
 	reader.readAsText( filename )
@@ -36,7 +38,7 @@ dataStructure.update = function ( ) {
 }
 
 dataStructure.compute = function( ) {
-	console.log( this )
+	console.log( "this", this )
 	
 	svg.clear()
 
@@ -50,38 +52,44 @@ dataStructure.compute = function( ) {
 	var i = numberX.value
 	var j = numberY.value
 
-	if( this.shape.node.getElementById( "SvgjsPath1007" ) != null ){
-		var svgPathForm = this.shape.node.getElementById( "SvgjsPath1007" )
-		var form = svg.path(svgPathForm.getAttribute("d"))
-					  .stroke( { width : 1 } ).fill( "none" )
+	var allPathShape = dataStructure.shape.node.getElementsByTagName("path")
+	if( allPathShape.length != 0 ){
+		for( var i = 0 ; i < allPathShape.length	; i++ ) { 
+			var svgPathForm = this.shape.node.getElementById( allPathShape[i].id )
+			var form = svg.path(svgPathForm.getAttribute("d"))
+						  .stroke( { width : 1 } ).fill( "none" )
+
+			var allPathPattern = dataStructure.pattern.node.getElementsByTagName("path")
+
+			for( var i = 0 ; i < allPathPattern.length	; i++ ) { 
+				var svgPathPattern = this.pattern.node.getElementById( allPathPattern[i].id )
+				var path = svgOut.path(svgPathPattern.getAttribute("d"))
+							  .stroke( { width : 0 } ).fill( "none" )
+
+				tester2.run( svg, form, path, X, Y, i, j )
+			}
+		}
 	} else{
-		var svgEllipseForm = this.shape.node.getElementById( "SvgjsEllipse1007" )
-		var rx = svgEllipseForm.getAttribute("rx")*2
-		var ry = svgEllipseForm.getAttribute("ry")*2
-		var x = svgEllipseForm.getAttribute("cx") - rx/2
-		var y = svgEllipseForm.getAttribute("cy") - ry/2
-		console.log(rx, ry, x , y)
-		var form = svg.ellipse(rx, ry).move(x,y)
-					  .stroke( { width : 1 } ).fill( "none" )
-		console.log(form)
-	}
+		var allEllipseShape = dataStructure.shape.node.getElementsByTagName("ellipse")
+		for( var i = 0 ; i < allEllipseShape.length	; i++ ) { 
+			var svgEllipseForm = this.shape.node.getElementById( allEllipseShape[i].id )
+			var rx = svgEllipseForm.getAttribute("rx")*2
+			var ry = svgEllipseForm.getAttribute("ry")*2
+			var x = svgEllipseForm.getAttribute("cx") - rx/2
+			var y = svgEllipseForm.getAttribute("cy") - ry/2
+			var form = svg.ellipse(rx, ry).move(x,y)
+						  .stroke( { width : 1 } ).fill( "none" )
 
-	if(this.pattern.node.getElementById( "SvgjsPath1008" ) == null ){
-	var svgPathPattern = this.pattern.node.getElementById( "SvgjsPath1007" )
-	var path = svg.path(svgPathPattern.getAttribute("d"))
-				  .stroke( { width : 0 } ).fill( "none" )
+			var allPathPattern = dataStructure.pattern.node.getElementsByTagName("path")
 
-	tester2.run( svg, form, path, X, Y, i, j )
-	} else {
-		var svgPathPattern1 = this.pattern.node.getElementById( "SvgjsPath1007" )
-		var path1 = svg.path(svgPathPattern1.getAttribute("d"))
-					  .stroke( { width : 0 } ).fill( "none" )
-		var svgPathPattern2 = this.pattern.node.getElementById( "SvgjsPath1008" )
-		var path2 = svg.path(svgPathPattern2.getAttribute("d"))
-					  .stroke( { width : 0 } ).fill( "none" )
+			for( var i = 0 ; i < allPathPattern.length	; i++ ) { 
+				var svgPathPattern = this.pattern.node.getElementById( allPathPattern[i].id )
+				var path = svgOut.path(svgPathPattern.getAttribute("d"))
+							  .stroke( { width : 0 } ).fill( "none" )
 
-		tester2.run( svg, form, path1, X, Y, i, j )
-		tester2.run( svg, form, path2, X, Y, i, j )
+				tester2.run( svg, form, path, X, Y, i, j )
+			}
+		}
 	}
 
 	tester2.createSVG( svg )
