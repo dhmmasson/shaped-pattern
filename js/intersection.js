@@ -12,8 +12,8 @@ Intersection =
 	}
 
 	//determine if the value is inside the interval
-	function insideInterval( a, end1, end2 ) {
-		return ( end1 - epsilon <= a && a <= end2 + epsilon) || ( end2 - epsilon <= a && a <= end1 + epsilon )
+	function insideInterval( a, end1, end2 ){
+		return ( end1 - epsilon <= a && a <= end2 + epsilon ) || ( end2 - epsilon <= a && a <= end1 + epsilon )
 	}
 
 	//determine the inflexion point of a bezier curve
@@ -105,7 +105,7 @@ Intersection =
 			if( imaginary != 0 ){
 				results[1] = -1;
 			}
-		} else {
+		} else{
 			var theta = Math.acos( D2/Math.sqrt( -Math.pow( D1, 3 ) ) );
 			//real distinct roots
 			results[0] = 2 * Math.sqrt( -D1 ) * Math.cos( theta/3 ) - coefficient1/3;
@@ -154,11 +154,14 @@ Intersection =
 		var b = 3*y0 - 6*y1 + 3*y2;//coefficient t^2
 		var c = -3*y0 + 3*y1;//coefficient t
 		var d = y0;
+
 		this.cubicY = new ParametricCubic( a,b,c,d );
+
 		a = -x0 + 3*x1 - 3*x2 + x3;//coefficient t^3
 		b = 3*x0 - 6*x1 + 3*x2;//coefficient t^2
 		c = -3*x0 + 3*x1;//coefficient t
 		d = x0;
+
 		this.cubicX = new ParametricCubic( a,b,c,d );
 	}
 
@@ -186,11 +189,11 @@ Intersection =
 	function distanceT( t1, t2 ){
 		var x = t1.x - t2.x; 
 		var y = t2.y - t1.y; 
-		return  x*x + y*y ;
+		return  x*x + y*y;
 	}
 	//Return the middle point for the curve, return same type of point as p1 (Bezier or Ellipse)
-	function middlePoint( equation, p1, p2 ) {
-		return new p1.constructor( equation, ( p1.t + p2.t ) / 2 )
+	function middlePoint( equation, p1, p2 ){
+		return new p1.constructor( equation, ( p1.t + p2.t ) / 2 );
 	}
 
 	//find the intersection point between two curves using dichotomy method
@@ -205,14 +208,14 @@ Intersection =
 		   && !insideInterval( s2.y, t1.y, t2.y ) ) ) {
 			//no intersection 
 			return []; 
-		} else {
+		} else{
 			//Atomic square
 			if( distanceT( t1, t2 ) < 0.0000000000001 ){
 				return [ [ t1, t2, s1, s2 ] ];
-			} else {
+			} else{
 			//Subdivisable squares
-				var middleT = middlePoint( equationT, t1, t2 )  ;
-				var middleS = middlePoint( equationS, s1, s2 )  ;
+				var middleT = middlePoint( equationT, t1, t2 );
+				var middleS = middlePoint( equationS, s1, s2 );
 
 				var r1 = findIntersectionByDichotomy( equationT, equationS, t1, middleT, s1, middleS );
 				var r2 = findIntersectionByDichotomy( equationT, equationS, middleT, t2, s1, middleS );
@@ -240,7 +243,6 @@ Intersection =
 		return solutions;
 	}
 
-	//return IntersectionData
 	intersectionLibrary.intersectionLineLine = function( line1, line2 ){
 		var coords1 = line1.array(); 
 		var coords2 = line2.array();
@@ -260,7 +262,6 @@ Intersection =
 				var y4 = coords2.value[j][2];
 			}
 		}
-		//console.log( "x1,y1,x2,y2,x3,y3,x4,y4 ", x1,y1,x2,y2,x3,y3,x4,y4 )
 
 		var quotient =  (x1 - x2)*(y3 - y4)-(x3 - x4)*(y1 - y2);
 		//supposed intersection coord on X axis
@@ -276,19 +277,20 @@ Intersection =
 		&& insideInterval( solutionsOnX, x3, x4 )//test if the solution on x is on the second segment
 		&& insideInterval( solutionOnY, y3, y4 ) ){//test if the solution on y is on the second segment
 			var intersectionData = new IntersectionData( "point", [[ solutionsOnX, solutionOnY ]] );
-		} else {
+		} else{
 			var intersectionData = new IntersectionData( "empty", [ [] ] );
 		}
 		return intersectionData;
 	}
 
 	//return intersectionData
-	intersectionLibrary.intersectionEllipseLine = function( ellipse, line ) {
+	intersectionLibrary.intersectionEllipseLine = function( ellipse, line ){
 		var origineEllipseX = ellipse.cx();
 		var origineEllipseY = ellipse.cy();
 		var demiAxeX = ellipse.rx();
 		var demiAxeY = ellipse.ry();
 		var points = line.array();
+
 		for( var i in points.value ){
 			if( points.value[i][0] == "L" ){
 				var x1 = points.value[i-1][points.value[i-1].length-2];
@@ -313,7 +315,7 @@ Intersection =
 					if( isFinite( solution1 ) && insideInterval( solution1, y1, y2 ) ) {
 						solutions = [ [ x1, solution1 ] ] ;
 					}
-				} else {
+				} else{
 					var solutionOnY = [ solution2, solution1 ];//solution of the equation
 					for( var o in solutionOnY ) {
 						//test if supposed intersection point is on segment
@@ -323,7 +325,7 @@ Intersection =
 					}					
 				}
 			}
-		} else {
+		} else{
 			// if type y = ax + b
 			//determination of the two coefficients
 			var segmentSlope = ( y2 - y1 ) / ( x2 - x1 );
@@ -345,11 +347,11 @@ Intersection =
 
 			//test signe of discriminant
 			if( delta > 0 ) {
-				var solutionsOnX = [ (-j - Math.sqrt( ( j * j )-4 * i * k ) )/(2 * i), (-j + Math.sqrt( ( j * j) -4 * i * k ))/(2 * i) ];//solution of the equation
+				var solutionsOnX = [ ( -j - Math.sqrt( ( j * j )-4 * i * k ) )/( 2 * i ), ( -j + Math.sqrt( ( j * j )-4 * i * k ) )/( 2 * i ) ];//solution of the equation
 
 				for( var o in solutionsOnX ) {
 					//test if supposed X coord is on segment
-					if( isFinite (solutionsOnX[o] ) && insideInterval( solutionsOnX[o], x1, x2 )) {
+					if( isFinite ( solutionsOnX[o] ) && insideInterval( solutionsOnX[o], x1, x2 ) ) {
 						//solution for Y coord if X coord on segment and ellipse
 						var solutionOnY = segmentSlope * solutionsOnX[o] + segmentOriginOrdinate;
 						if( isFinite( solutionOnY ) && insideInterval( solutionOnY, y1, y2 ) ) {
@@ -358,9 +360,9 @@ Intersection =
 					}
 				}
 			} else if( delta == 0 ) {
-				var solutionsOnX = -j/(2 * i);//solution of the equation
+				var solutionsOnX = -j/( 2 * i );//solution of the equation
 				//test if supposed intersection point is on segment
-				if( isFinite(solutionsOnX) && insideInterval( solutionsOnX, x1, x2 ) ) {
+				if( isFinite( solutionsOnX ) && insideInterval( solutionsOnX, x1, x2 ) ) {
 					var solutionOnY = segmentSlope * solutionsOnX + segmentOriginOrdinate;
 					//test if supposed Y coord is on segment
 					if( isFinite( solutionOnY ) && insideInterval( solutionOnY, y1, y2 ) ) {
@@ -373,7 +375,7 @@ Intersection =
 		//test what to return depending on if point are on segment
 		if( solutions == [] ) {
 			var intersectionData = new IntersectionData( "empty", [ [] ] );
-		} else {
+		} else{
 			var intersectionData = new IntersectionData( "point", solutions );
 		}
 		return intersectionData;
@@ -446,10 +448,10 @@ Intersection =
 		if( A == 0 ){
 			if( B == 0 ){
 				results = linearResolution( C, D );
-			} else {
+			} else{
 				results = quadraticResolution( B, C, D );
 			}
-		} else {
+		} else{
 			results = cubicResolution( A, B, C, D );
 		}
 		//console.log( results );
@@ -466,12 +468,12 @@ Intersection =
 												+ results[i]*Cy + Yp0;
 				for( j in solution ){
 					if( solution[j][0] ==  solutionOnX 
-							&& solution[j][1] == solutionOnY){
+					 && solution[j][1] == solutionOnY ){
 						solutionOnX = x2 + 1;
 					}
 				}
 				if( insideInterval( solutionOnX, x1, x2 )//test if the solution on x is on the first segment
-					&& insideInterval( solutionOnY, y1, y2 ) ){//test if the solution on y is on the first segment )
+				 && insideInterval( solutionOnY, y1, y2 ) ){//test if the solution on y is on the first segment )
 					solution.push( [ solutionOnX, solutionOnY, results[i] ] );
 				}
 			}
@@ -479,7 +481,7 @@ Intersection =
 		//test for what to return
 		if( solution.length != 0 ){
 			var intersectionData = new IntersectionData( "point", solution );
-		} else {
+		} else{
 			var intersectionData = new IntersectionData( "empty", [ [] ] );
 		}
 
@@ -536,7 +538,7 @@ Intersection =
 				solutions = ajouterSolutions( solutions, result );
 			}
 		//same if inflexion point on both curves
-		} else {
+		} else{
 			inflexionPoints1.push( 0, 1 );
 			inflexionPoints1.sort( function( a,b ){ return a>b } );
 			for( var i = 1; i < inflexionPoints1.length; i++ ){
@@ -553,7 +555,7 @@ Intersection =
 		}
 		if( solutions.length != 0 ){
 				var intersectionData = new IntersectionData( "point", solutions );
-			} else {
+			} else{
 				var intersectionData = new IntersectionData( "empty", [ [] ] );
 			}
 		return intersectionData;
@@ -647,7 +649,7 @@ Intersection =
 				solutions = ajouterSolutions( solutions, result );
 			}
 		//same if inflexion point on both curves
-		} else {
+		} else{
 			inflexionPoints1.push( 0, 1 );
 			inflexionPoints2.push( 0, 1 );
 			inflexionPoints1.sort( function( a,b ){ return a>b } );
@@ -665,7 +667,7 @@ Intersection =
 		}
 		if( solutions.length != 0 ){
 				var intersectionData = new IntersectionData( "point", solutions );
-			} else {
+			} else{
 				var intersectionData = new IntersectionData( "empty", [ [] ] );
 			}
 		return intersectionData;
@@ -722,7 +724,7 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionBezierBezier( path11, path22 );
 						//console.log("intersection.data 2path ", intersection.data);
 						if( intersection.type != "empty" ){
-							for(var a of intersection.data ){
+							for( var a of intersection.data ){
 								solution.push( a );
 							}
 						}
@@ -739,7 +741,7 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionBezierLine( path11, path22 );
 						//console.log("intersection.data path line", intersection.data);
 						if( intersection.type != "empty" ){
-							for(var a of intersection.data ){
+							for( var a of intersection.data ){
 								solution.push( a );
 							}
 						}
@@ -780,7 +782,7 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionBezierLine( path22, path11 );
 						//console.log("intersection.data line path ", intersection.data);
 						if( intersection.type != "empty" ){
-							for(var a of intersection.data ){
+							for( var a of intersection.data ){
 								solution.push( a );
 							}
 						}
@@ -796,7 +798,7 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionLineLine( path11, path22 );
 						//console.log("intersection.data line line ", intersection.data);
 						if( intersection.type != "empty" ){
-							for(var a of intersection.data ){
+							for( var a of intersection.data ){
 								solution.push( a );
 							}
 						}
@@ -814,7 +816,7 @@ Intersection =
 					 &&  Math.floor( 10000 * intersection[1] ) ==  Math.floor( 10000 * sol[1] ) ){
 						add = false;
 					}
-				} else {
+				} else{
 					if(  Math.floor( 10000 * intersection[2] ) ==  Math.floor( 10000 * sol[2] ) ){
 						add = false;
 					}
@@ -823,7 +825,7 @@ Intersection =
 			if( add ){
 				if( intersection.length == 2 ){
 					newSolution.push( [ intersection[0], intersection[1] ] );
-				} else {
+				} else{
 					newSolution.push( [ intersection[0], intersection[1], intersection[2] ] );
 				}
 			}
@@ -832,12 +834,11 @@ Intersection =
 
 		if( newSolution.length != 0 ){
 				var intersectionData = new IntersectionData( "point", newSolution );
-			} else {
+			} else{
 				var intersectionData = new IntersectionData( "empty", [ [] ] );
 			}
 		return intersectionData;
 	}
 
 return intersectionLibrary;
-
 }) () 

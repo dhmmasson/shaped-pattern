@@ -3,23 +3,21 @@ var tester2 =
 
 	var Tester2 = {};
 
-	var color = [ "chartreuse", "red", "blue", "green", "yellow", "indigo"  ]
+	var color = [ "chartreuse", "red", "blue", "green", "yellow", "indigo"  ];
 	
-	Tester2.loadLibrary = function( library ) {
+	Tester2.loadLibrary = function( library ){
 		this.library = library;
 	}
 
-	Tester2.createSVG = function( svg ) {
-	  var blob = new Blob([svg.svg()], {type: 'image/svg+xml'}); // pass a useful mime type here
+	Tester2.createSVG = function( svg ){
+	  var blob = new Blob( [svg.svg()], {type: 'image/svg+xml'} ); // pass a useful mime type here
 	  var url = URL.createObjectURL(blob);
-	  lien = document.getElementById( "download");
-	  lien.setAttribute("href", url );
+	  lien = document.getElementById( "download" );
+	  lien.setAttribute( "href", url );
 	}
 
-	function drawSplittedData( path, form )  {
-		//console.log("entering run");
+	function drawSplittedData( path, form ){
 		var splittedData = Splitting.phase1( path, form, 0 );
-		//console.log( "splittedData", splittedData );
 		for( var i in splittedData ){
 			if( splittedData[i].type == "l" ){
 				for( var j in splittedData[i].value[0] ){
@@ -42,14 +40,18 @@ var tester2 =
 		var points = path.array();
 		for( var k in points.value ){
 			if( points.value[k][0] == "M" ){
-				var text = 'M '+((points.value[k][1])+(X*i))+' '+((points.value[k][2])+(Y*j))
-				var command = command.concat(text);
+				var text = 'M '+( ( points.value[k][1] )+( X*i ) )+' '+( ( points.value[k][2] )+( Y*j ) );
+				var command = command.concat( text );
+
 			}else if( points.value[k][0] == "C" ){
-				var text = ' C '+((points.value[k][1])+(X*i))+' '+((points.value[k][2])+(Y*j))+' '+((points.value[k][3])+(X*i))+' '+((points.value[k][4])+(Y*j))+' '+((points.value[k][5])+(X*i))+' '+((points.value[k][6])+(Y*j))
-				var command = command.concat(text);
+				var text = ' C '+( ( points.value[k][1] )+( X*i ) )+' '+( ( points.value[k][2] )+( Y*j ) )+' '+
+												 ( ( points.value[k][3] )+( X*i ) )+' '+( ( points.value[k][4] )+( Y*j ) )+' '+
+												 ( ( points.value[k][5] )+( X*i ) )+' '+( ( points.value[k][6] )+( Y*j ) );
+				var command = command.concat( text );
+
 			}else if ( points.value[k][0] == "L" ){
-				var text = ' L '+((points.value[k][1])+(X*i))+' '+((points.value[k][2])+(Y*j))
-				var command = command.concat(text);
+				var text = ' L '+( ( points.value[k][1] )+( X*i ) )+' '+( ( points.value[k][2] )+( Y*j ) );
+				var command = command.concat( text );
 			}
 		}
 		var element = svg.path(command)
