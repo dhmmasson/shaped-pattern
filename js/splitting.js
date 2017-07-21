@@ -75,7 +75,7 @@ Splitting =
 					var Yp1 = points.value[i][2];
 					var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 					 .stroke( { width : 0 } ).fill("none");
-					var intersectionData = Intersection.calculCoordsEllipseLine( form, path );
+					var intersectionData = Intersection.intersectionEllipseLine( path, form );
 					//console.log( "intersectionDataLine", intersectionData.data );
 					var solution = phase2Line( [ Xp0, Yp0, Xp1, Yp1 ], form, j, intersectionData );
 					var intersectionNumber = splittingLibrary.cutting( Xp0, Yp0, form );
@@ -158,7 +158,6 @@ Splitting =
 					 .stroke( { width : 0 } ).fill("none");
 					var intersectionData = Intersection.intersectionPathPath( path, form );
 					//console.log( "intersectionDataLine", intersectionData.data );
-
 					var solution = phase2Line( [ Xp0, Yp0, Xp1, Yp1 ], form, j, intersectionData );
 					
 					var corner = false;
@@ -169,13 +168,11 @@ Splitting =
 							corner = true;
 						}
 					}
-					//console.log(corner)
 					if( corner ){
 						var intersectionNumber = splittingLibrary.cutting( Xp1, Yp1, form );
 					}else{
 						var intersectionNumber = splittingLibrary.cutting( Xp0, Yp0, form );
 					}
-					//console.log(intersectionNumber)
 					var finalSolution = []
 					for( var u in solution ){
 						if( isEven(intersectionNumber) ){
@@ -188,8 +185,6 @@ Splitting =
 							}
 						}
 					}
-					//console.log( " solution ", solution );
-					//console.log( " final solution ", finalSolution );
 					var splittedData = new SplittedData( [finalSolution], "l" );
 					solutions.push(splittedData);
 				}
@@ -218,7 +213,6 @@ Splitting =
 		} else if( form.type == "path" ){
 			var currentIntersectionData = Intersection.intersectionPathPath( path, form );
 		}
-		//console.log("curent intersection data", currentIntersectionData)
 		for( var k in currentIntersectionData.data ){
 			if( currentIntersectionData.data[k][2] > 0.00001 && currentIntersectionData.data[k][2] < 0.99999 ){
 				newIntersectionData.push(currentIntersectionData.data[k]) ;
@@ -255,7 +249,8 @@ Splitting =
 			var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 						 				.stroke( { width : 0 } ).fill("none");
 			if( form.type == "ellipse" ){
-				var currentIntersectionData = Intersection.calculCoordsEllipseLine( form, path );
+				var currentIntersectionData = Intersection.intersectionEllipseLine( form, path );
+
 			} else if( form.type == "path" ){
 				var currentIntersectionData = Intersection.intersectionPathPath( path, form );
 			}
@@ -276,7 +271,7 @@ Splitting =
 			var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 						 				.stroke( { width : 0 } ).fill("none");
 			if( form.type == "ellipse" ){
-				var currentIntersectionData = Intersection.calculCoordsEllipseLine( form, path );
+				var currentIntersectionData = Intersection.intersectionEllipseLine( form, path );
 			} else if( form.type == "path" ){
 				var currentIntersectionData = Intersection.intersectionPathPath( path, form );
 			}
@@ -290,7 +285,6 @@ Splitting =
 			}
 			newIntersectionData.sort( function( a,b ){ return a[1]>b[1] } );
 		}
-		//console.log( "intersectionData ", newIntersectionData )
 		if( intersectionData.type == "empty" ){
 			return [ [ Xp0, Yp0, Xp1, Yp1 ] ];
 		}else if( newIntersectionData.length > 1 && j<intersectionData.data.length ){
@@ -370,7 +364,7 @@ Splitting =
 								  .stroke( { width : 0 } ).fill("none");
 
 		if( form.type == "ellipse" ){
-			var intersectionData = Intersection.calculCoordsEllipseLine( form, path );
+			var intersectionData = Intersection.intersectionEllipseLine( form, path );
 		} else if( form.type == "path" ){
 			var intersectionData = Intersection.intersectionPathPath( path, form );
 		}
