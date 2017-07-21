@@ -1,6 +1,6 @@
 
-tester2.loadLibrary( Intersection )
-tester2.loadLibrary( Splitting )
+index.loadLibrary( Intersection )
+index.loadLibrary( Splitting )
 
 //declare the svg for printing
 var svg = null
@@ -75,7 +75,7 @@ dataStructure.compute = function( ) {
 				var path = svgOut.path(svgPathPattern.getAttribute("d"))
 							  .stroke( { width : 0 } ).fill( "none" )
 
-				tester2.run( svg, form, path, X, Y, i, j, sX, sY )
+				index.run( svg, form, path, X, Y, i, j, sX, sY )
 			}
 		}
 	} else{
@@ -98,10 +98,10 @@ dataStructure.compute = function( ) {
 				var path = svgOut.path(svgPathPattern.getAttribute("d"))
 							  .stroke( { width : 0 } ).fill( "none" )
 
-				tester2.run( svg, form, path, X, Y, i, j, sX, sY )
+				index.run( svg, form, path, X, Y, i, j, sX, sY )
 			}
 		}
 	}
 
-	tester2.createSVG( svg )
+	index.createSVG( svg )
 }
