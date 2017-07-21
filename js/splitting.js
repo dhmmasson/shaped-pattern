@@ -45,7 +45,7 @@ Splitting =
 					var Yp2 = points.value[i][4];
 					var Xp3 = points.value[i][5];
 					var Yp3 = points.value[i][6];
-					var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
+					var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
 					 .stroke( { width : 0 } ).fill("none");
 					var intersectionData = Intersection.intersectionBezierEllipse( path, form );
 					//console.log( "intersectionDataBezier ", intersectionData.data );
@@ -73,7 +73,7 @@ Splitting =
 					var Yp0 = points.value[i-1][points.value[i-1].length-1];
 					var Xp1 = points.value[i][1];
 					var Yp1 = points.value[i][2];
-					var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
+					var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 					 .stroke( { width : 0 } ).fill("none");
 					var intersectionData = Intersection.intersectionEllipseLine( path, form );
 					//console.log( "intersectionDataLine", intersectionData.data );
@@ -111,7 +111,7 @@ Splitting =
 					var Yp2 = points.value[i][4];
 					var Xp3 = points.value[i][5];
 					var Yp3 = points.value[i][6];
-					var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
+					var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
 					 .stroke( { width : 0 } ).fill("none");
 					var intersectionData = Intersection.intersectionPathPath( path, form );
 					//console.log( "intersectionDataBezier ", intersectionData.data );
@@ -154,7 +154,7 @@ Splitting =
 					var Yp0 = points.value[i-1][points.value[i-1].length-1];
 					var Xp1 = points.value[i][1];
 					var Yp1 = points.value[i][2];
-					var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
+					var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 					 .stroke( { width : 0 } ).fill("none");
 					var intersectionData = Intersection.intersectionPathPath( path, form );
 					//console.log( "intersectionDataLine", intersectionData.data );
@@ -206,7 +206,7 @@ Splitting =
 		var newIntersectionData = []; 
 		intersectionData.data.sort( function( a,b ){ return a[2]>b[2] } );
 		//console.log( "ordered intersectionData ", intersectionData )
-		var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
+		var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
 					 .stroke( { width : 0 } ).fill("none");
 		if( form.type == "ellipse" ){
 			var currentIntersectionData = Intersection.intersectionBezierEllipse( path, form );
@@ -246,7 +246,7 @@ Splitting =
 		if( Xp0 != Xp1 ){
 			intersectionData.data.sort( function( a,b ){ return a[0]>b[0] } );
 			//console.log( "ordered intersectionData ", intersectionData )
-			var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
+			var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 						 				.stroke( { width : 0 } ).fill("none");
 			if( form.type == "ellipse" ){
 				var currentIntersectionData = Intersection.intersectionEllipseLine( form, path );
@@ -268,7 +268,7 @@ Splitting =
 		} else{
 			intersectionData.data.sort( function( a,b ){ return a[1]>b[1] } );
 			//console.log( "ordered intersectionData ", intersectionData )
-			var path = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
+			var path = svgOut.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
 						 				.stroke( { width : 0 } ).fill("none");
 			if( form.type == "ellipse" ){
 				var currentIntersectionData = Intersection.intersectionEllipseLine( form, path );
@@ -354,13 +354,13 @@ Splitting =
 	  }
   return solution;
 	}
-
+	//return number of intersection between the [-10;-10] point (out of form) and the extremity of the pattern element
 	splittingLibrary.cutting = function( Xp, Yp, form ){
 
 		var x = -10
 		var y = -10
 
-		var path = svg.path( 'M ' + x + ' ' + y + ' L ' + Xp + ' ' + Yp )
+		var path = svgOut.path( 'M ' + x + ' ' + y + ' L ' + Xp + ' ' + Yp )
 								  .stroke( { width : 0 } ).fill("none");
 
 		if( form.type == "ellipse" ){

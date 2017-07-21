@@ -54,15 +54,7 @@ var tester2 =
 		}
 		var element = svg.path(command)
 										 .fill('none').stroke({ color: '#000000', width: 0});
-		//console.log("entering drawPath");
-	  //var path = svg.path('M'+(1+(X*i))+' '+(1+(Y*j))+' L'+(10+(X*i))+' '+(0+(Y*j))+' C'+(80+(X*i))+' '+(0+(Y*j))+' '+(40+(X*i))+' '+(40+(Y*j))+' '+(80+(X*i))+' '+(40+(Y*j))+' L'+(100+(X*i))+' '+(40+(Y*j))+' C'+(120+(X*i))+' '+(40+(Y*j))+' '+(110+(X*i))+' '+(20+(Y*j))+' '+(140+(X*i))+' '+(20+(Y*j))+' L'+(150+(X*i))+' '+(20+(Y*j)))
-	  //   .fill('none').stroke({ color: '#000000', width: 0});
-	  //var path1 = svg.path('M'+(25+(X*i))+' '+(20+(Y*j))+' L'+(65+(X*i))+' '+(20+(Y*j))+' L'+(65+(X*i))+' '+(25+(Y*j))+' L'+(25+(X*i))+' '+(25+(Y*j))+' L'+(25+(X*i))+' '+(20+(Y*j)) )
-	  //	 .fill('none').stroke({ color: '#000000', width: 0});
-	  //var path2 = svg.path('M'+(0+(X*i))+' '+(30+(Y*j))+' L'+(40+(X*i))+' '+(30+(Y*j))+' L'+(40+(X*i))+' '+(35+(Y*j))+' L'+(0+(X*i))+' '+(35+(Y*j))+' L'+(0+(X*i))+' '+(30+(Y*j)) )
-	  //	 .fill('none').stroke({ color: '#000000', width: 0});
 	  drawSplittedData( element, form );
-	  //drawSplittedData( path2, form );
 	}
 
 	Tester2.run = function( svg, form, path ){
