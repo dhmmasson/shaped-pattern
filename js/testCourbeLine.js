@@ -7,7 +7,7 @@ test[0] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 0, 10, 125, 10 )
+			var line = svg.path( 'M 0 10 L 125 10' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -19,7 +19,7 @@ test[1] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 0, 90, 125, 90 )
+			var line = svg.path( 'M 0 90 L 125 90' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -31,7 +31,7 @@ test[2] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 0, 50, 20, 50 )
+			var line = svg.path( 'M 0 50 L 20 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -43,7 +43,7 @@ test[3] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 50, 120, 50 )
+			var line = svg.path( 'M 105 50 L 120 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -55,7 +55,7 @@ test[4] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 30, 50, 45, 50 )
+			var line = svg.path( 'M 30 50 L 45 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -67,7 +67,7 @@ test[5] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 80, 50, 95, 50 )
+			var line = svg.path( 'M 80 50 L 95 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -79,7 +79,7 @@ test[6] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 50, 45, 50 )
+			var line = svg.path( 'M 5 50 L 45 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -91,7 +91,7 @@ test[7] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 30, 50, 70, 50 )
+			var line = svg.path( 'M 30 50 L 70 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -103,7 +103,7 @@ test[8] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 75, 50, 120, 50 )
+			var line = svg.path( 'M 75 50 L 120 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -115,7 +115,7 @@ test[9] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 75, 40, 120, 40 )
+			var line = svg.path( 'M 75 40 L 120 40' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -127,7 +127,7 @@ test[10] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 50, 75, 50 )
+			var line = svg.path( 'M 5 50 L 75 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -139,7 +139,7 @@ test[11] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 50, 50, 120, 50 )
+			var line = svg.path( 'M 50 50 L 120 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -151,7 +151,7 @@ test[12] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 60, 75, 60 )
+			var line = svg.path( 'M 5 60 L 75 60' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -163,7 +163,7 @@ test[13] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 50, 40, 120, 40 )
+			var line = svg.path( 'M 50 40 L 120 40' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -175,7 +175,7 @@ test[14] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 0, 50, 120, 50 )
+			var line = svg.path( 'M 0 50 L 120 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -187,7 +187,7 @@ test[15] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 5, 5, 50 )
+			var line = svg.path( 'M 5, 5 5 L 50')
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -199,7 +199,7 @@ test[16] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 5, 105, 50 )
+			var line = svg.path( 'M 105 5 L 105 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -211,7 +211,7 @@ test[17] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 50, 5, 50, 50 )
+			var line = svg.path( 'M 50 5 L 50 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -223,7 +223,7 @@ test[18] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 75, 50, 75, 100 )
+			var line = svg.path( 'M 75 50 L 75 100' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -235,7 +235,7 @@ test[19] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 25, 25, 75 )
+			var line = svg.path( 'M 25 25 L 25 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -247,7 +247,7 @@ test[20] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 100, 25, 100, 75 )
+			var line = svg.path( 'M 100 25 L 100 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -259,7 +259,7 @@ test[21] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 62.5, 25, 62.5, 75 )
+			var line = svg.path( 'M 62.5 25 L 62.5 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -271,7 +271,7 @@ test[22] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 50, 25, 50, 75 )
+			var line = svg.path( 'M 50 25 L 50 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -283,7 +283,7 @@ test[23] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 75, 20, 10 )
+			var line = svg.path( 'M 5 75 L 20 10' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -295,7 +295,7 @@ test[24] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 75, 120, 10 )
+			var line = svg.path( 'M 105 75 L 120 10' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -307,7 +307,7 @@ test[25] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 40, 60, 60, 10 )
+			var line = svg.path( 'M 40 60 L 60 10' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -319,7 +319,7 @@ test[26] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 70, 80, 85, 40 )
+			var line = svg.path( 'M 70 80 L 85 40' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -331,7 +331,7 @@ test[27] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 10, 70, 40, 30 )
+			var line = svg.path( 'M 10 70 L 40 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -343,7 +343,7 @@ test[28] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 85, 70, 115, 30 )
+			var line = svg.path( 'M 85 70 L 115 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -355,7 +355,7 @@ test[29] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 42.5, 70, 82.5, 30 )
+			var line = svg.path( 'M 42.5 70 L 82.5 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -367,7 +367,7 @@ test[30] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 35, 80, 62.5, 10 )
+			var line = svg.path( 'M 35 80 L 62.5 10' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -379,7 +379,7 @@ test[31] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 80, 75, 40 )
+			var line = svg.path( 'M 20 80 L 75 40' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -391,7 +391,7 @@ test[32] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 50, 55, 110, 30 )
+			var line = svg.path( 'M 50 55 L 110 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -403,7 +403,7 @@ test[33] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line(  22.5, 70, 102.5, 30 )
+			var line = svg.path( 'M  22.5 70 L 102.5 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -415,7 +415,7 @@ test[34] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line(  22.5, 70, 102.5, 25 )
+			var line = svg.path('M  22.5, 70, 102.5, 25' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -427,7 +427,7 @@ test[35] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 10, 20, 75 )
+			var line = svg.path('M 5, 10, 20, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -439,7 +439,7 @@ test[36] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 10, 120, 75 )
+			var line = svg.path('M 105, 10, 120, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -451,7 +451,7 @@ test[37] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 40, 10, 60, 40 )
+			var line = svg.path('M 40, 10, 60, 40' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -463,7 +463,7 @@ test[38] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 70, 60, 85, 80 )
+			var line = svg.path('M 70, 60, 85, 80' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -475,7 +475,7 @@ test[39] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 30, 30, 70 )
+			var line = svg.path('M 20, 30, 30, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -487,7 +487,7 @@ test[40] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 95, 30, 105, 70 )
+			var line = svg.path('M 95, 30, 105, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -499,7 +499,7 @@ test[41] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 42.5, 30, 82.5, 70 )
+			var line = svg.path('M 42.5, 30, 82.5, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -511,7 +511,7 @@ test[42] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 35, 10, 62.5, 80 )
+			var line = svg.path('M 35, 10, 62.5, 80' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -523,7 +523,7 @@ test[43] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 50, 75, 70 )
+			var line = svg.path('M 20, 50, 75, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -535,7 +535,7 @@ test[44] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 0 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 50, 30, 110, 50 )
+			var line = svg.path('M 50, 30, 110, 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -547,7 +547,7 @@ test[45] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 75, 20, 75 )
+			var line = svg.path('M 5, 75, 20, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -559,7 +559,7 @@ test[46] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 75, 120, 75 )
+			var line = svg.path('M 105, 75, 120, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -571,7 +571,7 @@ test[47] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 20, 120, 20 )
+			var line = svg.path('M 5, 20, 120, 20' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -583,7 +583,7 @@ test[48] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 100, 120, 100 )
+			var line = svg.path('M 5, 100, 120, 100' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -595,7 +595,7 @@ test[49] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 50, 50, 50 )
+			var line = svg.path('M 5, 50, 50, 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -607,7 +607,7 @@ test[50] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 75, 50, 125, 50 )
+			var line = svg.path('M 75, 50, 125, 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -619,7 +619,7 @@ test[51] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 50, 87.5, 75, 87.5 )
+			var line = svg.path('M 50, 87.5, 75, 87.5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -631,7 +631,7 @@ test[52] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 75, 50, 75 )
+			var line = svg.path('M 5, 75, 50, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -643,7 +643,7 @@ test[53] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 50, 125, 50 )
+			var line = svg.path('M 5, 50, 125, 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -655,7 +655,7 @@ test[54] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 75, 125, 75 )
+			var line = svg.path('M 5, 75, 125, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -667,7 +667,7 @@ test[55] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 5, 5, 100 )
+			var line = svg.path('M 5, 5, 5, 100' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -679,7 +679,7 @@ test[56] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 125, 5, 125, 100 )
+			var line = svg.path('M 125, 5, 125, 100' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -691,7 +691,7 @@ test[57] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 62.5, 5, 62.5, 75 )
+			var line = svg.path('M 62.5, 5, 62.5, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -703,7 +703,7 @@ test[58] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 5, 25, 75 )
+			var line = svg.path('M 25, 5, 25, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -715,7 +715,7 @@ test[59] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 100, 5, 100, 75 )
+			var line = svg.path('M 100, 5, 100, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -727,7 +727,7 @@ test[60] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 62.5, 5, 62.5, 125 )
+			var line = svg.path('M 62.5, 5, 62.5, 125' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -739,7 +739,7 @@ test[61] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 100, 20, 5 )
+			var line = svg.path('M 5, 100, 20, 5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -751,7 +751,7 @@ test[62] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 100, 120, 5 )
+			var line = svg.path( 'M 105 100 L 120 5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -763,7 +763,7 @@ test[63] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 40, 70, 80, 5 )
+			var line = svg.path( 'M 40 70 L 80 5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -775,7 +775,7 @@ test[64] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 70, 45, 30 )
+			var line = svg.path('M 5 70 L 45 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -787,7 +787,7 @@ test[65] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 80, 70, 120, 30 )
+			var line = svg.path('M 80 70 L 120 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -799,7 +799,7 @@ test[66] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 42.5, 107.5, 82.5, 67.5 )
+			var line = svg.path('M 42.5 107.5 L 82.5 67.5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -811,7 +811,7 @@ test[67] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 22.5, 100, 62.5, 67.5 )
+			var line = svg.path('M 22.5 100 L 62.5 67.5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -823,7 +823,7 @@ test[68] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 100, 100, 55 )
+			var line = svg.path( 'M25, 100, 100, 55' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -835,7 +835,7 @@ test[69] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 5, 20, 90 )
+			var line = svg.path( 'M5, 5, 20, 90' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -847,7 +847,7 @@ test[70] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 5, 120, 90 )
+			var line = svg.path( 'M105, 5, 120, 90' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -859,7 +859,7 @@ test[71] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 42.5, 20, 82.5, 70 )
+			var line = svg.path( 'M42.5, 20, 82.5, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -871,7 +871,7 @@ test[72] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 30, 45, 70 )
+			var line = svg.path('M 5, 30, 45, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -883,7 +883,7 @@ test[73] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 80, 30, 120, 70 )
+			var line = svg.path( 'M80, 30, 120, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -895,7 +895,7 @@ test[74] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 42.5, 67.5, 82.5, 107.5 )
+			var line = svg.path( 'M42.5, 67.5, 82.5, 107.5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -907,7 +907,7 @@ test[75] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 55, 5, 85, 120 )
+			var line = svg.path( 'M55, 5, 85, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -919,7 +919,7 @@ test[76] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 50 100 75 100 100 50' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 50, 120, 120 )
+			var line = svg.path( 'M20, 50, 120, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -931,7 +931,7 @@ test[77] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 30, 120, 30 )
+			var line = svg.path( 'M20, 30, 120, 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -943,7 +943,7 @@ test[78] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 120, 120, 120 )
+			var line = svg.path( 'M20, 120, 120, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -955,7 +955,7 @@ test[79] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 75, 70, 75 )
+			var line = svg.path( 'M20, 75, 70, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -967,7 +967,7 @@ test[80] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 50, 70, 50 )
+			var line = svg.path( 'M20, 50, 70, 50' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -979,7 +979,7 @@ test[81] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 100, 70, 100 )
+			var line = svg.path( 'M20, 100, 70, 100' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -991,7 +991,7 @@ test[82] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 75, 120, 75 )
+			var line = svg.path( 'M20, 75, 120, 75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1003,7 +1003,7 @@ test[83] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 65, 120, 65 )
+			var line = svg.path( 'M20, 65, 120, 65' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1015,7 +1015,7 @@ test[84] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 20, 5, 20, 120 )
+			var line = svg.path( 'M20, 5, 20, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1027,7 +1027,7 @@ test[85] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 110, 5, 110, 120 )
+			var line = svg.path('M 110, 5, 110, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1039,7 +1039,7 @@ test[86] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 45, 65, 45, 85 )
+			var line = svg.path( 'M45, 65, 45, 85' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1051,7 +1051,7 @@ test[87] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 25, 25, 85 )
+			var line = svg.path('M 25, 25, 25, 85' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1063,7 +1063,7 @@ test[88] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 80, 25, 120 )
+			var line = svg.path('M 25, 80, 25, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1075,7 +1075,7 @@ test[89] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 81.25, 30, 81.25, 120 )
+			var line = svg.path('M 81.25, 30, 81.25, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1087,7 +1087,7 @@ test[90] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 75, 30, 75,75 )
+			var line = svg.path('M 75, 30, 75,75' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1099,7 +1099,7 @@ test[91] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 30, 25,120 )
+			var line = svg.path('M 25, 30, 25,120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1111,7 +1111,7 @@ test[92] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 45, 30, 45,120 )
+			var line = svg.path('M 45, 30, 45,120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1123,7 +1123,7 @@ test[93] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 120, 20,20 )
+			var line = svg.path( 'M 5, 120, 20,20' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1135,7 +1135,7 @@ test[94] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 120, 120,20 )
+			var line = svg.path('M 105, 120, 120,20' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1147,7 +1147,7 @@ test[95] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 40, 90, 60,60 )
+			var line = svg.path('M 40, 90, 60,60' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1159,7 +1159,7 @@ test[96] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 70, 45, 30 )
+			var line = svg.path('M 5, 70, 45, 30' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1171,7 +1171,7 @@ test[97] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 120, 45, 80 )
+			var line = svg.path('M 5, 120, 45, 80' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1183,7 +1183,7 @@ test[98] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 61.25, 85, 101.25, 65 )
+			var line = svg.path('M 61.25, 85, 101.25, 65' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1195,7 +1195,7 @@ test[99] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 45, 120, 120, 5 )
+			var line = svg.path('M 45, 120, 120, 5' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1207,7 +1207,7 @@ test[100] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 5, 20, 120 )
+			var line = svg.path('M 5, 5, 20, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1219,7 +1219,7 @@ test[101] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 105, 5, 120, 120 )
+			var line = svg.path('M 105, 5, 120, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1231,7 +1231,7 @@ test[102] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 55, 60, 80 )
+			var line = svg.path('M 25, 55, 60, 80' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1243,7 +1243,7 @@ test[103] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 30, 45, 70 )
+			var line = svg.path('M 5, 30, 45, 70' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1255,7 +1255,7 @@ test[104] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 5, 80, 45, 120 )
+			var line = svg.path('M 5, 80, 45, 120' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1267,7 +1267,7 @@ test[105] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 51.25, 55, 111.25, 95 )
+			var line = svg.path('M 51.25, 55, 111.25, 95' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1279,7 +1279,7 @@ test[106] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 31.25, 55, 101.25, 95 )
+			var line = svg.path('M 31.25, 55, 101.25, 95' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}
@@ -1291,7 +1291,7 @@ test[107] =
 	, input : function( svg ) { 
 			var path = svg.path( 'M 25 50 C 100 50 100 100 25 100' )
 				 .stroke( { width : 1 } ).fill( "none" );
-			var line = svg.line( 25, 5, 100, 100 )
+			var line = svg.path('M 25, 5, 100, 100' )
 				 .stroke( { width : 1 } );
 			return [ path, line ];
 		}

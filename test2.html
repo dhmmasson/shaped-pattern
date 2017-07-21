@@ -39,11 +39,11 @@
 		tester2.loadLibrary( Splitting );
 		var svg = SVG("shape").size(1000,500) ;
 
-		//var form = svg.ellipse( 800, 450 )
-		//		          .move(20,20).stroke( { width : 1 } ).fill( "none" );
+		var path = svg.path( 'M 0 0 C 25 65 84 65 90 90' )
+			          	.stroke( { width : 0 } ).fill( "none" );
 		var form = svg.path( 'M 25 20 L 825 20 L 825 300 C 625 500 220 500 25 300 L 25 20' )
 				          .stroke( { width : 1 } ).fill( "none" );
-		tester2.run( svg, form );
+		tester2.run( svg, form, path );
 		tester2.createSVG( svg );
 		
 	</script>

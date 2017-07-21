@@ -9,9 +9,9 @@ test[0] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 10, 10, 10 )
+			var line = svg.path('M 0, 10, 10, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -23,9 +23,9 @@ test[1] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 10, 190, 10 )
+			var line = svg.path('M 30, 10, 190, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -37,9 +37,9 @@ test[2] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 10, 220, 10 )
+			var line = svg.path('M 210, 10, 220, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -51,9 +51,9 @@ test[3] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 60, 10, 60 )
+			var line = svg.path('M 0, 60, 10, 60' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -65,9 +65,9 @@ test[4] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 60, 190, 60 )
+			var line = svg.path('M 30, 60, 190, 60' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -79,9 +79,9 @@ test[5] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 60, 220, 60 )
+			var line = svg.path('M 210, 60, 220, 60' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -93,9 +93,9 @@ test[6] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 110, 10, 110 )
+			var line = svg.path('M 0, 110, 10, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -107,9 +107,9 @@ test[7] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 110, 190, 110 )
+			var line = svg.path('M 30, 110, 190, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -121,9 +121,9 @@ test[8] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 110, 220, 110 )
+			var line = svg.path('M 210, 110, 220, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -135,9 +135,9 @@ test[9] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 60, 30, 60 )
+			var line = svg.path('M 10, 60, 30, 60' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 20, 60 ] ]
 	}
@@ -149,9 +149,9 @@ test[10] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 20, 210, 20 )
+			var line = svg.path('M 30, 20, 210, 20' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 20 ] ]
 	}
@@ -163,9 +163,9 @@ test[11] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 190, 60, 210, 60 )
+			var line = svg.path('M 190, 60, 210, 60' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 200, 60 ] ]
 	}
@@ -177,9 +177,9 @@ test[12] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 100, 190, 100 )
+			var line = svg.path('M 30, 100, 190, 100' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 100 ] ]
 	}
@@ -191,9 +191,9 @@ test[13] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 60, 210, 60 )
+			var line = svg.path('M 10, 60, 210, 60' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 20, 60 ], [ 200, 60 ] ]
 	}
@@ -205,9 +205,9 @@ test[14] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 0, 10, 10 )
+			var line = svg.path('M 10, 0, 10, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -219,9 +219,9 @@ test[15] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 110, 0, 110, 10 )
+			var line = svg.path('M 110, 0, 110, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -233,9 +233,9 @@ test[16] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 0, 210, 10 )
+			var line = svg.path('M 210, 0, 210, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -247,9 +247,9 @@ test[17] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 30, 10, 90 )
+			var line = svg.path('M 10, 30, 10, 90' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -261,9 +261,9 @@ test[18] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 110, 30, 110, 90 )
+			var line = svg.path('M 110, 30, 110, 90' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -275,9 +275,9 @@ test[19] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 30, 210, 90 )
+			var line = svg.path('M 210, 30, 210, 90' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -289,9 +289,9 @@ test[20] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 110, 10, 120 )
+			var line = svg.path('M 10, 110, 10, 120' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -303,9 +303,9 @@ test[21] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 110, 110, 110, 120 )
+			var line = svg.path('M 110, 110, 110, 120' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -317,9 +317,9 @@ test[22] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 110, 210, 120 )
+			var line = svg.path('M 210, 110, 210, 120' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -331,9 +331,9 @@ test[23] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 20, 30, 20, 90 )
+			var line = svg.path('M 20, 30, 20, 90' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 20, 60 ] ]
 	}
@@ -345,9 +345,9 @@ test[24] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 110, 10, 110, 30 )
+			var line = svg.path('M 110, 10, 110, 30' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 20 ] ]
 	}
@@ -359,9 +359,9 @@ test[25] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 200, 30, 200, 90 )
+			var line = svg.path('M 200, 30, 200, 90' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 200, 60 ] ]
 	}
@@ -373,9 +373,9 @@ test[26] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 110, 90, 110, 110 )
+			var line = svg.path('M 110, 90, 110, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 100 ] ]
 	}
@@ -387,9 +387,9 @@ test[27] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 110, 10, 110, 210 )
+			var line = svg.path('M 110, 10, 110, 210' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 20 ], [ 110, 100 ] ]
 	}
@@ -401,9 +401,9 @@ test[28] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 0, 10, 10 )
+			var line = svg.path('M 0, 0, 10, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -415,9 +415,9 @@ test[29] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 0, 190, 10 )
+			var line = svg.path('M 30, 0, 190, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -429,9 +429,9 @@ test[30] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 0, 220, 10 )
+			var line = svg.path('M 210, 0, 220, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -443,9 +443,9 @@ test[31] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 30, 10, 90 )
+			var line = svg.path('M 0, 30, 10, 90' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -457,9 +457,9 @@ test[32] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 100, 50, 120, 70 )
+			var line = svg.path('M 100, 50, 120, 70' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -471,9 +471,9 @@ test[33] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 50, 220, 70 )
+			var line = svg.path('M 210, 50, 220, 70' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -485,9 +485,9 @@ test[34] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 110, 10, 120 )
+			var line = svg.path('M 0, 110, 10, 120' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -499,9 +499,9 @@ test[35] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 110, 190, 120 )
+			var line = svg.path('M 30, 110, 190, 120' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -513,9 +513,9 @@ test[36] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 110, 220, 120 )
+			var line = svg.path('M 210, 110, 220, 120' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -527,9 +527,9 @@ test[37] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 50, 30, 70 )
+			var line = svg.path('M 10, 50, 30, 70' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 20, 60 ] ]
 	}
@@ -541,9 +541,9 @@ test[38] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 100, 10, 120, 30 )
+			var line = svg.path('M 100, 10, 120, 30' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 20 ] ]
 	}
@@ -555,9 +555,9 @@ test[39] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 190, 50, 210, 70 )
+			var line = svg.path('M 190, 50, 210, 70' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 200, 60 ] ]
 	}
@@ -569,9 +569,9 @@ test[40] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 100, 90, 120, 110 )
+			var line = svg.path('M 100, 90, 120, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 100 ] ]
 	}
@@ -583,9 +583,9 @@ test[41] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( -25, 40, 155, 120 )
+			var line = svg.path('M -25, 40, 155, 120' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 20, 60 ], [ 110, 100 ] ]
 	}
@@ -597,9 +597,9 @@ test[42] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 10, 10, 0 )
+			var line = svg.path('M 0, 10, 10, 0' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -611,9 +611,9 @@ test[43] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 10, 190, 0 )
+			var line = svg.path('M 30, 10, 190, 0' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -625,9 +625,9 @@ test[44] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 10, 220, 0 )
+			var line = svg.path('M 210, 10, 220, 0' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -639,9 +639,9 @@ test[45] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 90, 10, 30 )
+			var line = svg.path('M 0, 90, 10, 30' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -653,9 +653,9 @@ test[46] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 100, 70, 120, 50 )
+			var line = svg.path('M 100, 70, 120, 50' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -667,9 +667,9 @@ test[47] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 70, 220, 50 )
+			var line = svg.path('M 210, 70, 220, 50' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -681,9 +681,9 @@ test[48] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 0, 120, 10, 110 )
+			var line = svg.path('M 0, 120, 10, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -695,9 +695,9 @@ test[49] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 30, 120, 190, 110 )
+			var line = svg.path('M 30, 120, 190, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -709,9 +709,9 @@ test[50] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 210, 120, 220, 110 )
+			var line = svg.path('M 210, 120, 220, 110' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : []
 	}
@@ -723,9 +723,9 @@ test[51] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 10, 70, 30, 50 )
+			var line = svg.path('M 10, 70, 30, 50' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 20, 60 ] ]
 	}
@@ -737,9 +737,9 @@ test[52] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 100, 30, 120, 10 )
+			var line = svg.path('M 100, 30, 120, 10' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 20 ] ]
 	}
@@ -751,9 +751,9 @@ test[53] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 190, 70, 210, 50 )
+			var line = svg.path('M 190, 70, 210, 50' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 200, 60 ] ]
 	}
@@ -765,9 +765,9 @@ test[54] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 100, 110, 120, 90 )
+			var line = svg.path('M 100, 110, 120, 90' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 100 ] ]
 	}
@@ -779,9 +779,9 @@ test[55] =
 				 .move( 20, 20 )
 				 .fill('none')
 				 .stroke( { width : 1 } );
-			var line = svg.line( 110, 100, 200, 60 )
+			var line = svg.path('M 110, 100, 200, 60' )
 				 .stroke( { width : 1 } );
-			return [ ellipse, line ];
+			return [ line, ellipse ];
 		}
 	, output : [ [ 110, 100 ], [ 200, 60 ] ]
 	}
