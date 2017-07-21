@@ -18,21 +18,21 @@
 <body>
 
 	<script type="text/javascript" src="js/index.js"></script>
-	<script type="text/javascript" src="test.js"></script>
-	<script type="text/javascript" src="testCourbeCourbe.js"></script>
-	<script type="text/javascript" src="testCourbeEllipse.js"></script>
-	<script type="text/javascript" src="testCourbeLine.js"></script>
-	<script type="text/javascript" src="testEllipseLine.js"></script>
+	<script type="text/javascript" src="js/test.js"></script>
+	<script type="text/javascript" src="js/testCourbeCourbe.js"></script>
+	<script type="text/javascript" src="js/testCourbeEllipse.js"></script>
+	<script type="text/javascript" src="js/testCourbeLine.js"></script>
+	<script type="text/javascript" src="js/testEllipseLine.js"></script>
 	<script type="text/javascript" src="js/tester.js"></script>
-	<svg id="shape"></svg>
 	<script> 
+
 		tester.loadLibrary( Intersection )
 
 		tester.loadTestSet( "test Intersection Courbe Ellipse", testCourbeEllipse() )
 		tester.loadTestSet( "test Intersection Courbe Line", testCourbeLine() )
 		tester.loadTestSet( "Test Intersection Ellipse Line", testEllipseLine() )
 		tester.loadTestSet( "test Intersection Line Line", testLineLine() )
-    	tester.loadTestSet( "test Intersection Courbe Courbe", testCourbeCourbe()) 
+    tester.loadTestSet( "test Intersection Courbe Courbe", testCourbeCourbe()) 
 		tester.run() 
 	</script>
 	
