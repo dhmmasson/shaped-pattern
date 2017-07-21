@@ -234,7 +234,7 @@ Intersection =
 				}
 			}
 			if( add ){
-				solutions.push( [ intersection[0].x, intersection[0].y ] );
+				solutions.push( [ intersection[0].x, intersection[0].y, intersection[0].t] );
 			}
 		}
 		return solutions;
@@ -244,17 +244,23 @@ Intersection =
 	intersectionLibrary.intersectionLineLine = function( line1, line2 ){
 		var coords1 = line1.array(); 
 		var coords2 = line2.array();
-
-		var x1 = coords1.value[0][0];
-		var x2 = coords1.value[1][0];
-		var y1 = coords1.value[0][1];
-		var y2 = coords1.value[1][1];
-
-		var x3 = coords2.value[0][0];
-		var x4 = coords2.value[1][0];
-		var y3 = coords2.value[0][1];
-		var y4 = coords2.value[1][1];
-
+		for( var i in coords1.value ){
+			if( coords1.value[i][0] == "L" ){
+				var x1 = coords1.value[i-1][coords1.value[i-1].length-2];
+				var y1 = coords1.value[i-1][coords1.value[i-1].length-1];
+				var x2 = coords1.value[i][1];
+				var y2 = coords1.value[i][2];
+			}
+		}
+		for( var j in coords2.value ){
+			if( coords2.value[j][0] == "L" ){
+				var x3 = coords2.value[j-1][coords2.value[j-1].length-2];
+				var y3 = coords2.value[j-1][coords2.value[j-1].length-1];
+				var x4 = coords2.value[j][1];
+				var y4 = coords2.value[j][2];
+			}
+		}
+		//console.log( "x1,y1,x2,y2,x3,y3,x4,y4 ", x1,y1,x2,y2,x3,y3,x4,y4 )
 
 		var quotient =  (x1 - x2)*(y3 - y4)-(x3 - x4)*(y1 - y2);
 		//supposed intersection coord on X axis
@@ -282,12 +288,15 @@ Intersection =
 		var origineEllipseY = ellipse.cy();
 		var demiAxeX = ellipse.rx();
 		var demiAxeY = ellipse.ry();
-		var coordsLine = line.array();
-		var x1 = coordsLine.value[0][0];//coord first point segment on X
-		var x2 = coordsLine.value[1][0];//coord second point segment on X
-		var y1 = coordsLine.value[0][1];//coord first point segment on Y
-		var y2 = coordsLine.value[1][1];//coord second point segment on Y
-
+		var points = line.array();
+		for( var i in points.value ){
+			if( points.value[i][0] == "L" ){
+				var x1 = points.value[i-1][points.value[i-1].length-2];
+				var y1 = points.value[i-1][points.value[i-1].length-1];
+				var x2 = points.value[i][1];
+				var y2 = points.value[i][2];
+			}
+		}
 		var solutions = [];
 
 		//test if segment type x = a or y = ax + b
@@ -374,11 +383,14 @@ Intersection =
 	intersectionLibrary.intersectionBezierLine = function( path, line ){
 		var coords = line.array();
 		var points = path.array();
-
-		var x1 = coords.value[0][0];
-		var x2 = coords.value[1][0];
-		var y1 = coords.value[0][1];
-		var y2 = coords.value[1][1];
+		for( var i in coords.value ){
+			if( coords.value[i][0] == "L" ){
+				var x1 = coords.value[i-1][coords.value[i-1].length-2];
+				var y1 = coords.value[i-1][coords.value[i-1].length-1];
+				var x2 = coords.value[i][1];
+				var y2 = coords.value[i][2];
+			}
+		}
 		var Xp0;
 		var Yp0;
 		var Xp1;
@@ -440,7 +452,7 @@ Intersection =
 		} else {
 			results = cubicResolution( A, B, C, D );
 		}
-		/*console.log( results );*/
+		//console.log( results );
 		var solution = [];
 		for( i in results ){
 			//test if the solution are correct
@@ -460,7 +472,7 @@ Intersection =
 				}
 				if( insideInterval( solutionOnX, x1, x2 )//test if the solution on x is on the first segment
 					&& insideInterval( solutionOnY, y1, y2 ) ){//test if the solution on y is on the first segment )
-					solution.push( [ solutionOnX, solutionOnY ] );
+					solution.push( [ solutionOnX, solutionOnY, results[i] ] );
 				}
 			}
 		}
@@ -653,6 +665,173 @@ Intersection =
 		}
 		if( solutions.length != 0 ){
 				var intersectionData = new IntersectionData( "point", solutions );
+			} else {
+				var intersectionData = new IntersectionData( "empty", [ [] ] );
+			}
+		return intersectionData;
+	}
+
+	intersectionLibrary.intersectionPathPath = function( path1, path2 ){
+		var solution = [];
+		var points1 = path1.array();
+		var Xp0;
+		var Yp0;
+		var Xp1;
+		var Yp1;
+		var Xp2;
+		var Yp2;
+		var Xp3;
+		var Yp3;
+		//recuperation of the bezier curve control point
+		for( i in points1.value ){
+			if( points1.value[i][0] == "C" ){
+				Xp0 = points1.value[i-1][points1.value[i-1].length-2];
+				Yp0 = points1.value[i-1][points1.value[i-1].length-1];
+				Xp1 = points1.value[i][1];
+				Yp1 = points1.value[i][2];
+				Xp2 = points1.value[i][3];
+				Yp2 = points1.value[i][4];
+				Xp3 = points1.value[i][5];
+				Yp3 = points1.value[i][6];
+				var path11 = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' C ' + Xp1 + ' ' + Yp1 + ' ' + Xp2 + ' ' + Yp2 + ' ' + Xp3 + ' ' + Yp3 )
+					 .stroke( { width : 0, color: 'hsla(0,100%,50%,0.5)'} ).fill("none");
+				//coord of the second path
+				var points2 = path2.array();
+				var Xp4;
+				var Yp4;
+				var Xp5;
+				var Yp5;
+				var Xp6;
+				var Yp6;
+				var Xp7;
+				var Yp7;
+				//recuperation of the bezier curve control point
+				for( j in points2.value ){
+					if( points2.value[j][0] == "C" ){
+						Xp4 = points2.value[j-1][points2.value[j-1].length-2];
+						Yp4 = points2.value[j-1][points2.value[j-1].length-1];
+						Xp5 = points2.value[j][1];
+						Yp5 = points2.value[j][2];
+						Xp6 = points2.value[j][3];
+						Yp6 = points2.value[j][4];
+						Xp7 = points2.value[j][5];
+						Yp7 = points2.value[j][6];
+						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' C ' + Xp5 + ' ' + Yp5 + ' ' + Xp6 + ' ' + Yp6 + ' ' + Xp7 + ' ' + Yp7 )
+							 .stroke( { width : 0, color: 'hsla(120,100%,50%,0.5)' } ).fill("none");
+
+						var intersection = intersectionLibrary.intersectionBezierBezier( path11, path22 );
+						//console.log("intersection.data 2path ", intersection.data);
+						if( intersection.type != "empty" ){
+							for(var a of intersection.data ){
+								solution.push( a );
+							}
+						}
+
+
+					} else if( points2.value[j][0] == "L" ){
+						Xp4 = points2.value[j-1][points2.value[j-1].length-2];
+						Yp4 = points2.value[j-1][points2.value[j-1].length-1];
+						Xp5 = points2.value[j][1];
+						Yp5 = points2.value[j][2];
+						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' L ' + Xp5 + ' ' + Yp5 )
+							 .stroke( { width : 0, color: 'hsla(240,100%,50%,0.5)' } ).fill("none");
+
+						var intersection = intersectionLibrary.intersectionBezierLine( path11, path22 );
+						//console.log("intersection.data path line", intersection.data);
+						if( intersection.type != "empty" ){
+							for(var a of intersection.data ){
+								solution.push( a );
+							}
+						}
+
+					}
+				}
+			} else if( points1.value[i][0] == "L" ){
+				Xp0 = points1.value[i-1][points1.value[i-1].length-2];
+				Yp0 = points1.value[i-1][points1.value[i-1].length-1];
+				Xp1 = points1.value[i][1];
+				Yp1 = points1.value[i][2];
+				var path11 = svg.path( 'M ' + Xp0 + ' ' + Yp0 + ' L ' + Xp1 + ' ' + Yp1 )
+					 .stroke( { width :0, color: 'hsla(50,100%,50%,0.5)' } ).fill("none");
+				//coord of the second path
+				var points2 = path2.array();
+				var Xp4;
+				var Yp4;
+				var Xp5;
+				var Yp5;
+				var Xp6;
+				var Yp6;
+				var Xp7;
+				var Yp7;
+				//recuperation of the bezier curve control point
+				for( j in points2.value ){
+					if( points2.value[j][0] == "C" ){
+						Xp4 = points2.value[j-1][points2.value[j-1].length-2];
+						Yp4 = points2.value[j-1][points2.value[j-1].length-1];
+						Xp5 = points2.value[j][1];
+						Yp5 = points2.value[j][2];
+						Xp6 = points2.value[j][3];
+						Yp6 = points2.value[j][4];
+						Xp7 = points2.value[j][5];
+						Yp7 = points2.value[j][6];
+						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' C ' + Xp5 + ' ' + Yp5 + ' ' + Xp6 + ' ' + Yp6 + ' ' + Xp7 + ' ' + Yp7 )
+							 .stroke( { width : 0, color: 'hsla(170,100%,50%,0.5)' } ).fill("none");
+
+						var intersection = intersectionLibrary.intersectionBezierLine( path22, path11 );
+						//console.log("intersection.data line path ", intersection.data);
+						if( intersection.type != "empty" ){
+							for(var a of intersection.data ){
+								solution.push( a );
+							}
+						}
+
+					} else if( points2.value[j][0] == "L" ){
+						Xp4 = points2.value[j-1][points2.value[j-1].length-2];
+						Yp4 = points2.value[j-1][points2.value[j-1].length-1];
+						Xp5 = points2.value[j][1];
+						Yp5 = points2.value[j][2];
+						var path22 = svg.path( 'M ' + Xp4 + ' ' + Yp4 + ' L ' + Xp5 + ' ' + Yp5 )
+							 .stroke( { width : 0 } ).fill("none");
+
+						var intersection = intersectionLibrary.intersectionLineLine( path11, path22 );
+						//console.log("intersection.data line line ", intersection.data);
+						if( intersection.type != "empty" ){
+							for(var a of intersection.data ){
+								solution.push( a );
+							}
+						}
+					}
+				}
+			}
+		}
+		//console.log('solution path path ', solution);
+		newSolution = [];
+		for( var intersection of solution ){
+			var add = true;
+			for( var sol of newSolution ){
+				if( intersection.length == 2 ){
+					if(  Math.floor( 10000 * intersection[0] ) ==  Math.floor( 10000 * sol[0] )
+					 &&  Math.floor( 10000 * intersection[1] ) ==  Math.floor( 10000 * sol[1] ) ){
+						add = false;
+					}
+				} else {
+					if(  Math.floor( 10000 * intersection[2] ) ==  Math.floor( 10000 * sol[2] ) ){
+						add = false;
+					}
+				}
+			}
+			if( add ){
+				if( intersection.length == 2 ){
+					newSolution.push( [ intersection[0], intersection[1] ] );
+				} else {
+					newSolution.push( [ intersection[0], intersection[1], intersection[2] ] );
+				}
+			}
+		}
+
+
+		if( newSolution.length != 0 ){
+				var intersectionData = new IntersectionData( "point", newSolution );
 			} else {
 				var intersectionData = new IntersectionData( "empty", [ [] ] );
 			}
