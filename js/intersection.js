@@ -1,7 +1,22 @@
-Intersection = 
 (function() {
 
-	intersectionLibrary = {};
+	var intersectionLibrary = {};
+	var root = this ;
+	var previousModule = root.Intersection ;
+	//Compatibility 
+	if( typeof exports !== 'undefined' ) {
+		if( typeof module !== 'undefined' && module.exports ) {
+			exports = module.exports = intersectionLibrary
+		}
+		exports.Intersection = intersectionLibrary
+	} else {
+		root.Intersection = intersectionLibrary;
+	}
+	intersectionLibrary.noConflict = function() {
+		root.Intersection = previousModule
+		return intersectionLibrary ;
+	}
+
 	var epsilon = 0.00000001;
 
 	//prototype of results
@@ -40,7 +55,9 @@ Intersection =
 			tX = linearResolution( Bx, Cx );
 		}
 		//push valid solutions in a solutions array
-		for( t of Array.prototype.concat(tX, tY) ){
+		var concatenation = Array.prototype.concat(tX, tY) 
+		for( var i = 0 ; i < concatenation.length ; i++ ){
+			var t = concatenation[i]
 			if( t != -1 && t != 0 && t != 1 ){
 				solutions.push( t );
 			}
@@ -228,9 +245,13 @@ Intersection =
 
 	//add the results in solutions and remove the one too much closer from one an other
 	function ajouterSolutions( solutions, result ){
-		for( var intersection of result ){
+		var intersection
+		for( var i = 0 ; i < result.length ; i++ ){
+			intersection = result[i] ;
 			var add = true;
-			for( var solution of solutions ){
+			var solution 
+			for( var j = 0 ; j < solutions.length ; j++ ){
+				solution = solutions[j] 
 				if( ( Math.floor( 10000 * intersection[0].x ) == Math.floor( 10000 * solution[0] ) )
 				 && ( Math.floor( 10000 * intersection[0].y ) == Math.floor( 10000 * solution[1] ) ) ){
 					add = false;
@@ -724,8 +745,8 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionBezierBezier( path11, path22 );
 						//console.log("intersection.data 2path ", intersection.data);
 						if( intersection.type != "empty" ){
-							for( var a of intersection.data ){
-								solution.push( a );
+							for( var a = 0 ; a < intersection.data.length ; a++ ){
+								solution.push( intersection.data[a] );
 							}
 						}
 
@@ -741,8 +762,8 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionBezierLine( path11, path22 );
 						//console.log("intersection.data path line", intersection.data);
 						if( intersection.type != "empty" ){
-							for( var a of intersection.data ){
-								solution.push( a );
+							for( var a = 0 ; a < intersection.data.length ; a++ ){
+								solution.push( intersection.data[a] );
 							}
 						}
 
@@ -782,8 +803,9 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionBezierLine( path22, path11 );
 						//console.log("intersection.data line path ", intersection.data);
 						if( intersection.type != "empty" ){
-							for( var a of intersection.data ){
-								solution.push( a );
+
+							for( var a = 0 ; a < intersection.data.length ; a++ ){
+								solution.push( intersection.data[a] );
 							}
 						}
 
@@ -798,8 +820,8 @@ Intersection =
 						var intersection = intersectionLibrary.intersectionLineLine( path11, path22 );
 						//console.log("intersection.data line line ", intersection.data);
 						if( intersection.type != "empty" ){
-							for( var a of intersection.data ){
-								solution.push( a );
+							for( var a = 0 ; a < intersection.data.length ; a++ ){
+								solution.push( intersection.data[a] );
 							}
 						}
 					}
@@ -808,9 +830,13 @@ Intersection =
 		}
 		//console.log('solution path path ', solution);
 		newSolution = [];
-		for( var intersection of solution ){
+		var intersection
+		for( var indexSol = 0 ; indexSol < solution.length ; indexSol++ ){
+			intersection = solution[ indexSol ]
 			var add = true;
-			for( var sol of newSolution ){
+			var sol 
+			for( var indexNewSolution = 0 ; indexNewSolution < newSolution.length ; indexNewSolution++ ){
+				sol = newSolution[ indexNewSolution ]
 				if( intersection.length == 2 ){
 					if(  Math.floor( 10000 * intersection[0] ) ==  Math.floor( 10000 * sol[0] )
 					 &&  Math.floor( 10000 * intersection[1] ) ==  Math.floor( 10000 * sol[1] ) ){
@@ -841,4 +867,4 @@ Intersection =
 	}
 
 return intersectionLibrary;
-}) () 
+}).call(this);

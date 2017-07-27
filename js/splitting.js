@@ -1,7 +1,23 @@
-Splitting = 
 (function() {
+	var root = this ;
+	var previousModule = root.Splitting ;
+	var splittingLibrary = {};
+	//Compatibility 
+	if( typeof exports !== 'undefined' ) {
+	if( typeof module !== 'undefined' && module.exports ) {
+		exports = module.exports = splittingLibrary
+	}
+		exports.Splitting = splittingLibrary
+	} 
+	else {
+		root.Splitting = splittingLibrary;
+	}
+	splittingLibrary.noConflict = function() {
+		root.Splitting = previousModule
+		return splittingLibrary ;
+	}
 
-	splittingLibrary = {};
+
 	var epsilon = 0.00000001;
 
 	function SplittedData( value, type ){
@@ -121,7 +137,9 @@ Splitting =
 
 					var corner = false;
 					var formPoints = form.array();
-					for( val of formPoints.value ){
+					var val 
+					for( var indexValue = 0 ; indexValue < formPoints.value.length ; indexValue++ ){
+						val = formPoints.value[ indexValue ] ; 
 						if( val[ val.length-2 ] == Xp0
 						 && val[ val.length-1 ] == Yp0 ){
 							corner = true;
@@ -162,7 +180,9 @@ Splitting =
 					var corner = false;
 
 					var formPoints = form.array();
-					for( val of formPoints.value ){
+					var val 
+					for( var indexValue = 0 ; indexValue < formPoints.value.length ; indexValue++ ){
+						val = formPoints.value[ indexValue ] ; 
 						if( val[ val.length-2 ] == Xp0
 						 && val[ val.length-1 ] == Yp0 ){
 							corner = true;
@@ -372,6 +392,6 @@ Splitting =
 		}
 	}
 
-	return splittingLibrary;
 
-}) () 
+
+}).call(this);

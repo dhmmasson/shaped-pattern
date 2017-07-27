@@ -1,13 +1,27 @@
-var index = 
 (function() {
 
 	var Index = {};
+	var root = this ;
+	var previousModule = root.shapedPattern ;
+	//Compatibility 
+	if( typeof exports !== 'undefined' ) {
+	if( typeof module !== 'undefined' && module.exports ) {
+		exports = module.exports = Index
+	}
+		exports.shapedPattern = Index
+	} 
+	else {
+		root.shapedPattern = Index;
+	}
+	Index.noConflict = function() {
+		root.shapedPattern = previousModule
+		return Index ;
+	}
+
+
 
 	var color = [ "chartreuse", "red", "blue", "green", "yellow", "indigo"  ];
-	
-	Index.loadLibrary = function( library ){
-		this.library = library;
-	}
+
 	//create blob used to get the svg file
 	Index.createSVG = function( svg ){
 	  var blob = new Blob( [svg.svg()], {type: 'image/svg+xml'} );
@@ -132,4 +146,4 @@ var index =
 
 
 	return Index;
-})()
+}).call(this);
