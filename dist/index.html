@@ -1,3 +1,117 @@
 
-<views/>
-<testPug class="pug"></testPug>
+<!--login page--><!DOCTYPE html >
+<html> 
+  <title>ShapedPattern</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" rel="stylesheet"/>
+  <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/dat.gui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/2.6.1/svg.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+  <body>
+    <nav>
+      <div class="nav-wrapper">
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/materialize.min.js" type="text/javascript"></script>
+        <script src="js/shapedPattern.min.js" type="text/javascript"></script>
+        <script src="js/ui.js" type="text/javascript"></script>
+        <p>Shapped Pattern generator</p>
+      </div>
+    </nav>
+    <div class="row">
+      <form action="#"> 
+        <div class="col s12 m5">
+          <div class="row"> 
+            <div class="file-field input-field">
+              <div class="btn"><span>File For Pattern</span>
+                <input id="inputPattern" type="file"/>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <form action="#"> 
+        <div class="col s12 m5">
+          <div class="row"> 
+            <div class="file-field input-field">
+              <div class="btn"><span>File For form</span>
+                <input id="inputForm" type="file"/>
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <div class="col s12 m8">
+        <svg id="shape"></svg>
+      </div>
+      <div class="col s12 m4">
+        <div class="row"><a class="waves-effect waves-light btn" id="download" href="#">Telecharger</a></div>
+        <div class="row">
+          <div class="col s6 m6">
+            <p>espacement en X</p>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="espacementX" min="0" max="500"/>
+              </p>
+            </form>
+          </div>
+          <div class="col s6 m6">
+            <p>espacement en Y</p>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="espacementY" min="0" max="500"/>
+              </p>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6">
+            <p>nombre de répétition en X</p>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="numberX" min="0" max="50"/>
+              </p>
+            </form>
+          </div>
+          <div class="col s6 m6">
+            <p>nombre de répétition en Y</p>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="numberY" min="0" max="50"/>
+              </p>
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col s6 m6">
+            <p>point de départ du premier pattern en X</p>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="startX" min="-500" max="500"/>
+              </p>
+            </form>
+          </div>
+          <div class="col s6 m6">
+            <p>point de départ du premier pattern en Y</p>
+            <form action="#">
+              <p class="range-field">
+                <input type="range" id="startY" min="-500" max="500"/>
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
