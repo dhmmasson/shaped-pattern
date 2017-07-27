@@ -1,7 +1,4 @@
 
-index.loadLibrary( Intersection )
-index.loadLibrary( Splitting )
-
 //declare the svg for printing
 var svg = null;
 //declare the svg used as playground
@@ -75,7 +72,7 @@ dataStructure.compute = function(){
 				var path = svgOut.path(svgPathPattern.getAttribute("d"))
 							  				 .stroke( { width : 0 } ).fill( "none" );
 
-				index.run( svg, form, path, X, Y, i, j, sX, sY );
+				shapedPattern.run( svg, form, path, X, Y, i, j, sX, sY );
 			}
 		}
 	} else{
@@ -98,10 +95,9 @@ dataStructure.compute = function(){
 				var path = svgOut.path(svgPathPattern.getAttribute("d"))
 							  				 .stroke( { width : 0 } ).fill( "none" );
 
-				index.run( svg, form, path, X, Y, i, j, sX, sY );
+				shapedPattern.run( svg, form, path, X, Y, i, j, sX, sY );
 			}
 		}
 	}
-
-	index.createSVG( svg );
+	shapedPattern.createSVG( svg );
 }
