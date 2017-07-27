@@ -2,6 +2,13 @@
 
 This project allows to draw a pattern in a shape for laser cutter. 
 
+To use this project download the project and launch the dist/index.html file.
+- First select the space you want between each part of the pattern on X axis and Y axis
+- Then select the number of repetition you want
+- Select the coordinate of the first pattern element you want
+- Finally import your pattern element and your object form
+
+
 This project is composed in different parts: 
 - The first library is the intersectionLibrary.
   It's composed of different function able to return the diffrents intersection between two elements.

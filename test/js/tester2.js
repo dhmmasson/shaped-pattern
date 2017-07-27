@@ -2,8 +2,6 @@ var tester2 =
 (function() {
 
 	var Tester2 = {};
-
-	var color = [ "chartreuse", "red", "blue", "green", "yellow", "indigo"  ];
 	
 	Tester2.loadLibrary = function( library ){
 		this.library = library;
